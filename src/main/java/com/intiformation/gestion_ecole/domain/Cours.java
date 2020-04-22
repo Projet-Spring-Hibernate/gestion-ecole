@@ -13,10 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="cours")
 @Table(name="cours")
 public class Cours implements Serializable{
 	
@@ -35,8 +34,7 @@ public class Cours implements Serializable{
 	@Column
 	private String description;
 	
-	@ManyToMany
-	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Cours"), inverseJoinColumns = @JoinColumn(name="Etudiant"))
+	@ManyToMany(mappedBy = "listeCours")
 	private List<Etudiant> listeEtudiant;
 	
 	
@@ -47,10 +45,6 @@ public class Cours implements Serializable{
 	@ManyToOne(cascade= CascadeType.PERSIST)
 	@JoinColumn(name="matiere_id", referencedColumnName="idMatiere")
 	private Matiere matiere;
-	
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="cours")
-	private List<Exercice> listeexercice;
-	
 	
 	/*____________________ctors____________________*/
 	public Cours() {
@@ -152,15 +146,6 @@ public class Cours implements Serializable{
 				+ ", matiere=" + matiere + "]";
 	}
 
-	public List<Exercice> getListeexercice() {
-		return listeexercice;
-	}
-
-	public void setListeexercice(List<Exercice> listeexercice) {
-		this.listeexercice = listeexercice;
-	}
-
-	
 
 	
 	

@@ -11,7 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="etudiant")
 @Table(name="etudiants")
 @DiscriminatorValue("etudiant")
 public class Etudiant extends Personne{
@@ -25,6 +25,10 @@ public class Etudiant extends Personne{
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Etudiant"), inverseJoinColumns = @JoinColumn(name="Cours"))
 	private List<Cours> listeCours;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name="etudiant_promotion", joinColumns= @JoinColumn(name="etudiant_id"), inverseJoinColumns= @JoinColumn(name="promotion_id"))
+	private List<Promotion> listePromotion;
 	
 	
 	
@@ -82,6 +86,19 @@ public class Etudiant extends Personne{
 
 	public void setListeCours(List<Cours> listeCours) {
 		this.listeCours = listeCours;
+	}
+	
+	
+	
+
+
+	public List<Promotion> getListePromotion() {
+		return listePromotion;
+	}
+
+
+	public void setListePromotion(List<Promotion> listePromotion) {
+		this.listePromotion = listePromotion;
 	}
 
 
