@@ -2,27 +2,54 @@ package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+/**
+ * Classe Entité.
+ * @author Marie
+ *
+ */
 @Entity
+@Table(name="personnes")
 public class Personne implements Serializable {
 
-	/*_______________prop_______________*/
+	/*_______________Propriétés_______________*/
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_personne")
 	private Long identifiant;
+	
+	@Column(name="mot_de_passe")
 	private String motdepasse;
+	
+	@Column(name="nom")
 	private String nom;
+	
+	@Column(name="prenom")
 	private String prenom;
+	
+	@Column(name="email")
 	private String email;
 	
+	// Association avec Adresse
+	@OneToOne
+	@JoinColumn(name = "id_personne", referencedColumnName = "personne_id")
+	private Adresse adresse;
 	
-	/*_______________ctor_______________*/
+	
+	/*_______________Constructeurs_______________*/
 
+	/**
+	 * Ctor vide.
+	 */
 	public Personne() {
 	}
 
@@ -44,7 +71,7 @@ public class Personne implements Serializable {
 	}
 
 	
-	/*_______________get/set_______________*/
+	/*_______________getter Setter_______________*/
 
 	public Long getIdentifiant() {
 		return identifiant;
@@ -91,12 +118,14 @@ public class Personne implements Serializable {
 		return "Personne [identifiant=" + identifiant + ", motdepasse=" + motdepasse + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + "]";
 	}
-	
-	
-	
-	
-	
-	
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
 	
 	
 	
