@@ -13,8 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity(name="matieres")
-@Table(name="Matieres")
+@Entity(name="matiere")
+@Table(name="matieres")
 public class Matiere implements Serializable {
 
 

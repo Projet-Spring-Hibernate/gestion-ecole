@@ -13,8 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity(name="promotions")
-@Table(name="Promotions")
+@Entity(name="promotion")
+@Table(name="promotions")
 public class Promotion implements Serializable {
 
 
