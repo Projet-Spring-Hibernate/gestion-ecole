@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++++++++++++++CONFIG ANNOTATIONS SPRING MVC++++++++++++++++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+	<!-- 1. Détection auto des Controller : @Controller -->
+
+
+	<context:component-scan
+		base-package="com.intiformation.gestion_ecole.controller" />
+
+	<!-- 2. Détection auto des annotation @RequestMapping permet l'associationdes 
+		requêtes aux Controller et méthodes -->
+
+
+	<mvc:annotation-driven />
+	
+	<mvc:resources location="/assets/" mapping="/assets/**"></mvc:resources>
+
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++++++++++++++++++++++LES BEANS DE SPRING MVC++++++++++++++++++++++++++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+<!-- +++++++++++++++ DECLARATION DU HANDLERMAPPING +++++++++++++++++++ -->
+
+<!-- Il va associer la requete http à un controleur. Il determine le nom du controleur à partir de l'url de la requete-->
+<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+<!-- ++++++++++ Declaration du resolveur de vue (view resolver) ++++++== -->
+
+<!-- Conversion du nom logique de la vue : 'accueil' devient '/WEB-INF/vues/accueil.jsp' -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/vues/"/>
+		<property name="suffix" value=".jsp"/>
+	
+	</bean>
+
+
+
+
+</beans>

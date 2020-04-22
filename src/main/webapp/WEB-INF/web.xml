@@ -34,7 +34,7 @@
 	<servlet-mapping>
 
 		<servlet-name>springapp</servlet-name>
-		<url-pattern>*.htm</url-pattern> <!-- .htm : extension qui n'existe pas pour cacher la techno d'implementation de l'app -->
+		<url-pattern>/</url-pattern> 
 	</servlet-mapping>
 
 
