@@ -1,0 +1,24 @@
+*********************************
+	Projet : Gestion Ecole
+*********************************
+
+> Qui fait quoi ?
+  ---------------
+  
+  Valentin : Classe Aide (voir support projet : diagramme)
+  +++++++++
+    
+  Thanesh : Enseignant - Matiere - Promotion
+  ++++++++
+  
+  Lise : EtudiantCours - Etudiant  - Cours 
+  ++++++
+  
+  
+  Laure : DAO générale : CRUD
+  ++++++
+  
+  Marie : Personne - Administrateur - Adress
+  +++++
+  
+  
