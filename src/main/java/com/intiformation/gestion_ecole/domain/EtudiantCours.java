@@ -11,7 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/**
+ * Table de jointure entre Etudiant et cours.
+ * Relation ManyToOne avec Cours. 
+ * Relation ManyToOne avec Etudiant. 
+ * @author Lise
+ *
+ */
 @Entity
 @Table(name="etudiant_cours")
 public class EtudiantCours implements Serializable{

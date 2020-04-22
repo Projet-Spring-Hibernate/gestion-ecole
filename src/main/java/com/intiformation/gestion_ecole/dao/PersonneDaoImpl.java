@@ -21,11 +21,10 @@ import com.intiformation.gestion_ecole.domain.Personne;
  *
  */
 @Transactional
-@Repository
+@Repository("personneDaoImpl")
 public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPersonneDao {
 
-	 //1.Récup la sessionFactory d'hibernate de l'utilitaire
-		private SessionFactory sessionFactory;
+
 	
 	public PersonneDaoImpl() {
 		super(Personne.class);
@@ -41,14 +40,14 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 		try {
 
 			//1. Recup de la session à partir de la SessionFactory
-			Session session = sessionFactory.getCurrentSession();
+			Session session = this.getSessionFactory().getCurrentSession();
 			
-			Query<Integer> query = session.createQuery("SELECT COUNT(p) FROM personne p WHERE p.email = :pEmail AND p.motdepasse = :pMotDePasse");
+			Query<Long> query = session.createQuery("SELECT COUNT(p) FROM personne p WHERE p.email = :pEmail AND p.motdepasse = :pMotDePasse");
 			
 			query.setParameter("pEmail", email);
 			query.setParameter("pMotDePasse", mot_de_passe);
 			
-			int nbPersonne = query.getSingleResult();
+			Long nbPersonne = query.getSingleResult();
 			
 			return (nbPersonne ==1);
 			
@@ -71,14 +70,14 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 		
 		try {
 			//1. Recup de la session à partir de la SessionFactory
-			Session session = sessionFactory.getCurrentSession();
+			Session session = this.getSessionFactory().getCurrentSession();
 			
 			//3. Contenu de la requête : 
 			
-			Query<Personne> query = session.createQuery("SELECT p FROM personne p WHERE p.email= :pEmail AND p.motDePasse= :pMdp");
+			Query<Personne> query = session.createQuery("SELECT p FROM personne p WHERE p.email= :pEmail AND p.motdepasse= :pMdp");
 			
 			query.setParameter("pEmail", email);
-			query.setParameter("pMotDePasse", mot_de_passe);
+			query.setParameter("pMdp", mot_de_passe);
 			
 			Personne personne = query.getSingleResult();
 			
@@ -93,7 +92,7 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 	
 	
 	@Override
-	public List<Personne> getAll(Long id_personne) {
+	public List<Personne> getAll() {
 	
 		return this.getSessionFactory().getCurrentSession().createQuery("FROM personne p").list();
 	}//end getAll

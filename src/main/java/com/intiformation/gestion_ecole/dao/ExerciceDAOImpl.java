@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intiformation.gestion_ecole.domain.Exercice;
 
 @Transactional
-@Repository
+@Repository("exerciceDAOImpl")
 public class ExerciceDAOImpl extends GeneraleDAOImpl<Exercice> implements IExerciceDAO {
 
 	public ExerciceDAOImpl() {

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intiformation.gestion_ecole.domain.Matiere;
 
 @Transactional
-@Repository
+@Repository("matiereDAOImpl")
 public class MatiereDAOImpl extends GeneraleDAOImpl<Matiere> implements IMatiereDAO {
 
 	public MatiereDAOImpl() {

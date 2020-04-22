@@ -14,6 +14,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Classe entity pour les promotions.
+ * Relation triple avec Enseignant et Matière
+ * Relation ManyToMany avec Enseignant.
+ * Relation ManyToMany avec Matière.
+ * 
+ * @author Thanesh
+ *
+ */
 @Entity(name="promotions")
 @Table(name="Promotions")
 public class Promotion implements Serializable {
@@ -23,17 +32,18 @@ public class Promotion implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPromotion;
+	
 	private String libelle;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "enseigne",
+	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="PROMOTION_ID"),
 	inverseJoinColumns = @JoinColumn(name="id_personne")
 	)
 	private List<Enseignant> listeEnseignant;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "enseigne",
+	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="PROMOTION_ID"),
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
 	)

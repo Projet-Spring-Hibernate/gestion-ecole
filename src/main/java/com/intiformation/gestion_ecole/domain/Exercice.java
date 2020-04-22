@@ -11,10 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Classe entity pour les exercices. 
+ * Relation OneToMany avec cours
+ * @author Thanesh
+ *
+ */
 @Entity(name="exercice")
 @Table(name="exercices")
 public class Exercice implements Serializable {
 
+	/*____________________props____________________*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idExercice;
@@ -25,6 +32,8 @@ public class Exercice implements Serializable {
 	@JoinColumn(name="COURS_ID", referencedColumnName="idCours")
 	private Cours cours;
 
+	
+	/*____________________ctors____________________*/
 	public Exercice() {
 		super();
 	}
@@ -40,6 +49,7 @@ public class Exercice implements Serializable {
 		this.cours = cours;
 	}
 
+	/*____________________getter/setter____________________*/
 	public Long getIdExercice() {
 		return idExercice;
 	}
@@ -62,6 +72,11 @@ public class Exercice implements Serializable {
 
 	public void setCours(Cours cours) {
 		this.cours = cours;
+	}
+
+	@Override
+	public String toString() {
+		return "Exercice [idExercice=" + idExercice + ", libelle=" + libelle + ", cours=" + cours + "]";
 	}
 	
 	

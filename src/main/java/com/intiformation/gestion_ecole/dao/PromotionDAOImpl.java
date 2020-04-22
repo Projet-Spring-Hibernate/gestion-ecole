@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intiformation.gestion_ecole.domain.Promotion;
 
 @Transactional
-@Repository
+@Repository("promotionDAOImpl")
 public class PromotionDAOImpl extends GeneraleDAOImpl<Promotion> implements IPromotionDAO {
 
 	public PromotionDAOImpl() {

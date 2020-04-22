@@ -8,9 +8,7 @@ import javax.persistence.Table;
 
 /**
  * classe consacrée à la constitution de la page d'aide
-<<<<<<< HEAD
- * @author IN-DF-019
-=======
+
  * @author Valentin
 >>>>>>> f141fb8cf0d593d1a32b889cf419aafc29bb93cb
  *
@@ -23,7 +21,9 @@ public class Aide {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id_page;
+	
 	private String page;
+	
 	private String contenu;
 	
 	
@@ -49,6 +49,7 @@ public class Aide {
 
 
 	/*-----getters/setters + méthodes-----*/
+	
 	public String getPage() {
 		return page;
 	}

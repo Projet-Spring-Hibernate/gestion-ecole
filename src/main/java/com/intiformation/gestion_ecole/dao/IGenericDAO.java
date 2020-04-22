@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Interface générique de la DAO. Cette interface sera utilisée par toutes les classe
- * @author Marie
+ * @author Laure
  *
  * @param <T>
  */

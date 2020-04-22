@@ -18,6 +18,6 @@ public interface IAdministrateurDao extends IPersonneDao {
 	 * @param adresse_id
 	 * @return
 	 */
-	public List<Administrateur> getAll();
+	public List<Administrateur> getAllAdministrateur();
 	
 }//end interface

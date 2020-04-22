@@ -12,23 +12,30 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
-
+/**
+ * Classe entity pour les administrateurs. Classe fille de la classe Personne.
+ * Relation triple avec Matière et Promotion
+ * Relation ManyToMany avec Matiere.
+ * Relation ManyToMany avec Promotion.
+ * 
+ * @author Thanesh
+ *
+ */
 @Entity(name="enseignant")
-@Table(name="enseignants")
 @DiscriminatorValue("enseignant")
 public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "enseigne",
+	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
 	)
 	private List<Matiere> listeMatiere;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "enseigne",
+	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID")
 	)
@@ -68,7 +75,11 @@ public class Enseignant extends Personne {
 	
 
 	
-	
+	@Override
+	public String toString() {
+		return "Enseignant [identifiant=" + super.getIdentifiant() + ", motdepasse=" + super.getMotdepasse() + ", nom=" + super.getNom() + ", prenom="
+				+ super.getPrenom() + ", email=" + super.getEmail() + ", adresse="+super.getAdresse()+"]";
+	}
 	
 	
 }//end classe

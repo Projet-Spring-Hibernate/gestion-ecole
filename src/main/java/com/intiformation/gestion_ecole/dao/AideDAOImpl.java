@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.intiformation.gestion_ecole.domain.Aide;
 
 @Transactional
-@Repository
+@Repository("aideDAOImpl")
 public class AideDAOImpl extends GeneraleDAOImpl<Aide> implements IAideDAO{
 
 	public AideDAOImpl() {

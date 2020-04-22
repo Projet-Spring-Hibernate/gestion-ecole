@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intiformation.gestion_ecole.domain.Etudiant;
 
 @Transactional
-@Repository
+@Repository("etudiantDAOImpl")
 public class EtudiantDAOImpl extends PersonneDaoImpl implements IEtudiantDAO{
 
 	public EtudiantDAOImpl() {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-@Repository
+@Repository("generaleDAOImpl")
 public class GeneraleDAOImpl<T> implements IGenericDAO<T> {
 
 	// ============ Propriétées ====================//
@@ -45,6 +45,13 @@ public class GeneraleDAOImpl<T> implements IGenericDAO<T> {
 		this.entityClass = entityClass;
 		
 	}//end ctor
+	
+	
+
+	public GeneraleDAOImpl() {
+		super();
+	}
+
 
 	// ============ Méthodes ====================//
 

@@ -2,6 +2,7 @@ package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -16,12 +17,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Classe Entité.
+ * Classe Entité de Personne. Classe mère de Administrateur, Enseignant et Etudiant
+ * Relation OneToOne avec Adresse
  * @author Marie
  *
  */
-@Entity
-@Table(name="personne")
+@Entity(name="personne")
+@Table(name="personnes")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_personne", discriminatorType=DiscriminatorType.STRING)
 public class Personne implements Serializable {
@@ -30,7 +32,7 @@ public class Personne implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_personne")
+	@Column(name="identifiant")
 	private Long identifiant;
 	
 	@Column(name="mot_de_passe")
@@ -46,8 +48,8 @@ public class Personne implements Serializable {
 	private String email;
 	
 	// Association avec Adresse
-	@OneToOne
-	@JoinColumn(name = "id_personne", referencedColumnName = "personne_id")
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "adresse_id", referencedColumnName = "adresse_id")
 	private Adresse adresse;
 	
 	
@@ -119,11 +121,6 @@ public class Personne implements Serializable {
 		this.email = email;
 	}
 
-	@Override
-	public String toString() {
-		return "Personne [identifiant=" + identifiant + ", motdepasse=" + motdepasse + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + "]";
-	}
 
 	public Adresse getAdresse() {
 		return adresse;
@@ -134,5 +131,9 @@ public class Personne implements Serializable {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return "Personne [identifiant=" + identifiant + ", motdepasse=" + motdepasse + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", adresse="+adresse+"]";
+	}
 }//end class

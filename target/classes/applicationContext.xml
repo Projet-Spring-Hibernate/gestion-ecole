@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++++Déclaration du Bean du gestionnaire des transactionsy++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<bean id="transactionManagerBean" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+
+	<!-- Injection du bean de la SF dans le txManager -->
+	<property name="sessionFactory" ref="sessionFactoryBean"/>
+
+</bean>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++Configuration des annotations+++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- 1.  Activation de la détection des annotaitons @AutoWired -->
+<context:annotation-config/>
+
+<!-- 2. Activation de la détection automatique des composants @Repository et Service -->
+<context:component-scan base-package="com.intiformation.gestion_ecole"/>
+
+<!-- 3. Activation de la détection des annotations des transactions@Transactional -->
+<!-- piloté via les annotation et via le gestionnaire mannager -->
+
+<tx:annotation-driven transaction-manager="transactionManagerBean"/>
+
+
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- ++++++++++++++++++++Emplacement du fichier de propriétés jdbc.properties+++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<context:property-placeholder location="classpath:db.properties"/>
+
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++Déclaration du Bean de la DataSource++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+<!-- Injection des infos à la connexion à la Bdd -->
+		<property name="driverClassName" value="${db.driverClassName}"/>
+		<property name="url" value="${db.url}"/>
+		<property name="password" value="${db.password}"/>
+		<property name="username" value="${db.username}"/>
+
+	</bean>
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++Déclaration du Bean de la SessionFactory++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<bean id="sessionFactoryBean" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	
+	<!-- 1. Injection du bean de la DataSource dans la SessionFactory -->
+	<property name="dataSource" ref="dataSourceBean"/>
+	
+	<!-- 2. Déclaration des propriétés d'Hibernate -->
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">${db.dialect}</prop>
+			<prop key="hibernate.show_sql">${db.show_sql}</prop>
+			<prop key="hibernate.hbm2ddl.auto">${db.hbm2ddl.auto}</prop>
+		</props>
+	</property>
+	
+	<!-- 3. Déclaration des classes annotées avec les annotations JPA -->
+	<property name="annotatedClasses">
+		<list>
+			<value>com.intiformation.gestion_ecole.domain.Adresse</value>
+			<value>com.intiformation.gestion_ecole.domain.Etudiant</value>
+			<value>com.intiformation.gestion_ecole.domain.Personne</value>
+			<value>com.intiformation.gestion_ecole.domain.Administrateur</value>
+			<value>com.intiformation.gestion_ecole.domain.Cours</value>
+			<value>com.intiformation.gestion_ecole.domain.EtudiantCours</value>
+			<value>com.intiformation.gestion_ecole.domain.Enseignant</value>
+			<value>com.intiformation.gestion_ecole.domain.Promotion</value>
+			<value>com.intiformation.gestion_ecole.domain.Matiere</value>
+			<value>com.intiformation.gestion_ecole.domain.Aide</value>
+		</list>
+	</property>
+
+	</bean>
+</beans>

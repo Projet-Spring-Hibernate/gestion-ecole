@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intiformation.gestion_ecole.domain.Cours;
 
 @Transactional
-@Repository
+@Repository("coursDAOImpl")
 public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 
 	

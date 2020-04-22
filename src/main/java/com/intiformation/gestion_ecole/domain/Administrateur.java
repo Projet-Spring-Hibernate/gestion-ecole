@@ -5,16 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 
+ * Classe entity pour les administrateurs. Classe fille de la classe Personne.
  * @author Marie
  *
  */
-@Entity
-@Table(name="administrateurs")
+
+@Entity(name="administrateur")
 @DiscriminatorValue("administrateur")
 public class Administrateur extends Personne {
 
-	/* _______________Constructeur_______________ */
+	/* _______________ Constructeurs _______________ */
 	/**
 	 * Ctor vide.
 	 */
@@ -34,6 +34,10 @@ public class Administrateur extends Personne {
 		
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Administrateur [identifiant=" + super.getIdentifiant() + ", motdepasse=" + super.getMotdepasse() + ", nom=" + super.getNom() + ", prenom="
+				+ super.getPrenom() + ", email=" + super.getEmail() + ", adresse="+super.getAdresse()+"]";
+	}
 	
 }//end class

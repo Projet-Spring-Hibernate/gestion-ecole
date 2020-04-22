@@ -28,7 +28,7 @@ public interface IPersonneDao extends IGenericDAO<Personne>{
 	 * @param id_personne
 	 * @return
 	 */
-	public List<Personne> getAll(Long id_personne);
+	public List<Personne> getAll();
 	
 
 }//end interface

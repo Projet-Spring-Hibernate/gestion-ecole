@@ -13,7 +13,7 @@ import com.intiformation.gestion_ecole.domain.Adresse;
  *
  */
 @Transactional
-@Repository
+@Repository("adresseDaoImpl")
 public class AdresseDaoImpl extends GeneraleDAOImpl<Adresse> implements IAdresseDao {
 
 		public AdresseDaoImpl() {

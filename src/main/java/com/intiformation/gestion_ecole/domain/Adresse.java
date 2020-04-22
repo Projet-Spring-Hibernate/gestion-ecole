@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Classe Entité.
+ * Classe entity pour les adresses. Reliée à la classe Personne par une relation OneToONe
  * 
  * @author Marie
  *
@@ -34,7 +34,7 @@ public class Adresse {
 	private String ville;
 	
 	// Association avec Personne
-	@OneToOne
+	@OneToOne(mappedBy="adresse")
 	private Personne personne;
 
 
