@@ -9,10 +9,9 @@ import com.intiformation.gestion_ecole.domain.Administrateur;
  * @author Marie
  *
  */
-public class AdministrateurDaoImpl extends GeneraleDAOImpl<Administrateur> implements IAdministrateurDao{
+public class AdministrateurDaoImpl extends PersonneDaoImpl implements IAdministrateurDao{
 
 	public AdministrateurDaoImpl() {
-		super(Administrateur.class);
 		
 	}
 

@@ -28,12 +28,20 @@
 	***
  	2.
  	***
-  > Pour chaque classes IDao ext IGener, et DaoImpl ext GenereDao<> et impl Iperso avec une fonction getAll.
+  > Pour chaque classes IDao ext IGener, et DaoImpl ext GenereDao<> et impl Iperso avec une fonction getAll. = FAIT
   
-  > Pour les utilisateurs, etudiants, enseignant ....pour l'authentification isExistGetByEmail et Mdp = ça dans la Dao de Personne.
+  > Pour les utilisateurs, etudiants, enseignant ....pour l'authentification isExistGetByEmail et Mdp = ça dans la Dao de Personne. =FAIT
   
-  > tri libelle, pour matière et les autres.
+  > tri libelle, pour matière et les autres. =FAIT
   
   > Valentin : Dao de l'Aide = IAide extend IGenericDao <Aide> : méthodes : getAll ; getParPage ; Classe DaoImpl extend GeneraDaoImpl qui implements  
-   ++++++++++  IAideDao avec ctor + méthode avec hibernate.
+   ++++++++++  IAideDao avec ctor + méthode avec hibernate. =FAIT
+   
+   
+   
+    ***
+ 	3.
+ 	***
+   
+   
    		

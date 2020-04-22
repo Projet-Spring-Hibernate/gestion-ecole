@@ -9,7 +9,7 @@ import com.intiformation.gestion_ecole.domain.Administrateur;
  * @author Marie
  *
  */
-public interface IAdministrateurDao extends IGenericDAO<Administrateur> {
+public interface IAdministrateurDao extends IPersonneDao {
 
 	/***********************Méthodes*********************************/
 	
