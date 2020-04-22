@@ -5,19 +5,19 @@
 > Qui fait quoi ?
   ---------------
   
-  Valentin : Classe Aide (voir support projet : diagramme) OK
+  Valentin : Classe Aide (voir support projet : diagramme) Fait
   +++++++++
     
-  Thanesh : Enseignant - Matiere - Promotion OK
+  Thanesh : Enseignant - Matiere - Promotion Fait
   ++++++++
   
-  Lise : EtudiantCours - Etudiant  - Cours OK
+  Lise : EtudiantCours - Etudiant  - Cours Fait
   ++++++
   
-  Laure : DAO générale : CRUD OK
+  Laure : DAO générale : CRUD Fait
   ++++++
   
-  Marie : Personne - Administrateur - Adresse OK
+  Marie : Personne - Administrateur - Adresse Fait
   +++++
   
   
