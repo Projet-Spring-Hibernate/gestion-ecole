@@ -29,6 +29,16 @@ public class GeneraleDAOImpl<T> implements IGenericDAO<T> {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	//============ Constructeurs ====================//
+	/**
+	 * Constructeur prenant en parametre la classe de l'entity
+	 */
+	public GeneraleDAOImpl(Class<T> entityClass) {
+		
+		this.entityClass = entityClass;
+		
+	}//end ctor
 
 	// ============ Méthodes ====================//
 
