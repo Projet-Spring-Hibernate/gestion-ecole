@@ -3,6 +3,8 @@ package com.intiformation.gestion_ecole.domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -13,20 +15,21 @@ import javax.persistence.Table;
 
 @Entity(name="enseignants")
 @Table(name="Enseignants")
+@DiscriminatorValue("enseignant")
 public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "enseigne",
-	joinColumns = @JoinColumn(name="ENSEIGNANT_ID"),
+	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
 	)
 	private List<Matiere> listeMatiere;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "enseigne",
-	joinColumns = @JoinColumn(name="ENSEIGNANT_ID"),
+	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID")
 	)
 	private List<Promotion> listePromotion;

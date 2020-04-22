@@ -27,7 +27,7 @@ public class Matiere implements Serializable {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "enseigne",
 	joinColumns = @JoinColumn(name="MATIERE_ID"),
-	inverseJoinColumns = @JoinColumn(name="ENSEIGNANT_ID")
+	inverseJoinColumns = @JoinColumn(name="id_personne")
 	)
 	private List<Enseignant> listeEnseignant;
 	

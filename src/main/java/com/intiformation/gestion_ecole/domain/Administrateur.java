@@ -1,5 +1,6 @@
 package com.intiformation.gestion_ecole.domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="administrateurs")
+@DiscriminatorValue("administrateur")
 public class Administrateur extends Personne {
 
 	/* _______________Constructeur_______________ */
