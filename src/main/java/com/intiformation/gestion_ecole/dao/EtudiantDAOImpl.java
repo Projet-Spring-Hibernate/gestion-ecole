@@ -10,10 +10,10 @@ import com.intiformation.gestion_ecole.domain.Etudiant;
 
 @Transactional
 @Repository
-public class EtudiantDAOImpl extends GeneraleDAOImpl<Etudiant> implements IEtudiantDAO{
+public class EtudiantDAOImpl extends PersonneDaoImpl implements IEtudiantDAO{
 
 	public EtudiantDAOImpl() {
-		super(Etudiant.class);
+		
 		// TODO Auto-generated constructor stub
 	}
 
