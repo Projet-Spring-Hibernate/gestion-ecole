@@ -2,6 +2,10 @@
 	Projet : Gestion Ecole
 *********************************
 
+
+	***
+	1.
+	***
 > Qui fait quoi ?
   ---------------
   
@@ -21,3 +25,15 @@
   +++++
   
   
+	***
+ 	2.
+ 	***
+  > Pour chaque classes IDao ext IGener, et DaoImpl ext GenereDao<> et impl Iperso avec une fonction getAll.
+  
+  > Pour les utilisateurs, etudiants, enseignant ....pour l'authentification isExistGetByEmail et Mdp = ça dans la Dao de Personne.
+  
+  > tri libelle, pour matière et les autres.
+  
+  > Valentin : Dao de l'Aide = IAide extend IGenericDao <Aide> : méthodes : getAll ; getParPage ; Classe DaoImpl extend GeneraDaoImpl qui implements  
+   ++++++++++  IAideDao avec ctor + méthode avec hibernate.
+   		

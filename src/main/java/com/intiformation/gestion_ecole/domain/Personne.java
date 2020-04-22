@@ -21,9 +21,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="personnes")
+@Table(name="personne")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-
 @DiscriminatorColumn(name="type_personne", discriminatorType=DiscriminatorType.STRING)
 public class Personne implements Serializable {
 
