@@ -3,6 +3,7 @@ package com.intiformation.gestion_ecole.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +37,15 @@ public class Cours implements Serializable{
 	@ManyToMany
 	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Cours"), inverseJoinColumns = @JoinColumn(name="Etudiant"))
 	private List<Etudiant> listeEtudiant;
+	
+	
+	@ManyToOne(cascade= CascadeType.PERSIST)
+	@JoinColumn(name= "promotion_id", referencedColumnName="idPromotion")
+	private Promotion promotion;
+	
+	@ManyToOne(cascade= CascadeType.PERSIST)
+	@JoinColumn(name="matiere_id", referencedColumnName="idMatiere")
+	private Matiere matiere;
 	
 	/*____________________ctors____________________*/
 	public Cours() {
@@ -109,13 +120,34 @@ public class Cours implements Serializable{
 	public void setListeEtudiant(List<Etudiant> listeEtudiant) {
 		this.listeEtudiant = listeEtudiant;
 	}
+	
+	
+	
+
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
+	}
 
 	@Override
 	public String toString() {
 		return "Cours [idCours=" + idCours + ", libelle=" + libelle + ", date=" + date + ", duree=" + duree
-				+ ", description=" + description + "]";
+				+ ", description=" + description + ", listeEtudiant=" + listeEtudiant + ", promotion=" + promotion
+				+ ", matiere=" + matiere + "]";
 	}
-	
+
+
 	
 	
 	
