@@ -1,0 +1,126 @@
+package com.intiformation.gestion_ecole.domain;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="cours")
+public class Cours implements Serializable{
+	
+	/*____________________props____________________*/
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idCours;
+	
+	@Column
+	private String libelle;
+	@Column
+	private String date;
+	@Column
+	private String duree;
+	@Column
+	private String description;
+	
+	@ManyToMany
+	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Cours"), inverseJoinColumns = @JoinColumn(name="Etudiant"))
+	private List<Etudiant> listeEtudiant;
+	
+	/*____________________ctors____________________*/
+	public Cours() {
+		super();
+	}
+
+	public Cours(String libelle, String date, String duree, String description) {
+		super();
+		this.libelle = libelle;
+		this.date = date;
+		this.duree = duree;
+		this.description = description;
+	}
+
+	public Cours(Long idCours, String libelle, String date, String duree, String description) {
+		super();
+		this.idCours = idCours;
+		this.libelle = libelle;
+		this.date = date;
+		this.duree = duree;
+		this.description = description;
+	}
+
+	
+	/*________________getters/setter____________________*/
+	public Long getIdCours() {
+		return idCours;
+	}
+
+	public void setIdCours(Long idCours) {
+		this.idCours = idCours;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDuree() {
+		return duree;
+	}
+
+	public void setDuree(String duree) {
+		this.duree = duree;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
+	
+	public List<Etudiant> getListeEtudiant() {
+		return listeEtudiant;
+	}
+
+	public void setListeEtudiant(List<Etudiant> listeEtudiant) {
+		this.listeEtudiant = listeEtudiant;
+	}
+
+	@Override
+	public String toString() {
+		return "Cours [idCours=" + idCours + ", libelle=" + libelle + ", date=" + date + ", duree=" + duree
+				+ ", description=" + description + "]";
+	}
+	
+	
+	
+	
+	
+	
+	
+
+}
