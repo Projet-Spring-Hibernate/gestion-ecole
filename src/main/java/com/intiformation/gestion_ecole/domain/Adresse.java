@@ -21,8 +21,8 @@ public class Adresse {
 	/* _________________Propriétés_______________ */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="personne_id")
-	private Long personne_id;
+	@Column(name="adresse_id")
+	private Long adresse_id;
 	
 	@Column(name="rue")
 	private String rue;
@@ -46,9 +46,9 @@ public class Adresse {
 		super();
 	}
 	
-	public Adresse(Long personne_id, String rue, String codePostal, String ville, Personne personne) {
+	public Adresse(Long adresse_id, String rue, String codePostal, String ville, Personne personne) {
 		super();
-		this.personne_id = personne_id;
+		this.adresse_id = adresse_id;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
@@ -91,12 +91,12 @@ public class Adresse {
 	}
 
 
-	public Long getPersonne_id() {
-		return personne_id;
+	public Long getAdresse_id() {
+		return adresse_id;
 	}
 
-	public void setPersonne_id(Long personne_id) {
-		this.personne_id = personne_id;
+	public void setAdresse_id(Long adresse_id) {
+		this.adresse_id = adresse_id;
 	}
 
 	public Personne getPersonne() {
@@ -109,7 +109,7 @@ public class Adresse {
 
 	@Override
 	public String toString() {
-		return "Adresse [personne_id=" + personne_id + ", rue=" + rue + ", codePostal=" + codePostal + ", ville="
+		return "Adresse [personne_id=" + adresse_id + ", rue=" + rue + ", codePostal=" + codePostal + ", ville="
 				+ ville + ", personne=" + personne + "]";
 	}
 

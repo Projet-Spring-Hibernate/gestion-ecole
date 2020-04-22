@@ -16,19 +16,22 @@ public class Administrateur extends Personne {
 	/**
 	 * Ctor vide.
 	 */
+
 	public Administrateur() {
+		super();
 		
 	}
 
 	public Administrateur(Long identifiant, String motdepasse, String nom, String prenom, String email) {
+		super(identifiant, motdepasse, nom, prenom, email);
 		
 	}
 
 	public Administrateur(String motdepasse, String nom, String prenom, String email) {
-
+		super(motdepasse, nom, prenom, email);
+		
 	}
 
-	
 	
 	
 }//end class
