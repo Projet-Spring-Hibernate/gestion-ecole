@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="promotions")
@@ -37,6 +38,14 @@ public class Promotion implements Serializable {
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
 	)
 	private List<Matiere> listeMatiere;
+	
+	// relation entre promotion et cours
+	@OneToMany(mappedBy="promotion", cascade =CascadeType.PERSIST )
+	private List<Cours> listeCours;
+	
+	// relation entre promotion et étudiant
+	@ManyToMany(mappedBy = "listePromotion")
+	private List<Etudiant> listeEtudiant;
 	
 	
 	
@@ -83,6 +92,22 @@ public class Promotion implements Serializable {
 
 	public void setListeMatiere(List<Matiere> listeMatiere) {
 		this.listeMatiere = listeMatiere;
+	}
+
+	public List<Etudiant> getListeEtudiant() {
+		return listeEtudiant;
+	}
+
+	public void setListeEtudiant(List<Etudiant> listeEtudiant) {
+		this.listeEtudiant = listeEtudiant;
+	}
+
+	public List<Cours> getListeCours() {
+		return listeCours;
+	}
+
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
 	}
 	
 	

@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name="cours")
 @Table(name="cours")
 public class Cours implements Serializable{
 	
@@ -34,8 +34,7 @@ public class Cours implements Serializable{
 	@Column
 	private String description;
 	
-	@ManyToMany
-	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Cours"), inverseJoinColumns = @JoinColumn(name="Etudiant"))
+	@ManyToMany(mappedBy = "listeCours")
 	private List<Etudiant> listeEtudiant;
 	
 	

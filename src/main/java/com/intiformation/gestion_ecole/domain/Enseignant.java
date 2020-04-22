@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 
 
-@Entity(name="enseignants")
-@Table(name="Enseignants")
+@Entity(name="enseignant")
+@Table(name="enseignants")
 @DiscriminatorValue("enseignant")
 public class Enseignant extends Personne {
 
