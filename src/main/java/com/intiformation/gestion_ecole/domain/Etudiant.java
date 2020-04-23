@@ -58,9 +58,25 @@ public class Etudiant extends Personne{
 	}
 
 
-	public Etudiant(Long identifiant, String motdepasse, String nom, String prenom, String email) {
+	public Etudiant(Long identifiant, String motdepasse, String nom, String prenom, String email,String photo, String dateDeNaissance) {
 		super(identifiant, motdepasse, nom, prenom, email);
+		this.photo = photo;
+		this.dateDeNaissance = dateDeNaissance;
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+
+
+
+
+
+	public Etudiant(String motdepasse, String nom, String prenom, String email, String photo, String dateDeNaissance) {
+		super(motdepasse, nom, prenom, email);
+		this.photo = photo;
+		this.dateDeNaissance = dateDeNaissance;
 	}
 
 

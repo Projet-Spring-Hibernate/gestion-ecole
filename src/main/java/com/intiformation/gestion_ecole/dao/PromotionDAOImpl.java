@@ -17,7 +17,7 @@ public class PromotionDAOImpl extends GeneraleDAOImpl<Promotion> implements IPro
 
 	@Override
 	public List<Promotion> listePromotion() {
-		return this.getSessionFactory().getCurrentSession().createQuery("FROM promotion p").list();
+		return this.getSessionFactory().getCurrentSession().createQuery("FROM promotions p").list();
 	}
 
 }
