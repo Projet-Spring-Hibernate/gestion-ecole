@@ -16,7 +16,7 @@ public class EnseignantDAOImpl extends PersonneDaoImpl implements IEnseignantDAO
 	
 	@Override
 	public List<Enseignant> listEnseignant() {
-		return this.getSessionFactory().getCurrentSession().createQuery("FROM personne p WHERE type(p)='enseignant'").list();
+		return this.getSessionFactory().getCurrentSession().createQuery("FROM enseignant e").list();
 	}
 	
 	

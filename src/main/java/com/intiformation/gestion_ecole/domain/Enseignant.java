@@ -81,6 +81,7 @@ public class Enseignant extends Personne {
 		this.listePromotion = listePromotion;
 	}
 	
+	
 
 	
 	@Override
