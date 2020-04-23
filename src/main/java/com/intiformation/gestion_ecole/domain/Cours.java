@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 /**
  * Classe entity pour les cours.
  * Relation ManyToMany avec Etudiant.
@@ -45,11 +51,11 @@ public class Cours implements Serializable{
 	private List<Etudiant> listeEtudiant;
 	
 	
-	@ManyToOne(cascade= CascadeType.PERSIST)
+	@ManyToOne(cascade= CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name= "promotion_id", referencedColumnName="idPromotion")
 	private Promotion promotion;
 	
-	@ManyToOne(cascade= CascadeType.PERSIST)
+	@ManyToOne(cascade= CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@JoinColumn(name="matiere_id", referencedColumnName="idMatiere")
 	private Matiere matiere;
 	

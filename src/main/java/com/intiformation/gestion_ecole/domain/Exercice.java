@@ -4,12 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe entity pour les exercices. 
@@ -28,7 +34,8 @@ public class Exercice implements Serializable {
 	
 	private String libelle;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinColumn(name="COURS_ID", referencedColumnName="idCours")
 	private Cours cours;
 

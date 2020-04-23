@@ -23,9 +23,9 @@ public class AdresseDaoImpl extends GeneraleDAOImpl<Adresse> implements IAdresse
 
 
 		@Override
-		public List<Adresse> getAll(Long adresse_id) {
+		public List<Adresse> getAll() {
 	
-			return this.getSessionFactory().getCurrentSession().createQuery("FROM adresses a").list();
+			return this.getSessionFactory().getCurrentSession().createQuery("FROM adresse a").list();
 		}
 
 	

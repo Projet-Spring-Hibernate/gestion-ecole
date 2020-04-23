@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 /**
  * Classe entity pour les matières.
  * Relation triple avec Enseignant et Promotion
@@ -34,14 +40,16 @@ public class Matiere implements Serializable {
 	
 	private String libelle;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="MATIERE_ID"),
 	inverseJoinColumns = @JoinColumn(name="id_personne")
 	)
 	private List<Enseignant> listeEnseignant;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="MATIERE_ID"),
 	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID")
@@ -49,7 +57,8 @@ public class Matiere implements Serializable {
 	private List<Promotion> listePromotion;
 	
 	//relation entre matière et Cours
-	@OneToMany(mappedBy="matiere", cascade =CascadeType.PERSIST)
+	@OneToMany(mappedBy="matiere", cascade =CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Cours> listeCours;
 	
 	

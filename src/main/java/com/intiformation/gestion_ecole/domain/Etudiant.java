@@ -6,10 +6,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe entity pour les administrateurs. Classe fille de la classe Personne.
@@ -29,11 +35,13 @@ public class Etudiant extends Personne{
 	@Column(name="dateDeNaissance")
 	private String dateDeNaissance;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name="etudiant_cours", joinColumns = @JoinColumn(name="Etudiant"), inverseJoinColumns = @JoinColumn(name="Cours"))
 	private List<Cours> listeCours;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name="etudiant_promotion", joinColumns= @JoinColumn(name="etudiant_id"), inverseJoinColumns= @JoinColumn(name="promotion_id"))
 	private List<Promotion> listePromotion;
 	

@@ -6,10 +6,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -27,14 +33,16 @@ public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
 	)
 	private List<Matiere> listeMatiere;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="id_personne"),
 	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID")

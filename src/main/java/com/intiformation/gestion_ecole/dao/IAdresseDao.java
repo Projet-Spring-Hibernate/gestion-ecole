@@ -18,6 +18,6 @@ public interface IAdresseDao extends IGenericDAO<Adresse> {
 	 * @param adresse_id
 	 * @return
 	 */
-	public List<Adresse> getAll(Long adresse_id);
+	public List<Adresse> getAll();
 	
 }//end interface

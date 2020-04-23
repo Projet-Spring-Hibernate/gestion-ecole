@@ -25,12 +25,18 @@ import com.intiformation.gestion_ecole.domain.Personne;
 public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPersonneDao {
 
 
+	// ============ Constructeur ====================//
 	
 	public PersonneDaoImpl() {
 		super(Personne.class);
 		
 	}
+	
+	// ============ Méthodes ====================//
 
+	// --------------------------------------------------//
+	// -------------- ISPERSONNEEXISTS ------------------//
+	// --------------------------------------------------// 
 	/**
 	 * Savoir si la Personne est présente dans la BDD.
 	 */
@@ -62,6 +68,10 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 	}//end isPersonneExists
 
 	
+	// --------------------------------------------------//
+	// -------------- getPersonneByMailMDP --------------//
+	// --------------------------------------------------// 
+	
 	/**
 	 * recupere le personne par son mot de passe et email
 	 */
@@ -91,6 +101,12 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 	}//end getPersonneByMailMDP
 	
 	
+	// --------------------------------------------------//
+	// -------------- getAll ----------------------------//
+	// --------------------------------------------------// 
+	/**
+	 * Recupere la liste des personnes dans la bdd
+	 */
 	@Override
 	public List<Personne> getAll() {
 	

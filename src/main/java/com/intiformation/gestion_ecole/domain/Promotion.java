@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe entity pour les promotions.
@@ -35,14 +41,16 @@ public class Promotion implements Serializable {
 	
 	private String libelle;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="PROMOTION_ID"),
 	inverseJoinColumns = @JoinColumn(name="id_personne")
 	)
 	private List<Enseignant> listeEnseignant;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "enseignant_matiere_promotion",
 	joinColumns = @JoinColumn(name="PROMOTION_ID"),
 	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
@@ -50,11 +58,13 @@ public class Promotion implements Serializable {
 	private List<Matiere> listeMatiere;
 	
 	// relation entre promotion et cours
-	@OneToMany(mappedBy="promotion", cascade =CascadeType.PERSIST )
+	@OneToMany(mappedBy="promotion", cascade =CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Cours> listeCours;
 	
 	// relation entre promotion et étudiant
-	@ManyToMany(mappedBy = "listePromotion")
+	@ManyToMany(mappedBy = "listePromotion", cascade =CascadeType.PERSIST,fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Etudiant> listeEtudiant;
 	
 	

@@ -1,12 +1,20 @@
 package com.intiformation.gestion_ecole.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe entity pour les adresses. Reliée à la classe Personne par une relation OneToONe
@@ -14,7 +22,7 @@ import javax.persistence.Table;
  * @author Marie
  *
  */
-@Entity
+@Entity(name="adresse")
 @Table(name = "adresses")
 public class Adresse {
 
@@ -34,7 +42,9 @@ public class Adresse {
 	private String ville;
 	
 	// Association avec Personne
-	@OneToOne(mappedBy="adresse")
+	
+	@OneToOne(mappedBy="adresse", cascade =CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne personne;
 
 
@@ -46,21 +56,19 @@ public class Adresse {
 		super();
 	}
 	
-	public Adresse(Long adresse_id, String rue, String codePostal, String ville, Personne personne) {
+	public Adresse(Long adresse_id, String rue, String codePostal, String ville) {
 		super();
 		this.adresse_id = adresse_id;
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.personne = personne;
 	}
 
-	public Adresse(String rue, String codePostal, String ville, Personne personne) {
+	public Adresse(String rue, String codePostal, String ville) {
 		super();
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
-		this.personne = personne;
 	}
 
 
