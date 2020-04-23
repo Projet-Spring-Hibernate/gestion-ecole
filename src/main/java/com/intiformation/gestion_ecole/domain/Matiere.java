@@ -27,8 +27,8 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @author Thanesh
  *
  */
-@Entity(name="matieres")
-@Table(name="Matieres")
+@Entity(name="matiere")
+@Table(name="matieres")
 public class Matiere implements Serializable {
 
 
@@ -113,6 +113,12 @@ public class Matiere implements Serializable {
 	public void setListeCours(List<Cours> listeCours) {
 		this.listeCours = listeCours;
 	}
+
+	@Override
+	public String toString() {
+		return "Matiere [idMatiere=" + idMatiere + ", libelle=" + libelle + "]";
+	}
+	
 	
 	
 	
