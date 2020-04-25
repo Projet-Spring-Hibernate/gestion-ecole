@@ -63,7 +63,7 @@ public class Matiere implements Serializable {
 	
 	
 	//relation entre matière et Cours
-	@OneToMany(mappedBy="matiere")
+	@OneToMany(mappedBy="matiere", fetch=FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Cours> listeCours= new ArrayList<>();
 	
