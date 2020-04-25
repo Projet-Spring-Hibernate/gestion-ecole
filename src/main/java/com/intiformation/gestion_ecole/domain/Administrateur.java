@@ -14,11 +14,11 @@ import javax.persistence.Table;
 @DiscriminatorValue("administrateur")
 public class Administrateur extends Personne {
 
-	/* _______________ Constructeurs _______________ */
+	// _______________ Constructeurs _______________ //
+	
 	/**
 	 * Ctor vide.
 	 */
-
 	public Administrateur() {
 		super();
 		
@@ -34,10 +34,11 @@ public class Administrateur extends Personne {
 		
 	}
 
+	//_____________ Méthodes _____________//
 	@Override
 	public String toString() {
 		return "Administrateur [identifiant=" + super.getIdentifiant() + ", motdepasse=" + super.getMotdepasse() + ", nom=" + super.getNom() + ", prenom="
-				+ super.getPrenom() + ", email=" + super.getEmail() + ", adresse="+super.getAdresse()+"]";
+				+ super.getPrenom() + ", email=" + super.getEmail() + "]";
 	}
 	
 }//end class

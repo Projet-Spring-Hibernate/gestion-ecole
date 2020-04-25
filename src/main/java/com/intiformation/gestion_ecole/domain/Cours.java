@@ -1,9 +1,10 @@
 package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -36,6 +40,7 @@ public class Cours implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_COURS")
 	private Long idCours;
 	
 	@Column
@@ -47,17 +52,36 @@ public class Cours implements Serializable{
 	@Column
 	private String description;
 	
-	@ManyToMany(mappedBy = "listeCours")
-	private List<Etudiant> listeEtudiant;
-	
-	
-	@ManyToOne(cascade= CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@JoinColumn(name= "promotion_id", referencedColumnName="idPromotion")
+
+//	@ManyToMany
+//	@Cascade(CascadeType.SAVE_UPDATE)
+//	@JoinTable(name="etudiant_cours", 
+//	joinColumns = @JoinColumn(name="COURS_ID", referencedColumnName="ID_COURS"), 
+//	inverseJoinColumns = @JoinColumn(name="ETUDIANT_ID",referencedColumnName="identifiant"))
+//	@ManyToMany(mappedBy = "listeCours")
+//	@Cascade(CascadeType.SAVE_UPDATE)
+//	private List<Etudiant> listeEtudiant =new ArrayList<>();
+
+	@ManyToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
+	@JoinColumn(name= "promotion_id", referencedColumnName="ID_PROMOTION")
 	private Promotion promotion;
 	
-	@ManyToOne(cascade= CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@JoinColumn(name="matiere_id", referencedColumnName="idMatiere")
+	@ManyToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
+	@JoinColumn(name="matiere_id", referencedColumnName="ID_MATIERE")
 	private Matiere matiere;
+	
+	
+	@OneToMany(mappedBy="cours")
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private List<EtudiantCours> listeEtudiantCours =new ArrayList<>();
+	
+	
+	@OneToMany(mappedBy="cours")
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private List<Exercice> listeExercices = new ArrayList<>();
+	
 	
 	/*____________________ctors____________________*/
 	public Cours() {
@@ -123,25 +147,36 @@ public class Cours implements Serializable{
 		this.description = description;
 	}
 
+//	public List<Etudiant> getListeEtudiant() {
+//		return listeEtudiant;
+//	}
+//
+//	public void setListeEtudiant(List<Etudiant> listeEtudiant) {
+//		this.listeEtudiant = listeEtudiant;
+//	}
 	
-	
-	public List<Etudiant> getListeEtudiant() {
-		return listeEtudiant;
-	}
-
-	public void setListeEtudiant(List<Etudiant> listeEtudiant) {
-		this.listeEtudiant = listeEtudiant;
-	}
-	
-	
-	
-
 	public Promotion getPromotion() {
 		return promotion;
 	}
 
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
+	}
+
+	public List<EtudiantCours> getListeEtudiantCours() {
+		return listeEtudiantCours;
+	}
+
+	public void setListeEtudiantCours(List<EtudiantCours> listeEtudiantCours) {
+		this.listeEtudiantCours = listeEtudiantCours;
+	}
+
+	public List<Exercice> getListeExercices() {
+		return listeExercices;
+	}
+
+	public void setListeExercices(List<Exercice> listeExercices) {
+		this.listeExercices = listeExercices;
 	}
 
 	public Matiere getMatiere() {
@@ -152,19 +187,59 @@ public class Cours implements Serializable{
 		this.matiere = matiere;
 	}
 
+	// ================== Méthodes ==========================//
+	
+//	/**
+//	 * Ajoute un étudiant à la liste des étudiants du cours + ajoute le cours à la liste des cours de l'étudiant
+//	 * @param etudiant
+//	 */
+//	public void addEtudiant(Etudiant etudiant) {
+//		this.listeEtudiant.add(etudiant);
+//		etudiant.getListeCours().add(this);
+//	}
+	
+	/**
+	 * Attribut une matière à la propriété  matière du cours + ajoute le cours à la liste des cours de la matière
+	 * @param matiere
+	 */
+	public void addMatiere(Matiere matiere) {
+		this.matiere=matiere;
+		matiere.getListeCours().add(this);
+	}
+	
+	/**
+	 *  Ajoute un étudiantCours (table de jointure) à la liste des étudiantCours du cours + ajoute le cours à la propriété  cours de l'étudiantCours.
+	 * @param etudiantCours
+	 */
+	public void addEtudiantCours(EtudiantCours etudiantCours) {
+		this.listeEtudiantCours.add(etudiantCours);
+		etudiantCours.setCours(this);
+	}
+	
+	/**
+	 *  Ajoute un exercice  à la liste des exercices du cours + ajoute le cours à l'attribut cours de l'exercice.	 
+	 * @param exercice
+	 */
+	public void addExercice(Exercice exercice) {
+		this.listeExercices.add(exercice);
+		exercice.setCours(this);
+	}
+	
+	/**
+	 * Attribut une promotion à la propriété promotion du cours + ajoute le cours à la liste des cours de la matière
+	 * @param promotion
+	 */
+	public void addPromotion(Promotion promotion) {
+		this.promotion=promotion;
+		promotion.getListeCours().add(this);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Cours [idCours=" + idCours + ", libelle=" + libelle + ", date=" + date + ", duree=" + duree
-				+ ", description=" + description + ", listeEtudiant=" + listeEtudiant + ", promotion=" + promotion
-				+ ", matiere=" + matiere + "]";
+				+ ", description=" + description + "]";
 	}
 
 
-	
-	
-	
-	
-	
-	
-
-}
+}//end class

@@ -2,7 +2,7 @@ package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -17,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -54,7 +56,8 @@ public class Personne implements Serializable {
 	private String email;
 	
 	// Association avec Adresse
-	@OneToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@OneToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "adresse_id", referencedColumnName = "adresse_id")
 	private Adresse adresse;
 	
@@ -136,6 +139,16 @@ public class Personne implements Serializable {
 		this.adresse = adresse;
 	}
 	
+	//_______________________Méthodes ___________________//
+	
+	/**
+	 * Attribut une adresse à la propriété adresse de la personne + attribut la personne à l'attribut personne de l'adresse
+	 * @param adresse
+	 */
+	public void addAdresse(Adresse adresse) {
+		this.adresse=adresse;
+		adresse.setPersonne(this);
+	}
 	
 	@Override
 	public String toString() {

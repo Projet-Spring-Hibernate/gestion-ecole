@@ -90,6 +90,9 @@
 			<value>com.intiformation.gestion_ecole.domain.Promotion</value>
 			<value>com.intiformation.gestion_ecole.domain.Matiere</value>
 			<value>com.intiformation.gestion_ecole.domain.Aide</value>
+			<value>com.intiformation.gestion_ecole.domain.Exercice</value>
+			<value>com.intiformation.gestion_ecole.domain.EnseignantMatierePromotion</value>
+			
 		</list>
 	</property>
 

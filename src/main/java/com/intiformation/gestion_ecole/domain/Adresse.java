@@ -1,6 +1,6 @@
 package com.intiformation.gestion_ecole.domain;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -42,9 +43,8 @@ public class Adresse {
 	private String ville;
 	
 	// Association avec Personne
-	
-	@OneToOne(mappedBy="adresse", cascade =CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToOne(mappedBy="adresse")
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Personne personne;
 
 
@@ -115,10 +115,23 @@ public class Adresse {
 		this.personne = personne;
 	}
 
+	
+	//________________ Méthodes ____________________//
+	
+	/**
+	 * Permet d'attribuer une personne à une adresse et cette à adresse à la personne.
+	 * @param personne
+	 */
+	public void addPersonne(Personne personne) {
+		this.personne=personne;
+		personne.setAdresse(this);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Adresse [personne_id=" + adresse_id + ", rue=" + rue + ", codePostal=" + codePostal + ", ville="
-				+ ville + ", personne=" + personne + "]";
+				+ ville + "]";
 	}
 
 

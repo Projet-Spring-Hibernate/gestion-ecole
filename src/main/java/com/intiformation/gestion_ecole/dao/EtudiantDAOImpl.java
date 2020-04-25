@@ -20,7 +20,7 @@ public class EtudiantDAOImpl extends PersonneDaoImpl implements IEtudiantDAO{
 	@Override
 	public List<Etudiant> getAllEtudiant() {
 		// TODO Auto-generated method stub
-		return this.getSessionFactory().getCurrentSession().createQuery("FROM personne p WHERE type(p)='etudiant'").list();
+		return this.getSessionFactory().getCurrentSession().createQuery("FROM etudiant e ").list();
 	}
 	
 	

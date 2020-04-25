@@ -2,7 +2,7 @@ package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -38,11 +40,13 @@ public class EtudiantCours implements Serializable{
 	@Column
 	private String motif;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@JoinColumn(name = "Cours", referencedColumnName="idCours")
+	@ManyToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
+	@JoinColumn(name = "Cours", referencedColumnName="ID_COURS")
 	private Cours cours;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@ManyToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "Etudiant", referencedColumnName="identifiant")
 	private Etudiant etudiant;
 
@@ -123,8 +127,26 @@ public class EtudiantCours implements Serializable{
 		this.etudiant = etudiant;
 	}
 
+	// ================== Méthodes ==========================//
 
+	/**
+	 * Attribut un cours à la propriété cours de l'étudiantCours + ajoute l'étudiantCours à la liste des etudiantsCours du cours
+	 * @param cours
+	 */
+	public void addCours(Cours cours) {
+		this.cours=cours;
+		cours.getListeEtudiantCours().add(this);
+	}
 
+	/**
+	 * Attribut un etudiant à la propriété etudiant de l'étudiantCours + ajoute l'étudiantCours à la liste des etudiantsCours de l'étudiant
+	 * @param cours
+	 */
+	public void addEtudiant(Etudiant etudiant) {
+		this.etudiant=etudiant;
+		etudiant.getListeEtudiantCours().add(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "EtudiantCours [id=" + id + ", absence=" + absence + ", motif=" + motif + ", cours=" + cours

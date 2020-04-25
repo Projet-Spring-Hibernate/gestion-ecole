@@ -27,10 +27,13 @@ com\intiformation\gestion_ecole\dao\PersonneDaoImpl.class
 com\intiformation\gestion_ecole\domain\Aide.class
 com\intiformation\gestion_ecole\dao\IEtudiantCoursDAO.class
 com\intiformation\gestion_ecole\dao\EtudiantDAOImpl.class
+com\intiformation\gestion_ecole\domain\EnseignantMatierePromotion.class
 com\intiformation\gestion_ecole\dao\EnseignantDAOImpl.class
 com\intiformation\gestion_ecole\dao\EtudiantCoursDAOImpl.class
 com\intiformation\gestion_ecole\dao\AideDAOImpl.class
 com\intiformation\gestion_ecole\dao\IExerciceDAO.class
+com\intiformation\gestion_ecole\dao\IEnseignantMatierePromotionDao.class
+com\intiformation\gestion_ecole\dao\EnseignantMatierePromotionDaoImpl.class
 com\intiformation\gestion_ecole\controller\EtudiantListController.class
 com\intiformation\gestion_ecole\domain\Adresse.class
 com\intiformation\gestion_ecole\dao\IPersonneDao.class

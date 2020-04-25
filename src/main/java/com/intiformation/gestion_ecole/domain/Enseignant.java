@@ -1,8 +1,9 @@
 package com.intiformation.gestion_ecole.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -10,8 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -33,21 +37,31 @@ public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinTable(name = "enseignant_matiere_promotion",
-	joinColumns = @JoinColumn(name="id_personne"),
-	inverseJoinColumns = @JoinColumn(name="MATIERE_ID")
-	)
-	private List<Matiere> listeMatiere;
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
+//	@Cascade(CascadeType.SAVE_UPDATE)
+//	@JoinTable(name = "enseignant_matiere_promotion",
+//	joinColumns = @JoinColumn(name="id_personne", referencedColumnName="identifiant"),
+//	inverseJoinColumns = @JoinColumn(name="MATIERE_ID", referencedColumnName="ID_MATIERE")
+//	)
+//	private List<Matiere> listeMatiere=new ArrayList<>();
+//	
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
+//	@Cascade(CascadeType.SAVE_UPDATE)
+//	@JoinTable(name = "enseignant_matiere_promotion",
+//	joinColumns = @JoinColumn(name="id_personne", referencedColumnName="identifiant"),
+//	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID",referencedColumnName="ID_PROMOTION")
+//	)
+//	private List<Promotion> listePromotion=new ArrayList<>();
 	
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinTable(name = "enseignant_matiere_promotion",
-	joinColumns = @JoinColumn(name="id_personne"),
-	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID")
-	)
-	private List<Promotion> listePromotion;
+	
+	
+	@OneToMany(mappedBy="enseignant")
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
+	
+	
 
 	/*_______________ctor_______________*/
 
@@ -65,30 +79,63 @@ public class Enseignant extends Personne {
 	
 	/*_______________get/set_______________*/
 
-	public List<Matiere> getListeMatiere() {
-		return listeMatiere;
+//	public List<Matiere> getListeMatiere() {
+//		return listeMatiere;
+//	}
+//
+//	public void setListeMatiere(List<Matiere> listeMatiere) {
+//		this.listeMatiere = listeMatiere;
+//	}
+//
+//	public List<Promotion> getListePromotion() {
+//		return listePromotion;
+//	}
+//
+//	public void setListePromotion(List<Promotion> listePromotion) {
+//		this.listePromotion = listePromotion;
+//	}
+	
+	public List<EnseignantMatierePromotion> getListeEnseignantMatierePromotion() {
+		return listeEnseignantMatierePromotion;
 	}
 
-	public void setListeMatiere(List<Matiere> listeMatiere) {
-		this.listeMatiere = listeMatiere;
-	}
-
-	public List<Promotion> getListePromotion() {
-		return listePromotion;
-	}
-
-	public void setListePromotion(List<Promotion> listePromotion) {
-		this.listePromotion = listePromotion;
+	public void setListeEnseignantMatierePromotion(List<EnseignantMatierePromotion> listeEnseignantMatierePromotion) {
+		this.listeEnseignantMatierePromotion = listeEnseignantMatierePromotion;
 	}
 	
+	//_____________ Méthodes _________________________//
 	
-
+//	/**
+//	 * Ajoute une promotion à la liste des promotions de l'enseignant + ajoute l'enseignant à la liste des enseignants de la promotion
+//	 * @param promotion
+//	 */
+//	public void addPromotion(Promotion promotion) {
+//		this.listePromotion.add(promotion);
+//		promotion.getListeEnseignant().add(this);
+//	}
+//
+//	/**
+//	 * Ajoute une matière à la liste des matières de l'enseignant + ajoute l'enseignant à la liste des enseignants de la matière
+//	 * @param matiere
+//	 */
+//	public void addMatiere(Matiere matiere) {
+//		this.listeMatiere.add(matiere);
+//		matiere.getListeEnseignant().add(this);
+//	}
+//	
+	public void addEnseignantMatierePromotion(EnseignantMatierePromotion enseignantMatierePromotion) {
+		this.listeEnseignantMatierePromotion.add(enseignantMatierePromotion);
+		enseignantMatierePromotion.setEnseignant(this);
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Enseignant [identifiant=" + super.getIdentifiant() + ", motdepasse=" + super.getMotdepasse() + ", nom=" + super.getNom() + ", prenom="
-				+ super.getPrenom() + ", email=" + super.getEmail() + ", adresse="+super.getAdresse()+"]";
+				+ super.getPrenom() + ", email=" + super.getEmail() + "]";
 	}
+
+
 	
 	
 }//end classe

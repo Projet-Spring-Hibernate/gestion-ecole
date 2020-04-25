@@ -2,16 +2,18 @@ package com.intiformation.gestion_ecole.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
@@ -34,9 +36,9 @@ public class Exercice implements Serializable {
 	
 	private String libelle;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JoinColumn(name="COURS_ID", referencedColumnName="idCours")
+	@ManyToOne
+	@Cascade(CascadeType.SAVE_UPDATE)
+	@JoinColumn(name="COURS_ID", referencedColumnName="ID_COURS")
 	private Cours cours;
 
 	
@@ -45,15 +47,13 @@ public class Exercice implements Serializable {
 		super();
 	}
 
-	public Exercice(String libelle, Cours cours) {
+	public Exercice(String libelle) {
 		this.libelle = libelle;
-		this.cours = cours;
 	}
 
-	public Exercice(Long idExercice, String libelle, Cours cours) {
+	public Exercice(Long idExercice, String libelle) {
 		this.idExercice = idExercice;
 		this.libelle = libelle;
-		this.cours = cours;
 	}
 
 	/*____________________getter/setter____________________*/
@@ -81,6 +81,17 @@ public class Exercice implements Serializable {
 		this.cours = cours;
 	}
 
+	// ================== Méthodes ==========================//
+	
+	/**
+	 * Attribut un cours à la propriété cours de l'exercice + ajoute l'exercice à la liste des exercices du cours 
+	 * @param cours
+	 */
+	public void addCours(Cours cours) {
+		this.cours=cours;
+		cours.getListeExercices().add(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "Exercice [idExercice=" + idExercice + ", libelle=" + libelle + ", cours=" + cours + "]";
