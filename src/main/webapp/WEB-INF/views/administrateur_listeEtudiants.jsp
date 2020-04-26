@@ -40,7 +40,7 @@
 	 
 	 	<h1>Liste des étudiants de l'école</h1>
 
-	<table border="1" width="60%">
+	<table class="table table-striped">
 		<!-- Ajout d'un employe -->
 
 		<tr>
