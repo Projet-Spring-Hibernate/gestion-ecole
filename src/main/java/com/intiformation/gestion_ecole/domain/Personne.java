@@ -33,7 +33,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity(name="personne")
 @Table(name="personnes")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_personne", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name="role", discriminatorType=DiscriminatorType.STRING)
 public class Personne implements Serializable {
 
 	/*_______________Propriétés_______________*/
@@ -43,7 +43,7 @@ public class Personne implements Serializable {
 	@Column(name="identifiant")
 	private Long identifiant;
 	
-	@Column(name="mot_de_passe")
+	@Column(name="password")
 	private String motdepasse;
 	
 	@Column(name="nom")
@@ -52,7 +52,7 @@ public class Personne implements Serializable {
 	@Column(name="prenom")
 	private String prenom;
 	
-	@Column(name="email")
+	@Column(name="username")
 	private String email;
 	
 	// Association avec Adresse

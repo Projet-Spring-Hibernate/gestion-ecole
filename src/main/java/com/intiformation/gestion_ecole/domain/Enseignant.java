@@ -32,7 +32,7 @@ import org.hibernate.annotations.LazyCollectionOption;
  *
  */
 @Entity(name="enseignant")
-@DiscriminatorValue("enseignant")
+@DiscriminatorValue("ROLE_ENSEIGNANT")
 public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/

@@ -18,7 +18,11 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/springapp-servlet.xml</param-value>
+		<param-value>/WEB-INF/springapp-servlet.xml
+					/WEB-INF/applicationContext.xml
+					/WEB-INF/ecole-security.xml
+
+					</param-value>
 	</context-param>
 
 	<!-- ====================================================== -->
@@ -38,7 +42,20 @@
 	</servlet-mapping>
 
 
-
+  <!-- ========== CONFIGURATION DE SPRING SECURITY ============ -->  
+  <!--  Declaration du filtre pour l'integrationdes requetes -->
+  
+  <filter>
+  	<filter-name>springSecurityFilterChain</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  
+  <!-- /* = toutes les requetes -->
+  <filter-mapping>
+  	<filter-name>springSecurityFilterChain</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
 
 	<!-- ================================================= -->
 	<!-- ========== PAGE DE DEMARAGE DE L'APP ============ -->

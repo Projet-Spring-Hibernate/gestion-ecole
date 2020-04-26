@@ -11,6 +11,7 @@ com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.class
 com\intiformation\gestion_ecole\domain\Personne.class
 com\intiformation\gestion_ecole\dao\IMatiereDAO.class
 com\intiformation\gestion_ecole\domain\Matiere.class
+com\intiformation\gestion_ecole\controller\WelcomeController.class
 com\intiformation\gestion_ecole\dao\MatiereDAOImpl.class
 com\intiformation\gestion_ecole\dao\AdresseDaoImpl.class
 com\intiformation\gestion_ecole\dao\IGenericDAO.class
