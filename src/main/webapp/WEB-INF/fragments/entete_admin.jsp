@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiants/listeAll"">Etudiants</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiants/listeAll">Etudiants</a>
 				</li>
 
 				<li class="nav-item"><a class="nav-link" href="#">Enseignants</a>
