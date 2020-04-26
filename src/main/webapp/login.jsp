@@ -55,12 +55,5 @@
 		</form>
 	</fieldset>
 	<br/><br/>
-	<!-- Lien vers la page d'accueil après deconnexion -->
-	<c:if test="${not empty param.logout_message}">
-		<a href="${pageContext.request.contextPath}/messageList">
-			Page d'accueil
-		</a>
-	
-	</c:if>
 </body>
 </html>

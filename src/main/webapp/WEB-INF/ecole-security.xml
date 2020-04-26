@@ -27,7 +27,7 @@
 
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/index.jsp*"
-			access="hasRole('ROLE_ADMINISTRATEUR')" />
+			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ANONYMOUS','ROLE_ETUDIANT', 'ROLE_ENSEIGNANT')" />
 
 
 
