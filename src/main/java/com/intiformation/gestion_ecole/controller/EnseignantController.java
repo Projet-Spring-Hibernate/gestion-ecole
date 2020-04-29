@@ -140,29 +140,29 @@ public class EnseignantController {
 	 * BindingResult resultat va contenir le resultat du processus de la validation
 	 * @return
 	 */
-	@RequestMapping(value="/enseignants/add", method=RequestMethod.POST)
-	public String ajouterEmployeBdd(@ModelAttribute("enseignantCommand") Enseignant pEnseignant, ModelMap modele, BindingResult result) {
-		
-		
-		//Application du validateur sur pEmploye
-		//employeValidateur.validate(pEmploye, result);
-		
-		//if (result.hasErrors()) {
-			//le validateur a detecter des erreurs
-			// On redirige vers la page du formulaire ajouter-employe.jsp
-			//return "ajouter-employe";
-		//}else {
-			//le validator n'a pas detecté d'erreur
-			
-			//1. ajout de l'employe à la bdd
-			enseignantDao.ajouter(entity);;
-			
-			//2. recup de la nouvelle liste des employes + redirection vers la page liste-employes.jsp
-			
-			modele.addAttribute("attribut_liste_employes", employeService.listAllEmploye());
-			
-			return "redirect:/employes/liste";
-		//}//end else
+//	@RequestMapping(value="/enseignants/add", method=RequestMethod.POST)
+//	public String ajouterEmployeBdd(@ModelAttribute("enseignantCommand") Enseignant pEnseignant, ModelMap modele, BindingResult result) {
+//		
+//		
+//		//Application du validateur sur pEmploye
+//		//employeValidateur.validate(pEmploye, result);
+//		
+//		//if (result.hasErrors()) {
+//			//le validateur a detecter des erreurs
+//			// On redirige vers la page du formulaire ajouter-employe.jsp
+//			//return "ajouter-employe";
+//		//}else {
+//			//le validator n'a pas detecté d'erreur
+//			
+//			//1. ajout de l'employe à la bdd
+//			enseignantDao.ajouter(entity);;
+//			
+//			//2. recup de la nouvelle liste des employes + redirection vers la page liste-employes.jsp
+//			
+//			modele.addAttribute("attribut_liste_employes", employeService.listAllEmploye());
+//			
+//			return "redirect:/employes/liste";
+//		//}//end else
 
-	}//end ajouterEmployeBdd()
+//	}//end ajouterEmployeBdd()
 }//end class

@@ -22,17 +22,17 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">Mon compte</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiants/affiche"">Mon compte</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Mes enseignants</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/enseignants/listeByEtudiant">Mes enseignants</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Matières</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/matieres/listeByEtudiant">Matières</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Cours</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeByEtudiant">Cours</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Mes absences</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiantCours/listeByEtudiant">Mes absences</a></li>
 
 
 				<li class="nav-item" id="deconnexion"><a class="nav-link"

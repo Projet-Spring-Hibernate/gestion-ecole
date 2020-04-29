@@ -21,18 +21,18 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="#">Mon compte</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/enseignants/affiche">Mon compte</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Mes étudiants</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiants/listeByEnseignant">Mes étudiants</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Mes promotions</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/promotions/listeByEnseignant">Mes promotions</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Cours</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeByEnseignant">Cours</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Absences</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiantCours/listeByEnseignant">Absences</a></li>
 
 				<li class="nav-item" id="deconnexion"><a class="nav-link"
 					href="<c:url value='/logout'/>">Se déconnecter</a></li>

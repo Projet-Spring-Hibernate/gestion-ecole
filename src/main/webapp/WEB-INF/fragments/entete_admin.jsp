@@ -28,14 +28,14 @@
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/enseignants/listeAll">Enseignants</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Promotions</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/promotions/listeAll">Promotions</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Matières</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/matieres/listeAll">Matières</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Cours</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeAll">Cours</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Absences</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiantCours/listeAll">Absences</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="#">Aide</a></li>
 
