@@ -34,7 +34,7 @@
 <body>
 
 	 <%-- inclusion dynamique du fragment entete.jsp --%>
-	 <jsp:include page="/WEB-INF/fragments/entete.jsp" />
+	 <jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
 	 
 	 <div class="mainContent">
 	 
@@ -49,6 +49,7 @@
 			<th>Prenom</th>
 			<th>Date de naissance</th>
 			<th>Email</th>
+			<th></th>
 		</tr>
 		
 		<c:forEach items="${attribut_liste_etudiants}" var="etudiant">

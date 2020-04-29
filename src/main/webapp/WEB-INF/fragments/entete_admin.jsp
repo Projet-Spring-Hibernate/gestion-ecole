@@ -25,7 +25,7 @@
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiants/listeAll">Etudiants</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Enseignants</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/enseignants/listeAll">Enseignants</a>
 				</li>
 
 				<li class="nav-item"><a class="nav-link" href="#">Promotions</a>
@@ -48,6 +48,8 @@
 
 <div id="aideBox">
 	<h2>Aide</h2>
+	
+	${aide_contenu}
 
 
 

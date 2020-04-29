@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.intiformation.gestion_ecole.dao.IAdresseDao;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
+import com.intiformation.gestion_ecole.dao.IPersonneDao;
+import com.intiformation.gestion_ecole.dao.IPromotionDAO;
 import com.intiformation.gestion_ecole.domain.Adresse;
 import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.EnseignantMatierePromotion;
@@ -31,6 +34,12 @@ public class EtudiantController {
 	@Autowired
 	private IEtudiantDAO etudiantDao;
 
+	@Autowired
+	private IAdresseDao adresseDao;
+	
+	@Autowired
+	private IPromotionDAO promotionDao;
+	
 	/**
 	 * Setter pour injection spring
 	 * @param etudiantDao
@@ -39,8 +48,21 @@ public class EtudiantController {
 		this.etudiantDao = etudiantDao;
 	}
 	
+
+
+	public void setPromotionDao(IPromotionDAO promotionDao) {
+		this.promotionDao = promotionDao;
+	}
+
+
+
+	public void setAdresseDao(IAdresseDao adresseDao) {
+		this.adresseDao = adresseDao;
+	}
 	//==================================================================//
 	
+
+
 	/**
 	 * 
 	 * @param modele
@@ -70,23 +92,19 @@ public class EtudiantController {
 		//1. recup de l'étudiant
 		Etudiant etudiant = (Etudiant) etudiantDao.getById(pIdEtudiant);
 		
-//		//2. Recup de son adresse
-//		Adresse adresse = etudiant.getAdresse();
-//		System.out.println("adresse" + adresse );
-//		//3. Recup de ses promos
-//		List<Promotion> listePromos = etudiant.getListePromotion();
-//		System.out.println("promo :" + listePromos);
 		
-		//4. Recup des enseignant de la premiere promo
 		
-//		List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = listePromos.get(0).getListeEnseignantMatierePromotion();
-//		System.out.println("EnseignantMatierePromotion : " + listeEnseignantMatierePromotion);
-//		
+		Adresse adresse = adresseDao.getByPersonneId(etudiant.getIdentifiant());
+		System.out.println(adresse);
+		
+		List<Promotion> listepromo=promotionDao.getListePromotionByIdEtudiant(etudiant.getIdentifiant());
+		System.out.println(listepromo);
+
 		//2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_etudiant", etudiant);
-		
-		
-		
+		modele.addAttribute("attribut_adresse", adresse);
+		modele.addAttribute("attribut_listePromo", listepromo);
+		modele.addAttribute("aide_contenu", "Aide pour la page affichage_etudiant");
 		
 		return "affichage_etudiant";
 	}//end recupListeAllEtudiant

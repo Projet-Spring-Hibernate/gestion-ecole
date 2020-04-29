@@ -21,7 +21,7 @@ public interface IPersonneDao extends IGenericDAO<Personne>{
 	 */
 	public boolean isPersonneExists(String email, String mot_de_passe);
 	
-	public Personne getPersonneByMailMDP(String email, String mot_de_passe);
+	public Personne getPersonneByMail(String email) ;
 	
 	/**
 	 * Permet de récupérer la liste de toute les Personnes.

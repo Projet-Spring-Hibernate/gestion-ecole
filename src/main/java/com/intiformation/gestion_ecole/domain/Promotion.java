@@ -44,20 +44,7 @@ public class Promotion implements Serializable {
 	private Long idPromotion;
 	
 	private String libelle;
-	
-//	@ManyToMany(mappedBy="listePromotion")
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	private List<Enseignant> listeEnseignant =new ArrayList<>();
-//	
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	@JoinTable(name = "enseignant_matiere_promotion",
-//	joinColumns = @JoinColumn(name="PROMOTION_ID",referencedColumnName = "ID_PROMOTION"),
-//	inverseJoinColumns = @JoinColumn(name="MATIERE_ID",referencedColumnName = "ID_MATIERE")
-//	)
-//	private List<Matiere> listeMatiere =new ArrayList<>();
-	
+
 	@OneToMany(mappedBy="promotion")
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();

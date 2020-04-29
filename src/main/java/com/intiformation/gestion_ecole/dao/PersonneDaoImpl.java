@@ -76,7 +76,7 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 	 * recupere le personne par son mot de passe et email
 	 */
 	@Override
-	public Personne getPersonneByMailMDP(String email, String mot_de_passe) {
+	public Personne getPersonneByMail(String email) {
 		
 		try {
 			//1. Recup de la session à partir de la SessionFactory
@@ -84,12 +84,18 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 			
 			//3. Contenu de la requête : 
 			
-			Query<Personne> query = session.createQuery("SELECT p FROM personne p WHERE p.email= :pEmail AND p.motdepasse= :pMdp");
+			Query<Personne> query = session.createQuery("SELECT p FROM personne p WHERE p.email= :pEmail");
 			
 			query.setParameter("pEmail", email);
-			query.setParameter("pMdp", mot_de_passe);
+
+			List<Personne> listepersonne= query.getResultList();
 			
-			Personne personne = query.getSingleResult();
+			Personne personne=null;
+			if(listepersonne.size()==1) {
+				personne =listepersonne.get(0);
+			}else {
+				System.out.println("... Erreur :  Il existe "+listepersonne.size() + " personnes avec le même email...");
+			}
 			
 			return personne;
 			

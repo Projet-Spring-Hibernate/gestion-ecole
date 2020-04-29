@@ -23,6 +23,7 @@ com\intiformation\gestion_ecole\domain\Etudiant.class
 com\intiformation\gestion_ecole\domain\Administrateur.class
 com\intiformation\gestion_ecole\dao\ExerciceDAOImpl.class
 com\intiformation\gestion_ecole\dao\ICoursDAO.class
+com\intiformation\gestion_ecole\controller\EnseignantController.class
 com\intiformation\gestion_ecole\dao\AdministrateurDaoImpl.class
 com\intiformation\gestion_ecole\dao\IAdministrateurDao.class
 com\intiformation\gestion_ecole\dao\PersonneDaoImpl.class

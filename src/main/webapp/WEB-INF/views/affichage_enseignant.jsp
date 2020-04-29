@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!-- ============================================================================ -->
 <!-- Taglib de spring security -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
@@ -11,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Affichage etudiant</title>
+<title>Affichage enseignant</title>
 
 <!-- ============================================================================ -->
 <!-- Lien vers .css -->
@@ -45,40 +46,31 @@
 
 	<div class="mainContent">
 
-	<br/>
-	<br/>
+		<br /> <br />
 		<table class="table table-striped">
+			<!-- Ajout d'un employe -->
 
 			<tr>
-				<td>ID étudiant</td>
-				<td>${attribut_etudiant.identifiant}</td>
+				<td>ID enseignant</td>
+				<td>${attribut_enseignant.identifiant}</td>
 			</tr>
 			<tr>
 				<td>Nom</td>
-				<td>${attribut_etudiant.nom}</td>
+				<td>${attribut_enseignant.nom}</td>
 			</tr>
 			<tr>
 				<td>Prenom</td>
-				<td>${attribut_etudiant.prenom}</td>
-			</tr>
-			<tr>
-				<td>Date de naissance</td>
-				<td>${attribut_etudiant.dateDeNaissance}</td>
+				<td>${attribut_enseignant.prenom}</td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td>${attribut_etudiant.email}</td>
+				<td>${attribut_enseignant.email}</td>
 			</tr>
-
-			<tr>
-				<td>Adresse</td>
-				<td>${attribut_adresse.rue} ${attribut_adresse.codePostal} ${attribut_adresse.ville}</td>
-			</tr>
-
 			<tr>
 				<td>Promotion</td>
 				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> </td>
 			</tr>
+
 		</table>
 
 
@@ -91,8 +83,5 @@
 
 	<%-- inclusion dynamique du fragment entete.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
-
-
-
 </body>
 </html>

@@ -20,4 +20,6 @@ public interface IAdresseDao extends IGenericDAO<Adresse> {
 	 */
 	public List<Adresse> getAll();
 	
+	public Adresse getByPersonneId(Long pIdPersonne);
+	
 }//end interface

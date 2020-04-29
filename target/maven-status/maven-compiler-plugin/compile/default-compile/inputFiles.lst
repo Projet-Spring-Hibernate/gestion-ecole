@@ -37,6 +37,7 @@ C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\sr
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\domain\Personne.java
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\dao\EtudiantDAOImpl.java
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\domain\EnseignantMatierePromotion.java
+C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\controller\EnseignantController.java
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\dao\IEtudiantCoursDAO.java
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\dao\IMatiereDAO.java
 C:\Users\IN-MP-018\Desktop\INTIFORMATIONS\01_COURS\14_SPRING\13_gestion-ecole\src\main\java\com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.java
