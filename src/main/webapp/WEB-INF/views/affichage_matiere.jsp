@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!-- ============================================================================ -->
-<!-- Taglib -->
+<!-- Taglib de spring security -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!-- ============================================================================ -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Affichage matiere</title>
+
 <!-- ============================================================================ -->
 <!-- Lien vers .css -->
 <!-- construction du chemin vers ma feuille de style -->
@@ -27,52 +30,39 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste Matieres</title>
 </head>
 <body>
 
-
-	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	</s:authorize>
+	<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+		<jsp:include page="/WEB-INF/fragments/entete_enseignant.jsp" />
+	</s:authorize>
+	<s:authorize access="hasRole('ROLE_ETUDIANT')">
+		<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
+	</s:authorize>
 
 	<div class="mainContent">
 
-		<h1>Liste des matieres de l'école</h1>
-
-		<a href="${pageContext.request.contextPath}/matieres/add-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter un enseignant</a>	
-			
-			
+	<br/>
+	<br/>
 		<table class="table table-striped">
-			<!-- Ajout d'un employe -->
 
 			<tr>
-				<th>ID Matiere</th>
-				<th>Libelle</th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<td>ID matiere</td>
+				<td>${attribut_matiere.idMatiere}</td>
 			</tr>
-
-			<c:forEach items="${attribut_liste_matiere}" var="matiere">
-				<tr>
-					<td>${matiere.idMatiere}</td>
-					<td>${matiere.libelle}</td>
-					
-				<td><a href="${pageContext.request.contextPath}/matieres/afficher/${matiere.idMatiere}">Afficher</a></td>
-
-<td>
-				<a href="${pageContext.request.contextPath}/matieres/delete/${matiere.idMatiere}">Supprimer</a>
-			</td>
-			<td>
-				<a href="${pageContext.request.contextPath}/matieres/update-form${matiere.idMatiere}">Modifier</a>
-			</td>
-
-				</tr>
-			</c:forEach>
-
-
-
+			<tr>
+				<td>Libelle</td>
+				<td>${attribut_matiere.libelle}</td>
+			</tr>
+			<tr>
+				<td>Enseignant</td>
+				<td><c:forEach items="${attribut_enseignant}" var="enseignant">${enseignant.nom} ${enseignant.prenom} </c:forEach>
+			</tr>
+			
+			
 		</table>
 
 

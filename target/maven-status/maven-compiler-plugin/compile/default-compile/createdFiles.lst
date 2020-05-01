@@ -6,9 +6,11 @@ com\intiformation\gestion_ecole\entityForForms\CoursForm.class
 com\intiformation\gestion_ecole\domain\Matiere.class
 com\intiformation\gestion_ecole\dao\MatiereDAOImpl.class
 com\intiformation\gestion_ecole\controller\PromotionController.class
+com\intiformation\gestion_ecole\validator\MatiereFormValidator.class
 com\intiformation\gestion_ecole\dao\IGenericDAO.class
 com\intiformation\gestion_ecole\domain\Enseignant.class
 com\intiformation\gestion_ecole\dao\ExerciceDAOImpl.class
+com\intiformation\gestion_ecole\validator\CoursFormValidator.class
 com\intiformation\gestion_ecole\controller\EnseignantController.class
 com\intiformation\gestion_ecole\dao\AdministrateurDaoImpl.class
 com\intiformation\gestion_ecole\domain\Aide.class

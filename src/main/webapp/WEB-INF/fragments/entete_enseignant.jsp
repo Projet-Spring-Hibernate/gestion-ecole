@@ -29,6 +29,8 @@
 
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/promotions/listeByEnseignant">Mes promotions</a>
 				</li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/matieres/listeByEnseignant">Mes Matières</a>
+				</li>
 
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeByEnseignant">Cours</a></li>
 

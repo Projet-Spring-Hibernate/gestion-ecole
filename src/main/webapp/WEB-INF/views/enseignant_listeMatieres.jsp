@@ -48,6 +48,7 @@
 			<tr>
 				<th>ID Matiere</th>
 				<th>Libelle</th>
+				<th></th>
 			</tr>
 
 			<c:forEach items="${attribut_liste_matiere}" var="matiere">
@@ -55,6 +56,7 @@
 					<td>${matiere.idMatiere}</td>
 					<td>${matiere.libelle}</td>
 					
+				<td><a href="${pageContext.request.contextPath}/matieres/afficher/${matiere.idMatiere}">Afficher</a></td>
 
 
 

@@ -27,20 +27,19 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste Matieres</title>
+<title>Etudiant - liste Matieres</title>
 </head>
 <body>
 
 
 	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
 
 	<div class="mainContent">
 
-		<h1>Liste des matieres de l'école</h1>
+		<h1>Liste des matieres des Etudiants</h1>
 
-		<a href="${pageContext.request.contextPath}/matieres/add-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter un enseignant</a>	
+	
 			
 			
 		<table class="table table-striped">
@@ -49,9 +48,6 @@
 			<tr>
 				<th>ID Matiere</th>
 				<th>Libelle</th>
-				<th></th>
-				<th></th>
-				<th></th>
 			</tr>
 
 			<c:forEach items="${attribut_liste_matiere}" var="matiere">
@@ -59,15 +55,12 @@
 					<td>${matiere.idMatiere}</td>
 					<td>${matiere.libelle}</td>
 					
-				<td><a href="${pageContext.request.contextPath}/matieres/afficher/${matiere.idMatiere}">Afficher</a></td>
 
-<td>
-				<a href="${pageContext.request.contextPath}/matieres/delete/${matiere.idMatiere}">Supprimer</a>
-			</td>
-			<td>
-				<a href="${pageContext.request.contextPath}/matieres/update-form${matiere.idMatiere}">Modifier</a>
-			</td>
 
+
+					<!-- colonne pour la modif de l'employe => envoi d'une requete http en get (url :http://localhost:8080/10_advanced_framework_spring-mvc/employes/update-employe-form?idemp=1
+				vers la méthode afficherFormulaireUpdate() du controleur EmployesController -->
+					<%-- 				<td><a href="${pageContext.request.contextPath}/employes/update-employe-form?idemp=${employe.idEmploye}">Modifier</a></td> --%>
 				</tr>
 			</c:forEach>
 
