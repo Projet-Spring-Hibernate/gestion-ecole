@@ -49,7 +49,7 @@
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
-			<table class="table table-striped">
+			<table class="table">
 
 				<tr>
 					<td><form:label path="enseignant.nom">Nom :</form:label></td>
@@ -98,7 +98,7 @@
 					var="enseignantMatierePromotion" varStatus="i">
 					<tr>
 						<td>Promotion et matière :</td>
-						<td>Promotion : <form:select
+						<td>Promotion : <form:select class="custom-select"
 								path="listeEnseignantMatierePromotion[${i.index}].promotion.idPromotion">
 								<option value="0">-- Choisir --</option>
 								<c:forEach
@@ -108,7 +108,7 @@
 								</c:forEach>
 							</form:select>
 						</td>
-						<td>Matière : <form:select
+						<td>Matière : <form:select class="custom-select"
 								path="listeEnseignantMatierePromotion[${i.index}].matiere.idMatiere">
 								<option value="0">-- Choisir --</option>
 								<c:forEach items="${enseignantform.listeMatieresExistantes }"
@@ -120,7 +120,7 @@
 					</tr>
 
 				</c:forEach>
-				<td colspan="3"><input type="submit" value="Ajouter" /></td>
+				<td colspan="3"><input class="btn btn-primary" type="submit" value="Ajouter" /></td>
 
 			</table>
 		</form:form>

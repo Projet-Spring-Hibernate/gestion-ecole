@@ -62,7 +62,7 @@
 	<!-- ================================================= -->
 	
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>

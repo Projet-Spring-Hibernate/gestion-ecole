@@ -4,6 +4,7 @@ com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.class
 com\intiformation\gestion_ecole\controller\CoursController.class
 com\intiformation\gestion_ecole\domain\Matiere.class
 com\intiformation\gestion_ecole\dao\MatiereDAOImpl.class
+com\intiformation\gestion_ecole\controller\PromotionController.class
 com\intiformation\gestion_ecole\dao\IGenericDAO.class
 com\intiformation\gestion_ecole\domain\Enseignant.class
 com\intiformation\gestion_ecole\dao\ExerciceDAOImpl.class

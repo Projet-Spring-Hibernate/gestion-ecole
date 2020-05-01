@@ -46,8 +46,13 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
-		<table class="table table-striped">
+		<br />
+
+		<h1>Fiche de ${attribut_enseignant.prenom}
+			${attribut_enseignant.nom}</h1>
+
+		<br />
+		<table class="table">
 			<!-- Ajout d'un employe -->
 
 			<tr>
@@ -68,7 +73,15 @@
 			</tr>
 			<tr>
 				<td>Promotion</td>
-				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> </td>
+				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach>
+				</td>
+			</tr>
+
+			<tr>
+				<td><a class="btn btn-warning"
+					href="${pageContext.request.contextPath}/enseignants/update-form/${attribut_enseignant.identifiant}">Modifier</a>
+					<a class="btn btn-danger"
+					href="${pageContext.request.contextPath}/enseignants/delete/${attribut_enseignant.identifiant}">Supprimer</a></td>
 			</tr>
 
 		</table>
