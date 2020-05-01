@@ -120,5 +120,15 @@ public class PersonneDaoImpl extends GeneraleDAOImpl<Personne> implements IPerso
 	}//end getAll
 	
 	
-
+	// --------------------------------------------------//
+	// -------------- getAllMail ----------------------------//
+	// --------------------------------------------------// 
+	/**
+	 * Recupere la liste des emails des personnes dans la bdd
+	 */
+	@Override
+	public List<String> getAllMail() {
+	
+		return this.getSessionFactory().getCurrentSession().createQuery("SELECT p.email FROM personne p").list();
+	}//end getAll
 }//end class

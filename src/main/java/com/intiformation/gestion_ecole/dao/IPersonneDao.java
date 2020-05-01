@@ -30,5 +30,6 @@ public interface IPersonneDao extends IGenericDAO<Personne>{
 	 */
 	public List<Personne> getAll();
 	
+	public List<String> getAllMail();
 
 }//end interface

@@ -44,7 +44,7 @@
 		<br /> <br />
 		<h1>Formulaire d'ajout d'un enseignant</h1>
 
-		<form:form modelAttribute="enseignantCommand" method="POST"
+		<form:form modelAttribute="enseignantform" method="POST"
 			action="${pageContext.request.contextPath}/enseignants/add">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
@@ -52,44 +52,76 @@
 			<table class="table table-striped">
 
 				<tr>
-					<td><form:label path="nom">Nom :</form:label></td>
-					<td><form:input path="nom" /></td>
-					<td><form:errors path="nom" /></td>
+					<td><form:label path="enseignant.nom">Nom :</form:label></td>
+					<td><form:input path="enseignant.nom" /></td>
+					<td><form:errors path="enseignant.nom" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="prenom">Prenom :</form:label></td>
-					<td><form:input path="prenom" /></td>
-					<td><form:errors path="prenom" /></td>
+					<td><form:label path="enseignant.prenom">Prenom :</form:label></td>
+					<td><form:input path="enseignant.prenom" /></td>
+					<td><form:errors path="enseignant.prenom" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="email">Email :</form:label></td>
-					<td><form:input path="email" /></td>
-					<td><form:errors path="email" /></td>
+					<td><form:label path="enseignant.email">Email :</form:label></td>
+					<td><form:input path="enseignant.email" /></td>
+					<td><form:errors path="enseignant.email" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="rue">Rue :</form:label></td>
-					<td><form:input path="rue" /></td>
-					<td><form:errors path="rue" /></td>
+					<td><form:label path="enseignant.motdepasse">Mot de passe :</form:label></td>
+					<td><form:input path="enseignant.motdepasse" /></td>
+					<td><form:errors path="enseignant.motdepasse" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="codePostal">Code postal :</form:label></td>
-					<td><form:input path="codePostal" /></td>
-					<td><form:errors path="codePostal" /></td>
-				</tr>
-				
-				<tr>
-					<td><form:label path="ville">Ville :</form:label></td>
-					<td><form:input path="ville" /></td>
-					<td><form:errors path="ville" /></td>
+					<td><form:label path="adresse.rue">Rue :</form:label></td>
+					<td><form:input path="adresse.rue" /></td>
+					<td><form:errors path="adresse.rue" /></td>
 				</tr>
 
-<!-- 				<tr> -->
-<!-- 					<td>Promotion</td> -->
-<%-- 					<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> --%>
-<!-- 					</td> -->
-<!-- 				</tr> -->
+				<tr>
+					<td><form:label path="adresse.codePostal">Code postal :</form:label></td>
+					<td><form:input path="adresse.codePostal" /></td>
+					<td><form:errors path="adresse.codePostal" /></td>
+				</tr>
+
+
+				<tr>
+					<td><form:label path="adresse.ville">Ville :</form:label></td>
+					<td><form:input path="adresse.ville" /></td>
+					<td><form:errors path="adresse.ville" /></td>
+				</tr>
+
+
+				<c:forEach
+					items="${enseignantform.listeEnseignantMatierePromotion }"
+					var="enseignantMatierePromotion" varStatus="i">
+					<tr>
+						<td>Promotion et matière :</td>
+						<td>Promotion : <form:select
+								path="listeEnseignantMatierePromotion[${i.index}].promotion.idPromotion">
+								<option value="0">-- Choisir --</option>
+								<c:forEach
+									items="${enseignantform.listePromotionsExistantes }"
+									var="promotion">
+									<option value="${promotion.idPromotion}">${promotion.libelle}</option>
+								</c:forEach>
+							</form:select>
+						</td>
+						<td>Matière : <form:select
+								path="listeEnseignantMatierePromotion[${i.index}].matiere.idMatiere">
+								<option value="0">-- Choisir --</option>
+								<c:forEach items="${enseignantform.listeMatieresExistantes }"
+									var="matiere">
+									<option value="${matiere.idMatiere}">${matiere.libelle}</option>
+								</c:forEach>
+							</form:select>
+						</td>
+					</tr>
+
+				</c:forEach>
+				<td colspan="3"><input type="submit" value="Ajouter" /></td>
+
 			</table>
 		</form:form>
 	</div>

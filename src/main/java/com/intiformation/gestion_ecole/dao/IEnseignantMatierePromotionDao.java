@@ -7,5 +7,13 @@ import com.intiformation.gestion_ecole.domain.EtudiantCours;
 
 public interface IEnseignantMatierePromotionDao extends IGenericDAO<EnseignantMatierePromotion>{
 
-	public List<EtudiantCours> getAllEnseignantMatierePromotion();
-}
+	public List<EnseignantMatierePromotion> getAllEnseignantMatierePromotion();
+	
+	public List<EnseignantMatierePromotion> getListeEnseignantMatierePromotionByEnseignant(Long pIdEnseignant);
+	
+	public List<EnseignantMatierePromotion> getListeEnseignantMatierePromotionByPromotion(Long pIdPromotion);
+	
+	public List<EnseignantMatierePromotion> getListeEnseignantMatierePromotionByMatiere(Long pIdMatiere);
+	
+	
+}//end interface
