@@ -57,14 +57,14 @@
 
 			<c:forEach items="${attribut_liste_promotions}" var="promotion">
 				<tr>
-					<td>${promotion.identifiant}</td>
+					<td>${promotion.idPromotion}</td>
 					<td>${promotion.libelle}</td>
 
 
 
 					<!-- colonne pour afficher la promotion -->
 					<td><a
-						href="${pageContext.request.contextPath}/promotions/afficher/${promotion.identifiant}">Afficher</a>
+						href="${pageContext.request.contextPath}/promotions/afficher/${promotion.idPromotion}">Afficher</a>
 					</td>
 
 				</tr>

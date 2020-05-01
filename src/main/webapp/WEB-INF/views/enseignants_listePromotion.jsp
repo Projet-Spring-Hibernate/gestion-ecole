@@ -33,38 +33,33 @@
 <body>
 
 	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	<jsp:include page="/WEB-INF/fragments/entete_enseignant.jsp" />
 
 	<div class="mainContent">
 
 		<h1>Liste des promotions de l'enseignant</h1>
 
-		<a
-			href="${pageContext.request.contextPath}/promotions/add-promotion-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter une
-			promotion à un enseignant</a>
+		
 		<table class="table table-striped">
 			<!-- Ajout d'une promotion -->
 
 			<tr>
 				<th>ID Promotion</th>
-				<th>ID Enseignant</th>
 				<th>Libelle</th>
 				<th></th>
 			</tr>
 
 
-			<c:forEach items="${attribut_liste_promotions}" var="promotion">
+			<c:forEach items="${attribut_enseignant_promotion}" var="promotion">
 				<tr>
-					<td>${promotion.identifiantEnseignant}</td>
-					<td>${promotion.identifiant}</td>
+					<td>${promotion.idPromotion}</td>
 					<td>${promotion.libelle}</td>
 
 
 
 					<!-- colonne pour afficher la promotion -->
 					<td><a
-						href="${pageContext.request.contextPath}/promotions/afficher/${promotion.identifiant}">Afficher</a>
+						href="${pageContext.request.contextPath}/promotions/listeByIdEnseignant${promotion.idPromotion}">Afficher</a>
 					</td>
 
 				</tr>

@@ -7,6 +7,8 @@ import javax.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,7 @@ import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
 import com.intiformation.gestion_ecole.dao.IMatiereDAO;
 import com.intiformation.gestion_ecole.dao.IPromotionDAO;
 import com.intiformation.gestion_ecole.domain.Adresse;
+import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.Etudiant;
 import com.intiformation.gestion_ecole.domain.Promotion;
@@ -86,33 +89,51 @@ public class PromotionController {
 	}// end recupListeAllPromotion
 
 	/*************************************************************************************************/
-
-	@RequestMapping(value = "/promotions/listePromotionByIdEtudiant", method = RequestMethod.GET)
-	public String recupListePromotionByIdEtudiant(ModelMap modele) {
-
-		// 1. recup de la liste des promotions en fonction de l'ID de l'étudiant de la
-		// bdd
-		List<Promotion> listePromotionByIdEtudiant = promotionDao.getListePromotionByIdEtudiant(null);
-
-		// 2. def des données à afficher dans la vue
-		modele.addAttribute("attribut_liste_promotions", listePromotionByIdEtudiant);
-
-		return "etudiant_listePromotion";
-	}//end recupListePromotionByIdEtudiant
+	@RequestMapping(value="/promotions/afficher/{promotionID}", method=RequestMethod.GET)
+	public String recupPromotionById(@PathVariable("promotionID") Long pIdPromotion,ModelMap modele) {
+		
+		//1. recup de l'étudiant
+		Promotion promotion = promotionDao.getById(pIdPromotion);
+	
+		//2. def des données à afficher dans la vue
+		modele.addAttribute("attribut_promotion", promotion);
+		
+		return "affichage_promotion";
+	}//end recupPromoById
 	
 	/*************************************************************************************************/
 
-	@RequestMapping(value = "/promotions/ListePromotionByIdEnseignant", method = RequestMethod.GET)
-	public String recupListePromotionByIdEnseignant(ModelMap modele) {
+	@RequestMapping(value="/promotions/listeByEtudiant", method=RequestMethod.GET)
+	public String recupPromotionsByIdEtudiant(ModelMap modele) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Etudiant etudiant = (Etudiant) etudiantDao.getPersonneByMail(auth.getName());
 
-		// 1. recup de la liste des promotions en fonction de l'ID de l'étudiant de la
-		// bdd
-		List<Promotion> ListePromotionByIdEnseignant = promotionDao.getListePromotionByIdEnseignant(null);
+		
+		//1. recup du cours
+		List<Promotion> listePromotions = promotionDao.getListePromotionByIdEtudiant(etudiant.getIdentifiant());
+				
+		//2. def des données à afficher dans la vue
+		modele.addAttribute("attribut_promotion_etudiant", listePromotions);
+		
+		return "etudiant_listePromotion";
+	}//end recupPromotionsByIdEtudiant
+	
+	/*************************************************************************************************/
+
+	@RequestMapping(value = "/promotions/listeByIdEnseignant", method = RequestMethod.GET)
+	public String recupPromotionsByIdEnseignant(ModelMap modele) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
+		
+		// 1. recup de la liste des promotions 
+		List<Promotion> ListePromotions  = promotionDao.getListePromotionByIdEnseignant(enseignant.getIdentifiant());
 
 		// 2. def des données à afficher dans la vue
-		modele.addAttribute("attribut_liste_promotions", ListePromotionByIdEnseignant);
+		modele.addAttribute("attribut_promotion_enseignant", ListePromotions);
 
 		return "enseignants_listePromotion";
-	}//end recupListePromotionByIdEnseignant
+	}//end recupPromotionByIdEnseignant
 	
 }// end class
