@@ -10,6 +10,13 @@ public interface ICoursDAO extends IGenericDAO<Cours>{
 	
 	public List<Cours> orderCours();
 	
+	public List<Cours> getListeCoursByIdEnseignant(Long pIdEnseignant);
+	
+	public List<Cours> getListeCoursByIdEtudiant(Long pIdEtudiant);
+	
+	
+	
+	
 	
 	
 	

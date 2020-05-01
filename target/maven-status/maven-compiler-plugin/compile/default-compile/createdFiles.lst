@@ -8,6 +8,7 @@ com\intiformation\gestion_ecole\dao\PromotionDAOImpl.class
 com\intiformation\gestion_ecole\dao\IAdresseDao.class
 com\intiformation\gestion_ecole\domain\Exercice.class
 com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.class
+com\intiformation\gestion_ecole\controller\CoursController.class
 com\intiformation\gestion_ecole\controller\EtudiantController.class
 com\intiformation\gestion_ecole\domain\Personne.class
 com\intiformation\gestion_ecole\dao\IMatiereDAO.class
