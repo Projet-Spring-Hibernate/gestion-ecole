@@ -21,7 +21,6 @@ import com.intiformation.gestion_ecole.domain.Adresse;
 import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.Etudiant;
 import com.intiformation.gestion_ecole.domain.Promotion;
-import com.intiformation.springmvc.entity.Employe;
 
 /**
  * Controller pour la gestion des enseignants

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="1" failures="0" name="com.intiformation.gestion_ecole.test.TestEnseignantDAO" time="0.001" errors="1" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
+    <property name="java.vm.version" value="25.241-b07"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\IN-DF-017\Desktop\cours\13_Spring\13_gestion_des_ecoles"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="FR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\IN-DF-017\Desktop\cours\13_Spring\13_gestion_des_ecoles"/>
+    <property name="java.runtime.version" value="1.8.0_241-b07"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\IN-DF-~1\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\Users\IN-DF-017\Desktop\cours\13_Spring\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf151864895907363698.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_241\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\Git\cmd;%M3_HOME%\bin;C:\Program Files\nodejs\;C:\Users\IN-DF-017\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_241\bin;C:\Users\IN-DF-017\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\IN-DF-017\AppData\Roaming\npm;C:\Program Files\Java\sts-bundle\sts-3.9.4.RELEASE;;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\IN-DF-017"/>
+    <property name="user.timezone" value="Europe/Paris"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="IN-DF-017"/>
+    <property name="java.class.path" value="C:\Program Files\Java\sts-bundle\sts-3.9.4.RELEASE\plugins\org.eclipse.m2e.maven.runtime_1.8.3.20180227-2135\jars\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_241\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B clean package"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="fr"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_241"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_241\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\IN-DF-017\Desktop\cours\13_Spring\13_gestion_des_ecoles\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="com.intiformation.gestion_ecole.test.TestEnseignantDAO" name="testJointure" time="0.001">
+    <error message="com.intiformation.gestion_ecole.domain.Administrateur cannot be cast to com.intiformation.gestion_ecole.domain.Enseignant" type="java.lang.ClassCastException">java.lang.ClassCastException: com.intiformation.gestion_ecole.domain.Administrateur cannot be cast to com.intiformation.gestion_ecole.domain.Enseignant
+	at com.intiformation.gestion_ecole.test.TestEnseignantDAO.testJointure(TestEnseignantDAO.java:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</error>
+    <system-out>Hibernate: insert into promotions (libelle) values (?)
+Hibernate: insert into promotions (libelle) values (?)
+Hibernate: select promotion0_.ID_PROMOTION as ID_PROMO1_9_, promotion0_.libelle as libelle2_9_ from promotions promotion0_
+[Promotion [idPromotion=1, libelle=Promo1], Promotion [idPromotion=2, libelle=Promo2], Promotion [idPromotion=3, libelle=Promo1], Promotion [idPromotion=4, libelle=Promo2], Promotion [idPromotion=5, libelle=Promo1], Promotion [idPromotion=6, libelle=Promo2]]
+Hibernate: select matiere0_.ID_MATIERE as ID_MATIE1_7_0_, matiere0_.libelle as libelle2_7_0_, listecours1_.matiere_id as matiere_6_2_1_, listecours1_.ID_COURS as ID_COURS1_2_1_, listecours1_.ID_COURS as ID_COURS1_2_2_, listecours1_.date as date2_2_2_, listecours1_.description as descript3_2_2_, listecours1_.duree as duree4_2_2_, listecours1_.libelle as libelle5_2_2_, listecours1_.matiere_id as matiere_6_2_2_, listecours1_.promotion_id as promotio7_2_2_, promotion2_.ID_PROMOTION as ID_PROMO1_9_3_, promotion2_.libelle as libelle2_9_3_ from matieres matiere0_ left outer join cours listecours1_ on matiere0_.ID_MATIERE=listecours1_.matiere_id left outer join promotions promotion2_ on listecours1_.promotion_id=promotion2_.ID_PROMOTION where matiere0_.ID_MATIERE=?
+Hibernate: select matiere0_.ID_MATIERE as ID_MATIE1_7_0_, matiere0_.libelle as libelle2_7_0_, listecours1_.matiere_id as matiere_6_2_1_, listecours1_.ID_COURS as ID_COURS1_2_1_, listecours1_.ID_COURS as ID_COURS1_2_2_, listecours1_.date as date2_2_2_, listecours1_.description as descript3_2_2_, listecours1_.duree as duree4_2_2_, listecours1_.libelle as libelle5_2_2_, listecours1_.matiere_id as matiere_6_2_2_, listecours1_.promotion_id as promotio7_2_2_, promotion2_.ID_PROMOTION as ID_PROMO1_9_3_, promotion2_.libelle as libelle2_9_3_ from matieres matiere0_ left outer join cours listecours1_ on matiere0_.ID_MATIERE=listecours1_.matiere_id left outer join promotions promotion2_ on listecours1_.promotion_id=promotion2_.ID_PROMOTION where matiere0_.ID_MATIERE=?
+Hibernate: select matiere0_.ID_MATIERE as ID_MATIE1_7_0_, matiere0_.libelle as libelle2_7_0_, listecours1_.matiere_id as matiere_6_2_1_, listecours1_.ID_COURS as ID_COURS1_2_1_, listecours1_.ID_COURS as ID_COURS1_2_2_, listecours1_.date as date2_2_2_, listecours1_.description as descript3_2_2_, listecours1_.duree as duree4_2_2_, listecours1_.libelle as libelle5_2_2_, listecours1_.matiere_id as matiere_6_2_2_, listecours1_.promotion_id as promotio7_2_2_, promotion2_.ID_PROMOTION as ID_PROMO1_9_3_, promotion2_.libelle as libelle2_9_3_ from matieres matiere0_ left outer join cours listecours1_ on matiere0_.ID_MATIERE=listecours1_.matiere_id left outer join promotions promotion2_ on listecours1_.promotion_id=promotion2_.ID_PROMOTION where matiere0_.ID_MATIERE=?
+Hibernate: select personne0_.identifiant as identifi2_8_0_, personne0_.adresse_id as adresse_9_8_0_, personne0_.username as username3_8_0_, personne0_.password as password4_8_0_, personne0_.nom as nom5_8_0_, personne0_.prenom as prenom6_8_0_, personne0_.dateDeNaissance as dateDeNa7_8_0_, personne0_.photo as photo8_8_0_, personne0_.role as role1_8_0_, adresse1_.adresse_id as adresse_1_0_1_, adresse1_.codePostal as codePost2_0_1_, adresse1_.rue as rue3_0_1_, adresse1_.ville as ville4_0_1_ from personnes personne0_ left outer join adresses adresse1_ on personne0_.adresse_id=adresse1_.adresse_id where personne0_.identifiant=?
+Hibernate: select personne0_.identifiant as identifi2_8_1_, personne0_.adresse_id as adresse_9_8_1_, personne0_.username as username3_8_1_, personne0_.password as password4_8_1_, personne0_.nom as nom5_8_1_, personne0_.prenom as prenom6_8_1_, personne0_.dateDeNaissance as dateDeNa7_8_1_, personne0_.photo as photo8_8_1_, personne0_.role as role1_8_1_, adresse1_.adresse_id as adresse_1_0_0_, adresse1_.codePostal as codePost2_0_0_, adresse1_.rue as rue3_0_0_, adresse1_.ville as ville4_0_0_ from personnes personne0_ left outer join adresses adresse1_ on personne0_.adresse_id=adresse1_.adresse_id where personne0_.adresse_id=?
+</system-out>
+    <system-err>Wed Apr 29 19:51:28 CEST 2020 WARN: Establishing SSL connection without server&apos;s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn&apos;t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to &apos;false&apos;. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+</system-err>
+  </testcase>
+</testsuite>
