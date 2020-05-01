@@ -2,10 +2,15 @@ package com.intiformation.gestion_ecole.dao;
 
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.gestion_ecole.domain.Cours;
+import com.intiformation.gestion_ecole.domain.Promotion;
 
 @Transactional
 @Repository("coursDAOImpl")
@@ -29,6 +34,58 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 		// TODO Auto-generated method stub
 		return this.getSessionFactory().getCurrentSession().createQuery("FROM cours c ORDER BY libelle asc").list();
 	}
+
+	@Override
+	public List<Cours> getListeCoursByIdEnseignant(Long pIdEnseignant) {
+		try {
+			//1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+			
+			//3. Contenu de la requête : 
+
+																	// à revoir
+			Query<Cours> query = session.createQuery("SELECT c FROM cours c JOIN c.listeEtudiant e WHERE e.identifiant = :pIdEnseignant");
+			
+			query.setParameter("pIdEnseignant", pIdEnseignant);
+
+			List<Cours> listecours= query.getResultList();
+			
+			
+			return listecours;
+			
+		}catch (PersistenceException e){
+			System.out.println("... Erreur ....");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Cours> getListeCoursByIdEtudiant(Long pIdEtudiant) {
+		try {
+			//1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+			
+			//3. Contenu de la requête : 
+
+	
+			Query<Cours> query = session.createQuery("SELECT c FROM cours c JOIN c.listeEtudiantCours l WHERE l.etudiant.identifiant = :pIdEtudiant");
+			
+			query.setParameter("pIdEtudiant", pIdEtudiant);
+
+			List<Cours> listecours= query.getResultList();
+			
+			
+			return listecours;
+			
+		}catch (PersistenceException e){
+			System.out.println("... Erreur ....");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
 	
 	
 
