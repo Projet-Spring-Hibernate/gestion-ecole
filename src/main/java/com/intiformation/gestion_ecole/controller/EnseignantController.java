@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.intiformation.gestion_ecole.dao.IAdresseDao;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantMatierePromotionDao;
 import com.intiformation.gestion_ecole.dao.IMatiereDAO;
@@ -57,6 +58,9 @@ public class EnseignantController {
 	private IEnseignantMatierePromotionDao enseignantMatierePromotionDao;
 
 	@Autowired
+	private IAdresseDao adresseDao;
+	
+	@Autowired
 	private EnseignantFormValidator enseignantFormValidator;
 
 	/**
@@ -78,6 +82,10 @@ public class EnseignantController {
 
 	public void setEnseignantFormValidator(EnseignantFormValidator enseignantFormValidator) {
 		this.enseignantFormValidator = enseignantFormValidator;
+	}
+
+	public void setAdresseDao(IAdresseDao adresseDao) {
+		this.adresseDao = adresseDao;
 	}
 
 	public void setPromotionDao(IPromotionDAO promotionDao) {
@@ -384,4 +392,42 @@ public class EnseignantController {
 		} // end else
 
 	}// end ajouterEmployeBdd()
+	
+	// ==================================================================//
+	
+	
+	@RequestMapping(value= "/enseignants/delete/{enseignantId}", method=RequestMethod.GET)
+	public String supprimerEnseignant(@PathVariable("enseignantId") Long pIdEnseignant,ModelMap modele) {
+		
+		
+		//========== Recup des objets à supprimer ============
+		
+		//1. recup de l'enseignant par son id
+		Enseignant enseignant= (Enseignant) enseignantDao.getById(pIdEnseignant);
+		
+		//2. Recup de son adresse 
+		Adresse adresse = adresseDao.getByPersonneId(pIdEnseignant);
+		
+		//3. recup de la liste de ses combinaison EnseignantMatierePromotion
+		List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = enseignantMatierePromotionDao.getListeEnseignantMatierePromotionByEnseignant(pIdEnseignant);
+		
+		//========== Suppression ===================
+		
+		//1. suppression de l'adresse
+		adresseDao.supprimer(adresse);
+		
+		//2. suppression des combinaison EnseignantMatierePromotion
+		for(EnseignantMatierePromotion combinaison : listeEnseignantMatierePromotion) {
+			enseignantMatierePromotionDao.supprimer(combinaison);
+		}//End for
+		
+		//3. suppression de l'enseignant
+		enseignantDao.supprimer(enseignant);
+		
+		return "redirect:/enseignants/listeAll";
+		
+	}//end supprimerEnseignant
+	
+	
+	
 }// end class
