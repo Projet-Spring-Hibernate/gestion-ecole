@@ -42,46 +42,46 @@
 		<br /> <br />
 		<h1>Formulaire d'ajout d'un cours</h1>
 
-		<form:form modelAttribute="enseignantCommand" method="POST"
-			action="${pageContext.request.contextPath}/enseignants/add">
+		<form:form modelAttribute="coursCommand" method="POST"
+			action="${pageContext.request.contextPath}/cours/add">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
 			<table class="table table-striped">
 
 				<tr>
-					<td><form:label path="nom">Nom :</form:label></td>
-					<td><form:input path="nom" /></td>
-					<td><form:errors path="nom" /></td>
+					<td><form:label path="cours.libelle">Libelle :</form:label></td>
+					<td><form:input path="cours.libelle" /></td>
+					<td><form:errors path="cours.libelle" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="prenom">Prenom :</form:label></td>
-					<td><form:input path="prenom" /></td>
-					<td><form:errors path="prenom" /></td>
+					<td><form:label path="cours.date">Date :</form:label></td>
+					<td><form:input path="cours.date" /></td>
+					<td><form:errors path="cours.date" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="email">Email :</form:label></td>
-					<td><form:input path="email" /></td>
-					<td><form:errors path="email" /></td>
+					<td><form:label path="cours.duree">Durée :</form:label></td>
+					<td><form:input path="cours.duree" /></td>
+					<td><form:errors path="cours.duree" /></td>
+				</tr>
+				<tr>
+					<td><form:label path="cours.description">Descrption :</form:label></td>
+					<td><form:input path="cours.description" /></td>
+					<td><form:errors path="cours.description" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="rue">Rue :</form:label></td>
-					<td><form:input path="rue" /></td>
-					<td><form:errors path="rue" /></td>
+					<td><form:label path="matiere.libelle">Matière :</form:label></td>
+					<td><form:input path="matiere.libelle" /></td>
+					<td><form:errors path="matiere.libelle" /></td>
 				</tr>
 
 				<tr>
-					<td><form:label path="codePostal">Code postal :</form:label></td>
-					<td><form:input path="codePostal" /></td>
-					<td><form:errors path="codePostal" /></td>
+					<td><form:label path="promotion.libelle">Promotion :</form:label></td>
+					<td><form:input path="promotion.libelle" /></td>
+					<td><form:errors path="promotion.libelle" /></td>
 				</tr>
 				
-				<tr>
-					<td><form:label path="ville">Ville :</form:label></td>
-					<td><form:input path="ville" /></td>
-					<td><form:errors path="ville" /></td>
-				</tr>
 
 <!-- 				<tr> -->
 <!-- 					<td>Promotion</td> -->

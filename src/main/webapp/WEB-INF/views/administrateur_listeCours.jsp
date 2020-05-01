@@ -75,6 +75,10 @@
 					<!-- colonne pour la modif de l'employe => envoi d'une requete http en get (url :http://localhost:8080/10_advanced_framework_spring-mvc/employes/update-employe-form?idemp=1
 				vers la méthode afficherFormulaireUpdate() du controleur EmployesController -->
 					<%-- 				<td><a href="${pageContext.request.contextPath}/employes/update-employe-form?idemp=${employe.idEmploye}">Modifier</a></td> --%>
+					
+					<td><a
+						href="${pageContext.request.contextPath}/cours/delete/${cours.idCours}">Supprimer</a></td>
+					
 				</tr>
 			</c:forEach>
 

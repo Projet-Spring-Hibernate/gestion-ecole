@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.gestion_ecole.domain.Cours;
+import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.Promotion;
 
 @Transactional
@@ -44,7 +45,7 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 			//3. Contenu de la requête : 
 
 																	// à revoir
-			Query<Cours> query = session.createQuery("SELECT c FROM cours c JOIN c.listeEtudiant e WHERE e.identifiant = :pIdEnseignant");
+			Query<Cours> query = session.createQuery("SELECT c FROM cours c WHERE c.matiere IN (SELECT m FROM matiere m WHERE m.listeEnseignantMatierePromotion l WHERE l.enseignant.identifiant = :pIdEnseignant)");
 			
 			query.setParameter("pIdEnseignant", pIdEnseignant);
 
@@ -82,6 +83,28 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 			System.out.println("... Erreur ....");
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	@Override
+	public Cours affichageCours(Cours cours) {
+		try {
+		//1. Recup de la session à partir de la SessionFactory
+		Session session = this.getSessionFactory().getCurrentSession();
+		Cours cours1 = this.getById(cours.getIdCours());
+		
+		Query<Cours> query = session.createQuery("SELECT ens FROM enseignant ens JOIN ens.listeEnseignantMatierePromotion l WHERE l.matiere.idMatiere = :pIdMatiere AND l.promotion.idPromotion = :pIdPromotion");
+		query.setParameter("pIdMatiere", cours1.getMatiere().getIdMatiere());
+		query.setParameter("pIdPromotion", cours1.getPromotion().getIdPromotion());
+		
+		cours1 = query.getSingleResult();
+		
+		return cours1;
+		}catch (PersistenceException e){
+			System.out.println("... Erreur ....");
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 

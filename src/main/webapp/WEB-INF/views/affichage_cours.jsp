@@ -70,15 +70,22 @@
 				<td>Description</td>
 				<td>${attribut_cours.description}</td>
 			</tr>
-		<!--  	<tr>
+			<tr>
 				<td>Matière</td>
-				<td>${attribut_cours.matiere.idMatiere}</td>
+				<td>${attribut_cours.matiere.libelle}</td>
 			</tr>
 			<tr>
 				<td>Promotion</td>
-				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> </td>
-			</tr> 
-			-->
+				<td>${attribut_cours.promotion.libelle}</td>
+			</tr>
+			
+<!-- 			<tr> -->
+<!-- 				<td><a class="btn btn-warning" -->
+<%-- 					href="${pageContext.request.contextPath}/cours/update-form/${attribut_enseignant.identifiant}">Modifier</a> --%>
+<!-- 					<a class="btn btn-danger" -->
+<%-- 					href="${pageContext.request.contextPath}/cours/delete/${attribut_enseignant.identifiant}">Supprimer</a></td> --%>
+<!-- 			</tr> -->
+		
 
 		</table>
 
