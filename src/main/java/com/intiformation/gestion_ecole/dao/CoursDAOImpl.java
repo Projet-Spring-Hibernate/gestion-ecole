@@ -6,19 +6,29 @@ import javax.persistence.PersistenceException;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Enseignant;
+import com.intiformation.gestion_ecole.domain.Personne;
 import com.intiformation.gestion_ecole.domain.Promotion;
 
 @Transactional
 @Repository("coursDAOImpl")
 public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 
+	@Autowired
+	private IEnseignantDAO enseignantDao;
 	
 	
+	
+	
+	public void setEnseignantDao(IEnseignantDAO enseignantDao) {
+		this.enseignantDao = enseignantDao;
+	}
+
 	public CoursDAOImpl() {
 		super(Cours.class);
 		// TODO Auto-generated constructor stub
@@ -44,8 +54,10 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 			
 			//3. Contenu de la requête : 
 
-																	// à revoir
-			Query<Cours> query = session.createQuery("SELECT c FROM cours c WHERE c.matiere IN (SELECT m FROM matiere m WHERE m.listeEnseignantMatierePromotion l WHERE l.enseignant.identifiant = :pIdEnseignant)");
+//			Enseignant enseignant = new Enseignant();
+//			pIdEnseignant= enseignant.getIdentifiant();
+																	// à revoir "WHERE -> JOIN
+			Query<Cours> query = session.createQuery("SELECT c FROM cours c WHERE c.matiere IN (SELECT m FROM matiere m JOIN m.listeEnseignantMatierePromotion l WHERE l.enseignant.identifiant = :pIdEnseignant)");
 			
 			query.setParameter("pIdEnseignant", pIdEnseignant);
 
@@ -107,6 +119,16 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 		
 		return null;
 	}
+
+	@Override
+	public List<String> getAllLibelle() {
+			
+			return this.getSessionFactory().getCurrentSession().createQuery("SELECT c.libelle FROM cours c").list();
+	}//end getAll
+	
+	
+	
+	
 
 	
 	

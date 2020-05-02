@@ -18,6 +18,8 @@ public interface ICoursDAO extends IGenericDAO<Cours>{
 	
 	public List<Cours> getListeCoursByIdEtudiant(Long pIdEtudiant);
 	
+	public List<String> getAllLibelle();
+	
 	
 	
 	

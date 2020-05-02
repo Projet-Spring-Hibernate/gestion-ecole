@@ -27,7 +27,7 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste cours</title>
+<title>Etudiant - liste cours</title>
 </head>
 <body>
 

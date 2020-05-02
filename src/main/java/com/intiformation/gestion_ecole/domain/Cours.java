@@ -78,7 +78,7 @@ public class Cours implements Serializable{
 	private List<EtudiantCours> listeEtudiantCours =new ArrayList<>();
 	
 	
-	@OneToMany(mappedBy="cours")
+	@OneToMany(mappedBy="cours", orphanRemoval=true)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Exercice> listeExercices = new ArrayList<>();
 	

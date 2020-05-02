@@ -3,14 +3,17 @@ package com.intiformation.gestion_ecole.entityForForms;
 import java.util.List;
 
 import com.intiformation.gestion_ecole.domain.Cours;
+import com.intiformation.gestion_ecole.domain.Exercice;
 import com.intiformation.gestion_ecole.domain.Matiere;
 import com.intiformation.gestion_ecole.domain.Promotion;
 
 public class CoursForm {
 	
 	private Cours cours;
+	private List<Cours> listeCours;
 	private List<Promotion> listePromotionsExistantes;
 	private List<Matiere> listeMatieresExistantes;
+	private List<Exercice> listeExercicesExistants;
 	
 	private Matiere matiere;
 	private Promotion promotion;
@@ -78,6 +81,34 @@ public class CoursForm {
 
 	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
+	}
+
+
+
+
+	public List<Cours> getListeCours() {
+		return listeCours;
+	}
+
+
+
+
+	public void setListeCours(List<Cours> listeCours) {
+		this.listeCours = listeCours;
+	}
+
+
+
+
+	public List<Exercice> getListeExercicesExistants() {
+		return listeExercicesExistants;
+	}
+
+
+
+
+	public void setListeExercicesExistants(List<Exercice> listeExercicesExistants) {
+		this.listeExercicesExistants = listeExercicesExistants;
 	}
 	
 	

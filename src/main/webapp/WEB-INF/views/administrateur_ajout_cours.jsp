@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<<!-- ============================================================================ -->
+<!-- ============================================================================ -->
 <!-- Lien vers .css -->
 <!-- construction du chemin vers ma feuille de style -->
 <spring:url value="/assets/styles/bootstrap.css" var="bootstrapCss" />
@@ -41,8 +41,9 @@
 
 		<br /> <br />
 		<h1>Formulaire d'ajout d'un cours</h1>
+		<%--coursform --%>
 
-		<form:form modelAttribute="coursCommand" method="POST"
+		<form:form modelAttribute="coursform" method="POST"
 			action="${pageContext.request.contextPath}/cours/add">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
@@ -70,24 +71,45 @@
 					<td><form:errors path="cours.description" /></td>
 				</tr>
 
-				<tr>
-					<td><form:label path="matiere.libelle">Matière :</form:label></td>
-					<td><form:input path="matiere.libelle" /></td>
-					<td><form:errors path="matiere.libelle" /></td>
-				</tr>
-
-				<tr>
-					<td><form:label path="promotion.libelle">Promotion :</form:label></td>
-					<td><form:input path="promotion.libelle" /></td>
-					<td><form:errors path="promotion.libelle" /></td>
-				</tr>
-				
+<!-- 				<tr> -->
+<%-- 					<td><form:label path="cours.matiere.libelle">Matière :</form:label></td> --%>
+<%-- 					<td><form:input path="cours.matiere.libelle" /></td> --%>
+<%-- 					<td><form:errors path="cours.matiere.libelle" /></td> --%>
+<!-- 				</tr> -->
 
 <!-- 				<tr> -->
-<!-- 					<td>Promotion</td> -->
-<%-- 					<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> --%>
-<!-- 					</td> -->
+<%-- 					<td><form:label path="cours.promotion.libelle">Promotion :</form:label></td> --%>
+<%-- 					<td><form:input path="cours.promotion.libelle" /></td> --%>
+<%-- 					<td><form:errors path="cours.promotion.libelle" /></td> --%>
 <!-- 				</tr> -->
+				
+<c:forEach
+					items="${coursform.listePromotionsExistantes }"
+					var="cours" varStatus="i">
+					<tr>
+						<td>Promotion : <form:select class="custom-select"
+								path="listePromotionsExistantes[${i.index}].idPromotion">
+								<option value="0">-- Choisir --</option>
+								<c:forEach
+									items="${coursform.listePromotionsExistantes }"
+									var="promotion">
+									<option value="${promotion.idPromotion}">${promotion.libelle}</option>
+								</c:forEach>
+							</form:select>
+						</td>
+						<td>Matière : <form:select class="custom-select"
+								path="listeMatieresExistantes[${i.index}].idMatiere">
+								<option value="0">-- Choisir --</option>
+								<c:forEach items="${coursform.listeMatieresExistantes }"
+									var="matiere">
+									<option value="${matiere.idMatiere}">${matiere.libelle}</option>
+								</c:forEach>
+							</form:select>
+						</td>
+					</tr>
+
+				</c:forEach>
+				<td colspan="3"><input class="btn btn-primary" type="submit" value="Ajouter" /></td>
 			</table>
 		</form:form>
 	</div>

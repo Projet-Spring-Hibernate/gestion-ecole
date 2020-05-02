@@ -77,7 +77,12 @@
 					<%-- 				<td><a href="${pageContext.request.contextPath}/employes/update-employe-form?idemp=${employe.idEmploye}">Modifier</a></td> --%>
 					
 					<td><a
+						href="${pageContext.request.contextPath}/cours/update-cours-form?idcours=${cours.idCours}">Modifier</a></td>
+					
+					<td><a
 						href="${pageContext.request.contextPath}/cours/delete/${cours.idCours}">Supprimer</a></td>
+						
+					
 					
 				</tr>
 			</c:forEach>
