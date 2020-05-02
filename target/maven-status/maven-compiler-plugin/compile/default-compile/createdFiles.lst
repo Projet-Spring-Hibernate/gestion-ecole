@@ -32,6 +32,7 @@ com\intiformation\gestion_ecole\dao\IAdresseDao.class
 com\intiformation\gestion_ecole\controller\EtudiantController.class
 com\intiformation\gestion_ecole\domain\Personne.class
 com\intiformation\gestion_ecole\dao\IMatiereDAO.class
+com\intiformation\gestion_ecole\validator\CoursValidator.class
 com\intiformation\gestion_ecole\controller\WelcomeController.class
 com\intiformation\gestion_ecole\entityForForms\EnseignantForm.class
 com\intiformation\gestion_ecole\controller\MatiereController.class
@@ -48,6 +49,7 @@ com\intiformation\gestion_ecole\dao\IEtudiantCoursDAO.class
 com\intiformation\gestion_ecole\domain\EnseignantMatierePromotion.class
 com\intiformation\gestion_ecole\dao\EtudiantCoursDAOImpl.class
 com\intiformation\gestion_ecole\dao\IExerciceDAO.class
+com\intiformation\gestion_ecole\validator\PromotionFormValidator.class
 com\intiformation\gestion_ecole\dao\IPersonneDao.class
 com\intiformation\gestion_ecole\controller\AideController.class
 com\intiformation\gestion_ecole\dao\IPromotionDAO.class

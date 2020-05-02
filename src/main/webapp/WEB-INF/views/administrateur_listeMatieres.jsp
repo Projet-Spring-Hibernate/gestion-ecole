@@ -40,7 +40,7 @@
 		<h1>Liste des matieres de l'école</h1>
 
 		<a href="${pageContext.request.contextPath}/matieres/add-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter un enseignant</a>	
+			class="btn btn-primary btn-sm" role="button">Ajouter une matière</a>	
 			
 			
 		<table class="table table-striped">

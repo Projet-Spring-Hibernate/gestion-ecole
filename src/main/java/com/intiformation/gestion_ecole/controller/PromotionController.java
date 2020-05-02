@@ -153,7 +153,7 @@ public class PromotionController {
 
 		// 1.1 Application du validateur sur promotionForm
 		
-		PromotionFormValidator.validate(promotionForm, result);//a def dans validator
+		//PromotionFormValidator.validate(promotionForm, result);//a def dans validator
 
 		// 1.2 Test des erreurs
 		if (result.hasErrors()) {
@@ -165,7 +165,7 @@ public class PromotionController {
 					result);
 			redirectAttributes.addFlashAttribute("promotionform", promotionForm);
 			return "redirect:/promotions/add-promotions-form";
-			return "administrateur_ajout_promotion";
+			//return "administrateur_ajout_promotion";
 		} else {
 			// ==> le validateur n'a pas detecté d'erreur
 

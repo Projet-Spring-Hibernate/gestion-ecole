@@ -27,7 +27,7 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste Matieres</title>
+<title>Enseignant - liste Matieres</title>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
 
 	<div class="mainContent">
 
-		<h1>Liste des matieres de l'école</h1>
+		<h1>Liste de mes matieres </h1>
 
 	
 			
