@@ -57,13 +57,13 @@ public class Matiere implements Serializable {
 //	private List<Promotion> listePromotion=new ArrayList<>();
 	
 	
-	@OneToMany(mappedBy="matiere")
+	@OneToMany(mappedBy="matiere", orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	
 	//relation entre matière et Cours
-	@OneToMany(mappedBy="matiere", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="matiere", fetch=FetchType.EAGER,  orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private List<Cours> listeCours= new ArrayList<>();
 	

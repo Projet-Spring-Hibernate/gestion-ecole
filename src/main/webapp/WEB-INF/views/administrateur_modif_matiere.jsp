@@ -30,7 +30,7 @@
 
 <!-- ============================================================================ -->
 
-<title>Admin - ajouter matière</title>
+<title>Admin - modifier matière</title>
 </head>
 <body>
 
@@ -40,10 +40,10 @@
 	<div class="mainContent">
 
 		<br /> <br />
-		<h1>Formulaire d'ajout d'une matière</h1>
+		<h1>Formulaire de modification d'une matière</h1>
 
-		<form:form modelAttribute="matiereCommand" method="POST"
-			action="${pageContext.request.contextPath}/matieres/add">
+		<form:form modelAttribute="matiereModifCommand" method="POST"
+			action="${pageContext.request.contextPath}/matieres/update">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
@@ -55,15 +55,21 @@
 					<td><form:errors path="libelle" /></td>
 				</tr>
 		
+		<tr>
+					<td> <form:hidden path="idMatiere"/></td>
+				</tr>
 	<tr>
 	
 		<td colspan="2">
-			<input class="btn btn-primary btn-sm"  type="submit" value="Ajouter la matière"> 
+			<input class="btn btn-primary btn-sm"  type="submit" value="Modifier la matière"> 
 		
 		</td>
 	
 		
 	</tr>
+	
+					
+	
 			</table>
 		</form:form>
 	</div>

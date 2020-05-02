@@ -65,7 +65,11 @@
 				<a href="${pageContext.request.contextPath}/matieres/delete/${matiere.idMatiere}">Supprimer</a>
 			</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/matieres/update-form${matiere.idMatiere}">Modifier</a>
+					<a href="${pageContext.request.contextPath}/matieres/update-form?idMatiere=${matiere.idMatiere}">
+				
+				Modifier
+				
+				</a>
 			</td>
 
 				</tr>

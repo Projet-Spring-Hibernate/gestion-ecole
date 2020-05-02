@@ -31,7 +31,31 @@ public class MatiereDAOImpl extends GeneraleDAOImpl<Matiere> implements IMatiere
 
 	@Override
 	public List<Matiere> listematiereEtudiantbyid(Long id) {
+		
+		try {
+			//1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+			
+			//3. Contenu de la requête : 
+
+	
+			Query<Matiere> query = session.createQuery("SELECT DISTINCT m FROM matiere m JOIN m.listeEnseignantMatierePromotion l WHERE l.promotion IN (SELECT p FROM promotion p JOIN p.listeEtudiant e WHERE e.identifiant = :identifiant)");
+			
+			query.setParameter("identifiant", id);
+
+			List<Matiere> listematiere= query.getResultList();
+			
+			
+			return listematiere;
+			
+		}catch (PersistenceException e){
+			System.out.println("... Erreur ....");
+			e.printStackTrace();
+		}
+		
+		
 		return null;
+	
 	}
 
 	@Override

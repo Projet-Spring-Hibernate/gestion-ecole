@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
+import com.intiformation.gestion_ecole.dao.IEnseignantMatierePromotionDao;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
 import com.intiformation.gestion_ecole.dao.IMatiereDAO;
 import com.intiformation.gestion_ecole.domain.Enseignant;
+import com.intiformation.gestion_ecole.domain.EnseignantMatierePromotion;
 import com.intiformation.gestion_ecole.domain.Etudiant;
 import com.intiformation.gestion_ecole.domain.Matiere;
 import com.intiformation.gestion_ecole.domain.Promotion;
@@ -41,6 +43,9 @@ public class MatiereController {
 	@Autowired
 	private IEtudiantDAO etudiantDao;
 	
+	@Autowired
+	private IEnseignantMatierePromotionDao enseignantmatierepromoda;
+	
 	@Autowired //injection du bean du validator dans employevalidateur 
 	private MatiereFormValidator matiereValidator;
 
@@ -56,6 +61,12 @@ public class MatiereController {
 	
 	public void setEtudiantDao(IEtudiantDAO etudiantDao) {
 		this.etudiantDao = etudiantDao;
+	}
+	
+	
+
+	public void setEnseignantmatierepromoda(IEnseignantMatierePromotionDao enseignantmatierepromoda) {
+		this.enseignantmatierepromoda = enseignantmatierepromoda;
 	}
 
 	//==================================================================//
@@ -100,11 +111,11 @@ public class MatiereController {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		Etudiant enseignant = (Etudiant) etudiantDao.getPersonneByMail(auth.getName());
+		Etudiant etudiant = (Etudiant) etudiantDao.getPersonneByMail(auth.getName());
 
 		System.out.println("dans le controleur");
 
-		List<Matiere> listeMatiere = matiereDAO.listematiereEtudiantbyid(enseignant.getIdentifiant());
+		List<Matiere> listeMatiere = matiereDAO.listematiereEtudiantbyid(etudiant.getIdentifiant());
 		System.out.println("dans le controleur");
 		modele.addAttribute("attribut_liste_matiere", listeMatiere);
 		System.out.println(listeMatiere);
@@ -190,7 +201,11 @@ public class MatiereController {
 		
 		//1.suppression de l'employe dans la bdd
 		Matiere matiere = matiereDAO.getById(idMatiere);
-		matiereDAO.supprimer(matiere);
+		//List<EnseignantMatierePromotion> listeenseignant =  enseignantmatierepromoda.getListeEnseignantMatierePromotionByMatiere(idMatiere);
+	
+			matiereDAO.supprimer(matiere);
+		
+				
 		
 		//2. récup de la nouvelle liste des employés dans la bdd
 		List<Matiere> listeMatiereBdd = matiereDAO.listMatiere();
@@ -210,14 +225,15 @@ public class MatiereController {
 	 */
 	@RequestMapping(value="/matieres/update-form",method=RequestMethod.GET)
 	public ModelAndView afficherFormulaireUpdate(@RequestParam("idMatiere") Long id) {
-		
+		System.out.println("dans le get");
 		//1. récup de l'employé à modifier dans la bdd 
-		Matiere matiereModif = matiereDAO.getById(id);
 		
+		Matiere matiereModif = matiereDAO.getById(id);
+		System.out.println(matiereModif);
 		//2. déf du modele de données (objet de commande = employeModif) + déf du nom logique de la vue
 		// => ajout dans un objet ModelAndView
 		
-		return new ModelAndView("modifier-matiere","matiereModifCommand",matiereModif);
+		return new ModelAndView("administrateur_modif_matiere","matiereModifCommand",matiereModif);
 		
 	}//end afficherformulaireupdate()
 	
@@ -232,10 +248,9 @@ public class MatiereController {
 		//1. modif de l'employé dans la bdd
 		matiereDAO.modifier(id);
 		
-		List<Matiere> listeMatiereBdd = matiereDAO.listMatiere();
-
+System.out.println(id);
 		//2. récup la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
-		modele.addAttribute("attribut_liste_matiere", listeMatiereBdd);
+		modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
 		
 		//4. redirection vers la page liste-employes.jsp
 		return "redirect:/matieres/listeAll";
