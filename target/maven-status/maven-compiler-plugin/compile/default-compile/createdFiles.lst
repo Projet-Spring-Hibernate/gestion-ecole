@@ -1,4 +1,5 @@
 com\intiformation\gestion_ecole\dao\IEnseignantDAO.class
+com\intiformation\gestion_ecole\entityForForms\EtudiantForm.class
 com\intiformation\gestion_ecole\domain\Exercice.class
 com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.class
 com\intiformation\gestion_ecole\controller\CoursController.class
@@ -48,5 +49,6 @@ com\intiformation\gestion_ecole\domain\EnseignantMatierePromotion.class
 com\intiformation\gestion_ecole\dao\EtudiantCoursDAOImpl.class
 com\intiformation\gestion_ecole\dao\IExerciceDAO.class
 com\intiformation\gestion_ecole\dao\IPersonneDao.class
+com\intiformation\gestion_ecole\controller\AideController.class
 com\intiformation\gestion_ecole\dao\IPromotionDAO.class
 com\intiformation\gestion_ecole\domain\Promotion.class

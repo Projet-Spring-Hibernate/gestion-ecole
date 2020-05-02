@@ -39,7 +39,10 @@
 	 <div class="mainContent">
 	 
 	 	<h1>Liste des étudiants de l'école</h1>
-
+		<a
+			href="${pageContext.request.contextPath}/etudiants/add-etudiant-form"
+			class="btn btn-primary btn-sm" role="button">Ajouter un
+			enseignant</a> <br /> <br />
 	<table class="table table-striped">
 		<!-- Ajout d'un employe -->
 

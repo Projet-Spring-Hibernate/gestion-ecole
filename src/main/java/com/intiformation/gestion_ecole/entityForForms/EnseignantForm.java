@@ -1,9 +1,5 @@
 package com.intiformation.gestion_ecole.entityForForms;
-/**
- * Objet pour recevoir les information du formulaire d'ajout et de modification d'un enseignant
- * @author IN-MP-018
- *
- */
+
 
 import java.util.List;
 
@@ -12,7 +8,11 @@ import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.EnseignantMatierePromotion;
 import com.intiformation.gestion_ecole.domain.Matiere;
 import com.intiformation.gestion_ecole.domain.Promotion;
-
+/**
+ * Objet pour recevoir les information du formulaire d'ajout et de modification d'un enseignant
+ * @author Laure
+ *
+ */
 public class EnseignantForm {
 
 	private Enseignant enseignant;

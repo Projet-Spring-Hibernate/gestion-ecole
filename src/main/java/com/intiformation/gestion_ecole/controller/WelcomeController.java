@@ -1,6 +1,9 @@
 package com.intiformation.gestion_ecole.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -343,6 +346,41 @@ public class WelcomeController {
 		etudiantCoursDao.ajouter(presence10);
 		
 
+		//==================================================================================
+		
+		// ----------- Suppression des doublons ---------------//
+
+		List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = enseignantMatierePromotionDao.getAllEnseignantMatierePromotion();
+		
+		// Création d'une liste vide dans laquelle on va transferrer les objets  distincts
+		List<EnseignantMatierePromotion> listeEnseignantMatierePromotionDISTINCT = new ArrayList<>();
+		
+		// On parcourt la liste des combinaisons
+		for (EnseignantMatierePromotion combinaison : listeEnseignantMatierePromotion) {
+				// Creation d'un compteur
+				int i = 0;
+				// On parcourt la liste distinct
+				for (EnseignantMatierePromotion combinaisonDistinct : listeEnseignantMatierePromotionDISTINCT) {
+					// test si la combinaison est déjà presente dans la liste distinct
+					if (combinaisonDistinct.getPromotion().getIdPromotion() == combinaison.getPromotion().getIdPromotion()
+							&& combinaisonDistinct.getMatiere().getIdMatiere() == combinaison.getMatiere().getIdMatiere()) {
+						// => elle est déjà presente => On incremente le compteur
+						i++;
+					} // end if
+				} // end for
+
+				// Test si le compteur==0 cad si la combinaison n'est pas déjà presente dans la
+				// liste distinct
+				if (i == 0) {
+					// => Elle n'est pas déjà presente => on l'ajoute
+					listeEnseignantMatierePromotionDISTINCT.add(combinaison);
+				}else {
+					//=> Elle est deja dans la liste => on la supprime
+					enseignantMatierePromotionDao.supprimer(combinaison);
+				}
+
+				
+		} // end for
 		
 		//===================================================================================
 		

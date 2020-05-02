@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.intiformation.gestion_ecole.dao.IPersonneDao;
+import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.entityForForms.EnseignantForm;
 
 
@@ -75,8 +76,11 @@ public class EnseignantFormValidator implements Validator {
 		List<String> listeEmailExistants = personneDao.getAllMail();
 		
 		if(listeEmailExistants.contains(enseignantform.getEnseignant().getEmail())) {
-			//creation d'une erreur
-			errors.rejectValue("enseignant.email", "notallowed.email", "Cet email existe déjà.");
+			Enseignant enseignantExistant = (Enseignant) personneDao.getPersonneByMail(enseignantform.getEnseignant().getEmail());
+			if(enseignantExistant.getIdentifiant()!=enseignantform.getEnseignant().getIdentifiant()) {
+				//creation d'une erreur
+				errors.rejectValue("enseignant.email", "notallowed.email", "Cet email appartient à une autre personne. Merci d'en choisir un autre.");
+			}// end if
 		}//end if
 		
 	}//End validate

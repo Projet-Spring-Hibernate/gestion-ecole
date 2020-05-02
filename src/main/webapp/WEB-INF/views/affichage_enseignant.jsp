@@ -33,7 +33,7 @@
 <!-- ============================================================================ -->
 </head>
 <body>
-
+	<!-- Affichage de l'entête correspondant au role de la personne connectée  -->
 	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
 	</s:authorize>
@@ -53,7 +53,6 @@
 
 		<br />
 		<table class="table">
-			<!-- Ajout d'un employe -->
 
 			<tr>
 				<td>ID enseignant</td>
@@ -71,30 +70,41 @@
 				<td>Email</td>
 				<td>${attribut_enseignant.email}</td>
 			</tr>
+
+			<!-- Affichage de l'adresse : seul les admin et les enseignants eux-même ont accès à l'adresse -->
+			<s:authorize
+				access="hasAnyRole('ROLE_ADMINISTRATEUR', 'ROLE_ENSEIGNANT')">
+				<tr>
+					<td>Adresse</td>
+					<td>${attribut_adresse.rue}${attribut_adresse.codePostal}
+						${attribut_adresse.ville}</td>
+				</tr>
+			</s:authorize>
+			
 			<tr>
-				<td>Promotion</td>
-				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach>
-				</td>
+				<td>Promotion et matière</td>
+				<td><c:forEach items="${attribut_combinaison}" var="combinaison">
+						<a href="${pageContext.request.contextPath}/matieres/afficher/${combinaison.matiere.idMatiere}">${combinaison.matiere.libelle}</a> 
+						<a href="${pageContext.request.contextPath}/promotions/afficher/${combinaison.promotion.idPromotion}">${combinaison.promotion.libelle}</a><br />
+					</c:forEach></td>
 			</tr>
 
-			<tr>
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/enseignants/update-form/${attribut_enseignant.identifiant}">Modifier</a>
-					<a class="btn btn-danger"
-					href="${pageContext.request.contextPath}/enseignants/delete/${attribut_enseignant.identifiant}">Supprimer</a></td>
-			</tr>
-
+			<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
+			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+				<tr>
+					<td><a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/enseignants/update-form/${attribut_enseignant.identifiant}">Modifier</a>
+						<a class="btn btn-danger"
+						href="${pageContext.request.contextPath}/enseignants/delete/${attribut_enseignant.identifiant}">Supprimer</a></td>
+					<td></td>
+				</tr>
+			</s:authorize>
 		</table>
-
-
-
-
-
 
 	</div>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 </body>
 </html>

@@ -11,8 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.Promotion;
+
 /**
- * Implementation concrete de la dao pour les enseignants. Herite de IPersonneDao pour les fonctions generales et definie les fonctions specifiques aux enseignants
+ * Implementation concrete de la dao pour les enseignants. Herite de
+ * PersonneDaoImpl pour les fonctions generales et definie les fonctions
+ * specifiques aux enseignants
+ * 
  * @author IN-MP-018
  *
  */
@@ -22,120 +26,153 @@ public class EnseignantDAOImpl extends PersonneDaoImpl implements IEnseignantDAO
 
 	// --------------------------------------------------//
 	// -------------- GET ALL ---------------------------//
-	// --------------------------------------------------// 
-	
+	// --------------------------------------------------//
+
 	/**
 	 * Recupere la liste de tous les enseignants de la bdd
 	 */
 	@Override
 	public List<Enseignant> listEnseignant() {
 		return this.getSessionFactory().getCurrentSession().createQuery("FROM enseignant e").list();
-	}//end listEnseignant
+	}// end listEnseignant
 
-	
 	// --------------------------------------------------//
 	// -------------- GET BY MATIERE --------------------//
-	// --------------------------------------------------// 
-	
+	// --------------------------------------------------//
+
 	/**
-	 * Recupere la liste des enseignants qui enseignent une matiere par l'id de la matiere
+	 * Recupere la liste des enseignants qui enseignent une matiere par l'id de la
+	 * matiere
 	 */
 	@Override
 	public List<Enseignant> getlistEnseignantByIdMatiere(Long pIdMatiere) {
 		try {
-			//1. Recup de la session à partir de la SessionFactory
+			// 1. Recup de la session à partir de la SessionFactory
 			Session session = this.getSessionFactory().getCurrentSession();
-			
-			//2. Contenu de la requête : 
-			Query<Enseignant> query = session.createQuery("SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.matiere.idMatiere = :pIdMatiere");
-			
+
+			// 2. Contenu de la requête :
+			Query<Enseignant> query = session.createQuery(
+					"SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.matiere.idMatiere = :pIdMatiere");
+
 			query.setParameter("pIdMatiere", pIdMatiere);
 
-			//3. recup du resultat
-			List<Enseignant> listeEnseignants= query.getResultList();
-			
+			// 3. recup du resultat
+			List<Enseignant> listeEnseignants = query.getResultList();
+
 			System.out.println(listeEnseignants);
-			
+
 			return listeEnseignants;
-			
-		}catch (PersistenceException e){
+
+		} catch (PersistenceException e) {
 			System.out.println("... Erreur dans getlistEnseignantByIdMatiere ....");
 			e.printStackTrace();
 		}
 		return null;
-	}//end getlistEnseignantByIdMatiere
+	}// end getlistEnseignantByIdMatiere
 
-	
-	
 	// --------------------------------------------------//
 	// -------------- GET BY PROMOTION ------------------//
-	// --------------------------------------------------// 
-	
+	// --------------------------------------------------//
+
 	/**
-	 * Recupere la liste des enseignants qui enseignent  à une promo par l'id de la promo
+	 * Recupere la liste des enseignants qui enseignent à une promo par l'id de la
+	 * promo
 	 */
 	@Override
 	public List<Enseignant> getlistEnseignantByIdPromotion(Long pIdPromotion) {
 		try {
-			//1. Recup de la session à partir de la SessionFactory
+			// 1. Recup de la session à partir de la SessionFactory
 			Session session = this.getSessionFactory().getCurrentSession();
-			
-			//2. Contenu de la requête : 
-			Query<Enseignant> query = session.createQuery("SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.promotion.idPromotion = :pIdPromotion");
-			
+
+			// 2. Contenu de la requête :
+			Query<Enseignant> query = session.createQuery(
+					"SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.promotion.idPromotion = :pIdPromotion");
+
 			query.setParameter("pIdPromotion", pIdPromotion);
 
-			//3. recup du resultat
-			List<Enseignant> listeEnseignants= query.getResultList();
-			
+			// 3. recup du resultat
+			List<Enseignant> listeEnseignants = query.getResultList();
+
 			System.out.println(listeEnseignants);
-			
+
 			return listeEnseignants;
-			
-		}catch (PersistenceException e){
+
+		} catch (PersistenceException e) {
 			System.out.println("... Erreur dans getlistEnseignantByIdPromotion ....");
 			e.printStackTrace();
 		}
 		return null;
-	}//end getlistEnseignantByIdPromotion
+	}// end getlistEnseignantByIdPromotion
 
+	// --------------------------------------------------//
+	// -------------- GET BY ETUDIANT -------------------//
+	// --------------------------------------------------//
+
+	/**
+	 * Recupere la liste des enseignants d'un etudiant en passant pas la table promotion
+	 */
+	@Override
+	public List<Enseignant> getlistEnseignantByIdEtudiant(Long pIdEtudiant) {
+		try {
+			// 1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+
+			// 2. Contenu de la requête :
+			Query<Enseignant> query = session.createQuery(
+					"SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.promotion IN (SELECT p FROM promotion p JOIN p.listeEtudiant e WHERE e.identifiant = :pIdEtudiant)" );
+			
+			query.setParameter("pIdEtudiant", pIdEtudiant);
+
+			// 3. recup du resultat
+			List<Enseignant> listeEnseignants = query.getResultList();
+
+			System.out.println(listeEnseignants);
+
+			return listeEnseignants;
+
+		} catch (PersistenceException e) {
+			System.out.println("... Erreur dans getlistEnseignantByIdEtudiant ....");
+			e.printStackTrace();
+		}
+		return null;
+	}// end getlistEnseignantByIdEtudiant
+
+	
 	
 	
 	// --------------------------------------------------//
 	// -------------- GET BY PROMO et MATIERE -----------//
-	// --------------------------------------------------// 
-	
-	
+	// --------------------------------------------------//
+
 	/**
-	 * Recup d'un enseignant par l'id d'une matiere et d'une promo (caracteristique d'un cours)
+	 * Recup d'un enseignant par l'id d'une matiere et d'une promo (caracteristique
+	 * d'un cours)
 	 */
 	@Override
-	public Enseignant getEnseignantByIdPromotionetIdMatiere(Long pIdPromotion, Long pIdMatiere ) {
+	public Enseignant getEnseignantByIdPromotionetIdMatiere(Long pIdPromotion, Long pIdMatiere) {
 		try {
-			
-			//1. Recup de la session à partir de la SessionFactory
+
+			// 1. Recup de la session à partir de la SessionFactory
 			Session session = this.getSessionFactory().getCurrentSession();
-			
-			//2. Contenu de la requête : 
-			Query<Enseignant> query = session.createQuery("SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.matiere.idMatiere = :pIdMatiere AND l.promotion.idPromotion = :IdPromotion");
-			
+
+			// 2. Contenu de la requête :
+			Query<Enseignant> query = session.createQuery(
+					"SELECT DISTINCT e FROM enseignant e JOIN e.listeEnseignantMatierePromotion l WHERE l.matiere.idMatiere = :pIdMatiere AND l.promotion.idPromotion = :IdPromotion");
+
 			query.setParameter("pIdPromotion", pIdPromotion);
 			query.setParameter("pIdMatiere", pIdMatiere);
-			//3. recup du resultat
-			Enseignant enseignant= query.getSingleResult();
-			
+			// 3. recup du resultat
+			Enseignant enseignant = query.getSingleResult();
+
 			System.out.println(enseignant);
-			
+
 			return enseignant;
-			
-		}catch (PersistenceException e){
+
+		} catch (PersistenceException e) {
 			System.out.println("... Erreur dans getEnseignantByIdPromotionetIdMatiere ....");
 			e.printStackTrace();
 		}
 		return null;
-	}//End getEnseignantByIdCours
-	
-	
+	}// End getEnseignantByIdCours
 
-
-}//end class
+}// end class

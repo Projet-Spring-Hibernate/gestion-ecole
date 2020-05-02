@@ -50,7 +50,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			
 			//2. Contenu de la requête : 
 
-			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT e FROM enseignantMatierePromotion e WHERE e.enseignant.identifiant = :pIdEnseignant");
+			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT DISTINCT e FROM enseignantMatierePromotion e WHERE e.enseignant.identifiant = :pIdEnseignant");
 			
 			query.setParameter("pIdEnseignant", pIdEnseignant);
 
@@ -61,7 +61,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			return listeEnseignantMatierePromotion;
 			
 		}catch (PersistenceException e){
-			System.out.println("... Erreur ....");
+			System.out.println("... Erreur getListeEnseignantMatierePromotionByEnseignant ....");
 			e.printStackTrace();
 		}//end catch
 		return null;
@@ -82,7 +82,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			
 			//2. Contenu de la requête : 
 
-			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT e FROM enseignantMatierePromotion e WHERE e.promotion.idPromotion = :pIdPromotion");
+			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT DISTINCT e FROM enseignantMatierePromotion e WHERE e.promotion.idPromotion = :pIdPromotion");
 			
 			query.setParameter("pIdPromotion", pIdPromotion);
 
@@ -93,7 +93,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			return listeEnseignantMatierePromotion;
 			
 		}catch (PersistenceException e){
-			System.out.println("... Erreur ....");
+			System.out.println("... Erreur getListeEnseignantMatierePromotionByPromotion....");
 			e.printStackTrace();
 		}//end catch
 		return null;
@@ -113,7 +113,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			
 			//2. Contenu de la requête : 
 
-			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT e FROM enseignantMatierePromotion e WHERE e.matiere.idMatiere = :pIdMatiere");
+			Query<EnseignantMatierePromotion> query = session.createQuery("SELECT  DISTINCT e FROM enseignantMatierePromotion e WHERE e.matiere.idMatiere = :pIdMatiere");
 			
 			query.setParameter("pIdMatiere", pIdMatiere);
 
@@ -124,7 +124,7 @@ public class EnseignantMatierePromotionDaoImpl extends GeneraleDAOImpl<Enseignan
 			return listeEnseignantMatierePromotion;
 			
 		}catch (PersistenceException e){
-			System.out.println("... Erreur ....");
+			System.out.println("... Erreur getListeEnseignantMatierePromotionByMatiere ....");
 			e.printStackTrace();
 		}//end catch
 		return null;

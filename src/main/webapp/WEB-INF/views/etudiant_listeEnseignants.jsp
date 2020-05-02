@@ -33,19 +33,15 @@
 
 
 	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
 
 	<div class="mainContent">
 
-		<h1>Liste des enseignants de l'école</h1>
+		<h1>Liste de mes enseignants</h1>
 
-		<a
-			href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter un
-			enseignant</a> <br /> <br />
+		<br /> <br />
 
 		<table class="table table-striped">
-
 
 			<tr>
 				<th>ID enseignant</th>
@@ -68,9 +64,7 @@
 						href="${pageContext.request.contextPath}/enseignants/afficher/${enseignant.identifiant}">Afficher</a></td>
 				</tr>
 			</c:forEach>
-
 		</table>
-
 	</div>
 
 

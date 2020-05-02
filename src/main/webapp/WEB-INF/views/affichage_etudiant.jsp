@@ -33,6 +33,7 @@
 </head>
 <body>
 
+	<!-- Affichage de l'entête correspondant au role de la personne connectée  -->
 	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
 	</s:authorize>
@@ -45,9 +46,11 @@
 
 	<div class="mainContent">
 
-	<br/>
-	<br/>
-		<table class="table table-striped">
+		<br />
+
+		<h1>Fiche de ${attribut_etudiant.prenom} ${attribut_etudiant.nom}</h1>
+		<br />
+		<table class="table">
 
 			<tr>
 				<td>ID étudiant</td>
@@ -72,24 +75,37 @@
 
 			<tr>
 				<td>Adresse</td>
-				<td>${attribut_adresse.rue} ${attribut_adresse.codePostal} ${attribut_adresse.ville}</td>
+				<td>${attribut_adresse.rue}${attribut_adresse.codePostal}
+					${attribut_adresse.ville}</td>
 			</tr>
 
 			<tr>
 				<td>Promotion</td>
-				<td><c:forEach items="${attribut_listePromo}" var="promo">${promo.libelle} </c:forEach> </td>
+				<td><c:forEach items="${attribut_listePromo}" var="promo">
+						<a
+							href="${pageContext.request.contextPath}/promotions/afficher/${promo.idPromotion}">${promo.libelle}
+						</a>
+						<br />
+					</c:forEach></td>
 			</tr>
+			
+			<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
+			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+				<tr>
+					<td><a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/etudiants/update-form/${attribut_enseignant.identifiant}">Modifier</a>
+						<a class="btn btn-danger"
+						href="${pageContext.request.contextPath}/etudiants/delete/${attribut_enseignant.identifiant}">Supprimer</a></td>
+					<td></td>
+				</tr>
+			</s:authorize>
+
 		</table>
-
-
-
-
-
 
 	</div>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 
 
