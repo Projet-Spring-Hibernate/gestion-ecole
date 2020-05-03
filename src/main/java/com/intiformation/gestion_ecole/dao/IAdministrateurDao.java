@@ -20,4 +20,5 @@ public interface IAdministrateurDao extends IPersonneDao {
 	 */
 	public List<Administrateur> getAllAdministrateur();
 	
+	
 }//end interface
