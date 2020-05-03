@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <!-- Taglib -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- Taglib -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -46,9 +46,9 @@
 		<form:form modelAttribute="coursform" method="POST"
 			action="${pageContext.request.contextPath}/cours/add">
 
-			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
-			<table class="table table-striped">
+
+			<table class="table">
 
 				<tr>
 					<td><form:label path="cours.libelle">Libelle :</form:label></td>
@@ -66,50 +66,50 @@
 					<td><form:errors path="cours.duree" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="cours.description">Descrption :</form:label></td>
+					<td><form:label path="cours.description">Description :</form:label></td>
 					<td><form:input path="cours.description" /></td>
 					<td><form:errors path="cours.description" /></td>
 				</tr>
 
-<!-- 				<tr> -->
-<%-- 					<td><form:label path="cours.matiere.libelle">Matière :</form:label></td> --%>
-<%-- 					<td><form:input path="cours.matiere.libelle" /></td> --%>
-<%-- 					<td><form:errors path="cours.matiere.libelle" /></td> --%>
-<!-- 				</tr> -->
 
-<!-- 				<tr> -->
-<%-- 					<td><form:label path="cours.promotion.libelle">Promotion :</form:label></td> --%>
-<%-- 					<td><form:input path="cours.promotion.libelle" /></td> --%>
-<%-- 					<td><form:errors path="cours.promotion.libelle" /></td> --%>
-<!-- 				</tr> -->
-				
-<c:forEach
-					items="${coursform.listePromotionsExistantes }"
-					var="cours" varStatus="i">
-					<tr>
-						<td>Promotion : <form:select class="custom-select"
-								path="listePromotionsExistantes[${i.index}].idPromotion">
-								<option value="0">-- Choisir --</option>
-								<c:forEach
-									items="${coursform.listePromotionsExistantes }"
-									var="promotion">
-									<option value="${promotion.idPromotion}">${promotion.libelle}</option>
-								</c:forEach>
-							</form:select>
-						</td>
-						<td>Matière : <form:select class="custom-select"
-								path="listeMatieresExistantes[${i.index}].idMatiere">
-								<option value="0">-- Choisir --</option>
-								<c:forEach items="${coursform.listeMatieresExistantes }"
-									var="matiere">
-									<option value="${matiere.idMatiere}">${matiere.libelle}</option>
-								</c:forEach>
-							</form:select>
-						</td>
-					</tr>
 
-				</c:forEach>
-				<td colspan="3"><input class="btn btn-primary" type="submit" value="Ajouter" /></td>
+				<!-- 				<tr> -->
+				<%-- 					<td><form:label path="cours.matiere.libelle">Matière :</form:label></td> --%>
+				<%-- 					<td><form:input path="cours.matiere.libelle" /></td> --%>
+				<%-- 					<td><form:errors path="cours.matiere.libelle" /></td> --%>
+				<!-- 				</tr> -->
+
+				<!-- 				<tr> -->
+				<%-- 					<td><form:label path="cours.promotion.libelle">Promotion :</form:label></td> --%>
+				<%-- 					<td><form:input path="cours.promotion.libelle" /></td> --%>
+				<%-- 					<td><form:errors path="cours.promotion.libelle" /></td> --%>
+				<!-- 				</tr> -->
+
+				<tr> 
+ 					<td>Promotion : <form:select class="custom-select"
+ 							path="${idPromotion}"> 
+							<option value="0">-- Choisir --</option>
+ 							<c:forEach items="${coursform.listePromotionsExistantes }" 
+ 								var="promotion"> 
+ 								<option value="${promotion.idPromotion}">${promotion.libelle}</option>
+ 							</c:forEach>
+ 						</form:select>
+					</td> 
+ 					<td>Matière : <form:select class="custom-select" 
+ 							path="${idMatiere}"> 
+							<option value="0">-- Choisir --</option> 
+ 							<c:forEach items="${coursform.listeMatieresExistantes }" 
+ 								var="matiere">
+								<option value="${matiere.idMatiere}">${matiere.libelle}</option>
+ 							</c:forEach> 
+ 						</form:select> 
+ 					</td> 
+
+			</tr> 
+
+
+				<td colspan="3"><input class="btn btn-primary" type="submit"
+					value="Ajouter" /></td>
 			</table>
 		</form:form>
 	</div>

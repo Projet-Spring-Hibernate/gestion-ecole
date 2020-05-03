@@ -50,8 +50,8 @@
 				<th>Date</th>
 				<th>Durée</th>
 				<th>Description</th>
-				<th>ID de la matière</th>
-				<th>ID promotion</th>
+				<th>Matière</th>
+				<th>Promotion</th>
 				<th></th>
 			</tr>
 
@@ -62,8 +62,8 @@
 					<td>${cours.date}</td>
 					<td>${cours.duree}</td>
 					<td>${cours.description}</td>
-					<td>${cours.matiere.idMatiere}</td>
-					<td>${cours.promotion.idPromotion}</td>
+					<td>${cours.matiere.libelle}</td>
+					<td>${cours.promotion.libelle}</td>
 
 
 					<!-- colonne pour afficher l'étudiant -->

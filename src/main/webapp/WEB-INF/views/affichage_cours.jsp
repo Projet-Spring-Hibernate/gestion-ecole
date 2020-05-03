@@ -47,8 +47,7 @@
 	<div class="mainContent">
 
 		<br /> <br />
-		<table class="table table-striped">
-			<!-- Ajout d'un employe -->
+		<table class="table">
 
 			<tr>
 				<td>ID cours</td>
@@ -85,8 +84,15 @@
 <!-- 					<a class="btn btn-danger" -->
 <%-- 					href="${pageContext.request.contextPath}/cours/delete/${attribut_enseignant.identifiant}">Supprimer</a></td> --%>
 <!-- 			</tr> -->
-		
 
+<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+<tr>
+					<td><a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
+		
+</td>
+</tr>
+</s:authorize>
 		</table>
 
 

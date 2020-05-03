@@ -37,8 +37,8 @@ public class CoursFormValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.date", "required.date", "Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.duree", "required.duree", "Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.description", "required.description", "Le champ est obligatoire");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "matiere.libelleMatiere", "required.libelle", "Le champ est obligatoire");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "promotion.libellePromotion", "required.libelle", "Le champ est obligatoire");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "matiere.libelle", "required.libelle", "Le champ est obligatoire");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "promotion.libelle", "required.libelle", "Le champ est obligatoire");
 		
 
 		/*_______________ Validation objet _______________*/
@@ -48,7 +48,7 @@ public class CoursFormValidator implements Validator{
 		
 		List<String> listeCoursExistant = coursDao.getAllLibelle();
 		if (listeCoursExistant.contains(coursForm.getCours().getLibelle())) {
-			errors.rejectValue("cours.libelle", "notallowed.libelle", "Cet cours existe déjà.");
+			errors.rejectValue("cours.libelle", "notallowed.libelle", "Ce cours existe déjà.");
 		}
 		
 		

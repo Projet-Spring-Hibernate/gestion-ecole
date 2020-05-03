@@ -43,49 +43,72 @@
 		<h1>Formulaire de modification d'un cours</h1>
 		<%--coursform --%>
 
-		<form:form modelAttribute="coursModifCommand" method="POST"
+		<form:form modelAttribute="coursform" method="POST"
 			action="${pageContext.request.contextPath}/cours/update">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
-			<table class="table table-striped">
+			<table class="table">
 
 				<tr>
-					<td><form:label path="libelle">Libelle :</form:label></td>
-					<td><form:input path="libelle" /></td>
-					<td><form:errors path="libelle" /></td>
+					<td><form:label path="cours.libelle">Libelle :</form:label></td>
+					<td><form:input path="cours.libelle" /></td>
+					<td><form:errors path="cours.libelle" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="date">Date :</form:label></td>
-					<td><form:input path="date" /></td>
-					<td><form:errors path="date" /></td>
+					<td><form:label path="cours.date">Date :</form:label></td>
+					<td><form:input path="cours.date" /></td>
+					<td><form:errors path="cours.date" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="duree">Durée :</form:label></td>
-					<td><form:input path="duree" /></td>
-					<td><form:errors path="duree" /></td>
+					<td><form:label path="cours.duree">Durée :</form:label></td>
+					<td><form:input path="cours.duree" /></td>
+					<td><form:errors path="cours.duree" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="description">Descrption :</form:label></td>
-					<td><form:input path="description" /></td>
-					<td><form:errors path="description" /></td>
+					<td><form:label path="cours.description">Description :</form:label></td>
+					<td><form:input path="cours.description" /></td>
+					<td><form:errors path="cours.description" /></td>
 				</tr>
 
-				<tr>
-					<td><form:label path="matiere.libelle">Matière :</form:label></td>
-					<td><form:input path="matiere.libelle" /></td>
-					<td><form:errors path="matiere.libelle" /></td>
-				</tr>
+<!-- 				<tr> -->
+<%-- 					<td><form:label path="matiere.libelle">Matière :</form:label></td> --%>
+<%-- 					<td><form:input path="matiere.libelle" /></td> --%>
+<%-- 					<td><form:errors path="matiere.libelle" /></td> --%>
+<!-- 				</tr> -->
 
-				<tr>
-					<td><form:label path="promotion.libelle">Promotion :</form:label></td>
-					<td><form:input path="promotion.libelle" /></td>
-					<td><form:errors path="promotion.libelle" /></td>
-				</tr>
+<!-- 				<tr> -->
+<%-- 					<td><form:label path="promotion.libelle">Promotion :</form:label></td> --%>
+<%-- 					<td><form:input path="promotion.libelle" /></td> --%>
+<%-- 					<td><form:errors path="promotion.libelle" /></td> --%>
+<!-- 				</tr> -->
 				
 				<tr>
-					<td> <form:hidden path="idCours"/></td>
+					<td> <form:hidden path="cours.idCours"/></td>
 				</tr>
+				
+				
+				<tr> 
+ 					<td>Promotion : <form:select class="custom-select"
+ 							path="${idPromotion}"> 
+							<option value="${promotion.idPromotion}">${promotion.libelle}</option>
+ 							<c:forEach items="${coursform.listePromotionsExistantes }" 
+ 								var="promotion"> 
+ 								<option value="${promotion.idPromotion}">${promotion.libelle}</option>
+ 							</c:forEach>
+ 						</form:select>
+					</td> 
+ 					<td>Matière : <form:select class="custom-select" 
+ 							path="${idMatiere}"> 
+							<option value="${matiere.idMatiere}">${matiere.libelle}</option> 
+ 							<c:forEach items="${coursform.listeMatieresExistantes}" 
+ 								var="matiere">
+								<option value="${matiere.idMatiere}">${matiere.libelle}</option>
+ 							</c:forEach> 
+ 						</form:select> 
+ 					</td> 
+
+			</tr> 
 				
 				
 
