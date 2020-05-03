@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.intiformation.gestion_ecole.domain.Administrateur;
 import com.intiformation.gestion_ecole.domain.EtudiantCours;
 
 @Transactional
@@ -23,6 +24,11 @@ public class EtudiantCoursDAOImpl extends GeneraleDAOImpl<EtudiantCours> impleme
 	}
 
 
+	@Override
+	public List<EtudiantCours> getAllAbsence() {
 	
+		return this.getSessionFactory().getCurrentSession().createQuery("SELECT DISTINCT e.absence, e.motif FROM EtudiantCours e").list();
+
+		}
 
 }
