@@ -68,7 +68,7 @@
 			</tr>
 
 
-			<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
+			<!-- Affichage des boutons modifier uniquement pour l'admin  -->
 			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 				<tr>
 					<td><a class="btn btn-warning"

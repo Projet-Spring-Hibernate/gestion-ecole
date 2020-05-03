@@ -430,8 +430,8 @@ public class WelcomeController {
 		aideDao.ajouter(new Aide("affichage_cours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_enseignant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_etudiant", "Pas d'aide disponible"));
-		
-		
+		aideDao.ajouter(new Aide("affichage_aide", "Pas d'aide disponible"));
+
 		//===================================================================================
 		
 		System.out.println("\n Liste des administrateurs : "+ adminitrateurDao.getAllAdministrateur()+"\n");
