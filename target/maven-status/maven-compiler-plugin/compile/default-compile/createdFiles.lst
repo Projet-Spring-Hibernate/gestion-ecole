@@ -1,3 +1,4 @@
+com\intiformation\gestion_ecole\validator\EtudiantFormValidator.class
 com\intiformation\gestion_ecole\dao\IEnseignantDAO.class
 com\intiformation\gestion_ecole\entityForForms\EtudiantForm.class
 com\intiformation\gestion_ecole\domain\Exercice.class
@@ -49,6 +50,7 @@ com\intiformation\gestion_ecole\dao\PersonneDaoImpl.class
 com\intiformation\gestion_ecole\dao\IEtudiantCoursDAO.class
 com\intiformation\gestion_ecole\domain\EnseignantMatierePromotion.class
 com\intiformation\gestion_ecole\dao\EtudiantCoursDAOImpl.class
+com\intiformation\gestion_ecole\entityForForms\PromotionForm.class
 com\intiformation\gestion_ecole\dao\IExerciceDAO.class
 com\intiformation\gestion_ecole\validator\PromotionFormValidator.class
 com\intiformation\gestion_ecole\dao\IPersonneDao.class

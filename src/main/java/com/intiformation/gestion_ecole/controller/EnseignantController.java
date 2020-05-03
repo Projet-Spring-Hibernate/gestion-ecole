@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.intiformation.gestion_ecole.dao.AideDAOImpl;
 import com.intiformation.gestion_ecole.dao.IAdresseDao;
+import com.intiformation.gestion_ecole.dao.IAideDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantMatierePromotionDao;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
@@ -68,6 +70,9 @@ public class EnseignantController {
 
 	@Autowired
 	private EnseignantFormValidator enseignantFormValidator;
+	
+	@Autowired
+	private IAideDAO aideDao;
 
 	// ============ SETTER ====================//
 	/**
@@ -99,6 +104,10 @@ public class EnseignantController {
 		this.etudiantDao = etudiantDao;
 	}
 
+	public void setAideDao(IAideDAO aideDao) {
+		this.aideDao = aideDao;
+	}
+
 	public void setPromotionDao(IPromotionDAO promotionDao) {
 		this.promotionDao = promotionDao;
 	}
@@ -123,6 +132,8 @@ public class EnseignantController {
 
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_enseignants", listeEnseignants);
+
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeEnseignants"));
 
 		return "administrateur_listeEnseignants";
 	}// end recupListeAllEtudiant
@@ -157,6 +168,7 @@ public class EnseignantController {
 		// 3. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_enseignants", listeEnseignants);
 
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("etudiant_listeEnseignants"));
 		return "etudiant_listeEnseignants";
 	}// end recupListeAllEtudiant
 
@@ -198,6 +210,7 @@ public class EnseignantController {
 		modele.addAttribute("attribut_combinaison", listeCombinaisons);
 		// modele.addAttribute("aide_contenu", "Aide pour la page affichage_etudiant");
 
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("affichage_enseignant"));
 		return "affichage_enseignant";
 	}// end recupEnseignantById
 
@@ -239,6 +252,7 @@ public class EnseignantController {
 		modele.addAttribute("attribut_combinaison", listeCombinaisons);
 		// modele.addAttribute("aide_contenu", "Aide pour la page affichage_etudiant");
 
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("affichage_enseignant"));
 		return "affichage_enseignant";
 	}// end recupEnseignantConnecte
 
@@ -313,6 +327,7 @@ public class EnseignantController {
 
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_ajout_enseignant"));
 		return "administrateur_ajout_enseignant";
 
 	}// end afficherFormulaireAjout
@@ -507,7 +522,7 @@ public class EnseignantController {
 			return "redirect:/enseignants/listeAll";
 		} // end else
 
-	}// end ajouterEmployeBdd()
+	}// end ajouterEnseignantBdd()
 
 	
 
@@ -587,6 +602,7 @@ public class EnseignantController {
 
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_modif_enseignant"));
 		return "administrateur_modif_enseignant";
 
 	}// end afficherFormulaireModif
@@ -789,7 +805,7 @@ public class EnseignantController {
 	 * Permet de supprimer un enseignant de la bdd <br/>
 	 * Invoqué au click du bouton "Supprimer" de la page
 	 * affichage_enseignant.jsp. <br/>
-	 * Renvoie vers la page administrateur_listeEnseignant.jsp
+	 * Renvoie vers la page administrateur_listeEnseignants.jsp
 	 * 
 	 * @return
 	 */

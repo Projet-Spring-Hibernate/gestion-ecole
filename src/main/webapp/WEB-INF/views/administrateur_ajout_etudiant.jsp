@@ -111,9 +111,6 @@
 							<form:checkbox path="listeIdPromotions"
 								value="${promotion.idPromotion}" label=" ${promotion.libelle}" /> <br/>
 						</c:forEach></td>
-					<%-- 					<td><form:checkboxes --%>
-					<%-- 						items="${etudiantForm.listeLibellePromoExistantes}" --%>
-					<%-- 						path="listeIdPromotions" /></td> --%>
 
 				</tr>
 
@@ -126,7 +123,7 @@
 	</div>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 </body>
 </html>

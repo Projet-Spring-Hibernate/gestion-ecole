@@ -42,7 +42,7 @@
 		<a
 			href="${pageContext.request.contextPath}/etudiants/add-etudiant-form"
 			class="btn btn-primary btn-sm" role="button">Ajouter un
-			enseignant</a> <br /> <br />
+			etudiant</a> <br /> <br />
 	<table class="table table-striped">
 		<!-- Ajout d'un employe -->
 

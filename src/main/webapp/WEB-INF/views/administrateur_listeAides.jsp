@@ -30,10 +30,32 @@
 
 		<h1>Liste des pages d'aide disponibles</h1>
 		
-		<a href="${pageContext.request.contextPath}/cours/add-aide-form"
-			class="btn btn-primary btn-sm" role="button">Mettre à jour la rubrique "Aides"</a>
+		<table class="table table-striped">
+
+
+			<tr>
+				<th>ID aide</th>
+				<th>Page</th>
+				<th>Contenu</th>
+				<th></th>
+			</tr>
+
+			<c:forEach items="${attribut_liste_aide}" var="aide">
+				<tr>
+					<td>${aide.id_aide}</td>
+					<td>${aide.page}</td>
+					<td>${aide.contenu}</td>
+					
+					<!-- colonne pour afficher l'aide -->
+					<td><a
+						href="${pageContext.request.contextPath}/aides/afficher/${aide.id_aide}">Afficher</a></td>
+				</tr>
+			</c:forEach>
+
+		</table>
+
 	</div>
-	 <%-- inclusion dynamique du fragment entete.jsp --%>
+	 <%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	 <jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 	  
 </body>

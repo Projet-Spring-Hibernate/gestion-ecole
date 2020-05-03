@@ -20,7 +20,7 @@ public class Aide {
 	/*-----propriétés-----*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id_page;
+	private Long id_aide;
 	
 	private String page;
 	
@@ -40,15 +40,17 @@ public class Aide {
 	}
 
 
-	public Aide(String page, String contenu, long id_page) {
+	public Aide(String page, String contenu, Long id_page) {
 		super();
 		this.page = page;
 		this.contenu = contenu;
-		this.id_page = id_page;
+		this.id_aide = id_page;
 	}
 
 
 	/*-----getters/setters + méthodes-----*/
+	
+	
 	
 	public String getPage() {
 		return page;
@@ -63,17 +65,22 @@ public class Aide {
 		this.contenu = contenu;
 	}
 	
-	public long getId_page() {
-		return id_page;
+
+
+
+	public Long getId_aide() {
+		return id_aide;
 	}
-	public void setId_page(long id_page) {
-		this.id_page = id_page;
+
+
+	public void setId_aide(Long id_aide) {
+		this.id_aide = id_aide;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Aide [page=" + page + ", contenu=" + contenu + ", id_page=" + id_page + "]";
+		return "Aide [page=" + page + ", contenu=" + contenu + ", id_aide=" + id_aide + "]";
 	}
 	
 

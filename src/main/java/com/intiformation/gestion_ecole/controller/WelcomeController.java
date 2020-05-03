@@ -4,6 +4,9 @@ package com.intiformation.gestion_ecole.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,7 @@ import com.intiformation.gestion_ecole.dao.IMatiereDAO;
 import com.intiformation.gestion_ecole.dao.IPromotionDAO;
 import com.intiformation.gestion_ecole.domain.Administrateur;
 import com.intiformation.gestion_ecole.domain.Adresse;
+import com.intiformation.gestion_ecole.domain.Aide;
 import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Enseignant;
 import com.intiformation.gestion_ecole.domain.EnseignantMatierePromotion;
@@ -76,6 +80,10 @@ public class WelcomeController {
 	
 	@Autowired
 	private IEnseignantMatierePromotionDao enseignantMatierePromotionDao;
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public View remplirlaBdd() {
@@ -384,6 +392,48 @@ public class WelcomeController {
 		
 		//===================================================================================
 		
+		aideDao.ajouter(new Aide("administrateur_listeEnseignants", "Liste de tous les enseignants de la base de données."));
+		aideDao.ajouter(new Aide("administrateur_listeEtudiants", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeMatieres", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeCours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeAbsences", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeAides", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_ajout_enseignant", "Formulaire d'ajout d'un enseignant dans la base de donnés."));
+		aideDao.ajouter(new Aide("administrateur_ajout_etudiant", "Formulaire d'ajout d'un etudiant dans la base de donnés."));
+		aideDao.ajouter(new Aide("administrateur_ajout_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur _ajout_matiere", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_ajout_cours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_enseignant", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_etudiant", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur _modif_matiere", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_cours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_aide", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listeEtudiants", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listeMatieres", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listeCours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_ajout_exercice", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_ajout_cours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_ajout_absence", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_modif_exercice", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_modif_cours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_modif_absence", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listeMatieres", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listeCours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listeEnseignants", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_exercice", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_matiere", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_cours", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_enseignant", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_etudiant", "Pas d'aide disponible"));
+		
+		
+		//===================================================================================
+		
 		System.out.println("\n Liste des administrateurs : "+ adminitrateurDao.getAllAdministrateur()+"\n");
 		
 		System.out.println("\n Liste des etudiants : "+ etudiantDao.getAllEtudiant()+"\n");
@@ -404,5 +454,64 @@ public class WelcomeController {
 
 
 		return new InternalResourceView("/login.jsp");
+		
 	}//end methode
+	
+	
+	// ============ Setter ====================//
+
+
+	public void setEnseignatDao(IEnseignantDAO enseignatDao) {
+		this.enseignatDao = enseignatDao;
+	}
+
+
+	public void setEtudiantDao(IEtudiantDAO etudiantDao) {
+		this.etudiantDao = etudiantDao;
+	}
+
+
+	public void setAdminitrateurDao(IAdministrateurDao adminitrateurDao) {
+		this.adminitrateurDao = adminitrateurDao;
+	}
+
+
+	public void setAdresseDao(IAdresseDao adresseDao) {
+		this.adresseDao = adresseDao;
+	}
+
+
+	public void setAideDao(IAideDAO aideDao) {
+		this.aideDao = aideDao;
+	}
+
+
+	public void setCoursDao(ICoursDAO coursDao) {
+		this.coursDao = coursDao;
+	}
+
+
+	public void setEtudiantCoursDao(IEtudiantCoursDAO etudiantCoursDao) {
+		this.etudiantCoursDao = etudiantCoursDao;
+	}
+
+
+	public void setExerciceDao(IExerciceDAO exerciceDao) {
+		this.exerciceDao = exerciceDao;
+	}
+
+
+	public void setMatiereDao(IMatiereDAO matiereDao) {
+		this.matiereDao = matiereDao;
+	}
+
+
+	public void setPromotionDao(IPromotionDAO promotionDao) {
+		this.promotionDao = promotionDao;
+	}
+
+
+	public void setEnseignantMatierePromotionDao(IEnseignantMatierePromotionDao enseignantMatierePromotionDao) {
+		this.enseignantMatierePromotionDao = enseignantMatierePromotionDao;
+	}
 }//end class

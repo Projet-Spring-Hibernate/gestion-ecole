@@ -39,7 +39,6 @@
 
 		<h1>Liste de mes enseignants</h1>
 
-		<br /> <br />
 
 		<table class="table table-striped">
 

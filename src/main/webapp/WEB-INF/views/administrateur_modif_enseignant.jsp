@@ -48,16 +48,11 @@
 			action="${pageContext.request.contextPath}/enseignants/update">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
-
+			<form:hidden path="enseignant.identifiant" />
+			<form:hidden path="enseignant.motdepasse" />
+			<form:hidden path="adresse.adresse_id" />
 			<table class="table">
 
-
-				<tr>
-					<td> <form:hidden path="enseignant.identifiant"/></td>
-				</tr>
-				<tr>
-					<td> <form:hidden path="enseignant.motdepasse"/></td>
-				</tr>
 				<tr>
 					<td><form:label path="enseignant.nom">Nom :</form:label></td>
 					<td><form:input path="enseignant.nom" /></td>
@@ -74,11 +69,11 @@
 					<td><form:errors path="enseignant.email" /></td>
 				</tr>
 
-<!-- 				<tr> -->
-<%-- 					<td><form:label path="enseignant.motdepasse">Mot de passe :</form:label></td> --%>
-<%-- 					<td><form:input path="enseignant.motdepasse" /></td> --%>
-<%-- 					<td><form:errors path="enseignant.motdepasse" /></td> --%>
-<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<%-- 					<td><form:label path="enseignant.motdepasse">Mot de passe :</form:label></td> --%>
+				<%-- 					<td><form:input path="enseignant.motdepasse" /></td> --%>
+				<%-- 					<td><form:errors path="enseignant.motdepasse" /></td> --%>
+				<!-- 				</tr> -->
 
 				<tr>
 					<td><form:label path="adresse.rue">Rue :</form:label></td>
@@ -117,8 +112,7 @@
 						</td>
 						<td>Matière : <form:select class="custom-select"
 								path="listeEnseignantMatierePromotion[${i.index}].matiere.idMatiere">
-								<option
-									value="${enseignantMatierePromotion.matiere.idMatiere}">${enseignantMatierePromotion.matiere.libelle}</option>
+								<option value="${enseignantMatierePromotion.matiere.idMatiere}">${enseignantMatierePromotion.matiere.libelle}</option>
 								<c:forEach items="${enseignantform.listeMatieresExistantes }"
 									var="matiere">
 									<option value="${matiere.idMatiere}">${matiere.libelle}</option>

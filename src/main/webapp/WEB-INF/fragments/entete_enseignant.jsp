@@ -46,6 +46,6 @@
 <div id="aideBox">
 	<h2>Aide</h2>
 
-
+${aide_contenu}
 
 </div>

@@ -19,7 +19,7 @@ public class EtudiantForm {
 	
 	private List<Promotion> listePromotionsExistantes;
 	
-	private List<String> listeLibellePromoExistantes;
+	//private List<String> listeLibellePromoExistantes;
 	
 	public Etudiant getEtudiant() {
 		return etudiant;
@@ -33,12 +33,6 @@ public class EtudiantForm {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	public String [] getListePromotions() {
-		return listeIdPromotions;
-	}
-	public void setListePromotions(String [] listePromotions) {
-		this.listeIdPromotions = listePromotions;
-	}
 	public List<Promotion> getListePromotionsExistantes() {
 		return listePromotionsExistantes;
 	}
@@ -51,12 +45,12 @@ public class EtudiantForm {
 	public void setListeIdPromotions(String[] listeIdPromotions) {
 		this.listeIdPromotions = listeIdPromotions;
 	}
-	public List<String> getListeLibellePromoExistantes() {
-		return listeLibellePromoExistantes;
-	}
-	public void setListeLibellePromoExistantes(List<String> listeLibellePromoExistantes) {
-		this.listeLibellePromoExistantes = listeLibellePromoExistantes;
-	}
+//	public List<String> getListeLibellePromoExistantes() {
+//		return listeLibellePromoExistantes;
+//	}
+//	public void setListeLibellePromoExistantes(List<String> listeLibellePromoExistantes) {
+//		this.listeLibellePromoExistantes = listeLibellePromoExistantes;
+//	}
 	
 	
 	

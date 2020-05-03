@@ -26,15 +26,15 @@ public class AideDAOImpl extends GeneraleDAOImpl<Aide> implements IAideDAO{
 	}
 
 	@Override
-	public Aide getAideByPage(long pId_page) {
+	public String getAideByPage(String pNom_Page) {
 		
 
 			//1. Recup de la session à partir de la SessionFactory
-			Session session = (Session) this.getSessionFactory();
+			Session session = this.getSessionFactory().getCurrentSession();
 			
-			Query<Aide> query = session.createQuery("SELECT a FROM aide a WHERE a.id_page = :pIdpage");
+			Query<String> query = session.createQuery("SELECT a.contenu FROM aide a WHERE a.page = :pNom_Page");
 			
-			query.setParameter("pIdpage", pId_page);
+			query.setParameter("pNom_Page", pNom_Page);
 			
 			
 			return query.getSingleResult();

@@ -37,7 +37,7 @@
 
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiantCours/listeAll">Absences</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#">Aide</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/aides/listeAll">Aides</a></li>
 
 				<li class="nav-item" id="deconnexion"><a class="nav-link"
 					href="<c:url value='/logout'/>">Se déconnecter</a></li>
