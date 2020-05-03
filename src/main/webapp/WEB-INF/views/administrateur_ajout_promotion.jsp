@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <!-- Taglib -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- Taglib -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -12,7 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<<!-- ============================================================================ -->
+<
+<!-- ============================================================================ -->
 <!-- Lien vers .css -->
 <!-- construction du chemin vers ma feuille de style -->
 <spring:url value="/assets/styles/bootstrap.css" var="bootstrapCss" />
@@ -58,9 +59,11 @@
 					<td><form:input path="promotion.libelle" /></td>
 					<td><form:errors path="promotion.libelle" /></td>
 				</tr>
-				
-
-</table>
+<br/>
+				<td colspan="3"><input class="btn btn-primary" type="submit"
+					value="Ajouter" /></td>
+<br/>
+			</table>
 		</form:form>
 	</div>
 

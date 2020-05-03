@@ -85,4 +85,16 @@ public class PromotionDAOImpl extends GeneraleDAOImpl<Promotion> implements IPro
 		return null;
 	}
 
+	@Override
+	public List<Promotion> getAllPromo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Promotion affichagePromotion(Promotion promotion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }//end class
