@@ -37,8 +37,6 @@ public class CoursFormValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.date", "required.date", "Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.duree", "required.duree", "Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.description", "required.description", "Le champ est obligatoire");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "matiere.libelle", "required.libelle", "Le champ est obligatoire");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "promotion.libelle", "required.libelle", "Le champ est obligatoire");
 		
 
 		/*_______________ Validation objet _______________*/
