@@ -38,6 +38,7 @@ com\intiformation\gestion_ecole\controller\WelcomeController.class
 com\intiformation\gestion_ecole\entityForForms\EnseignantForm.class
 com\intiformation\gestion_ecole\controller\MatiereController.class
 com\intiformation\gestion_ecole\dao\AdresseDaoImpl.class
+com\intiformation\gestion_ecole\controller\PersonneController.class
 com\intiformation\gestion_ecole\controller\AbsenceController.class
 com\intiformation\gestion_ecole\domain\EtudiantCours.class
 com\intiformation\gestion_ecole\dao\CoursDAOImpl.class

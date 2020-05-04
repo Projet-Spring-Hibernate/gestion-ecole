@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
@@ -25,6 +28,7 @@ import com.intiformation.gestion_ecole.dao.IEtudiantCoursDAO;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
 import com.intiformation.gestion_ecole.dao.IExerciceDAO;
 import com.intiformation.gestion_ecole.dao.IMatiereDAO;
+import com.intiformation.gestion_ecole.dao.IPersonneDao;
 import com.intiformation.gestion_ecole.dao.IPromotionDAO;
 import com.intiformation.gestion_ecole.domain.Administrateur;
 import com.intiformation.gestion_ecole.domain.Adresse;
@@ -36,6 +40,7 @@ import com.intiformation.gestion_ecole.domain.Etudiant;
 import com.intiformation.gestion_ecole.domain.EtudiantCours;
 import com.intiformation.gestion_ecole.domain.Exercice;
 import com.intiformation.gestion_ecole.domain.Matiere;
+import com.intiformation.gestion_ecole.domain.Personne;
 import com.intiformation.gestion_ecole.domain.Promotion;
 /**
  * Controleur pour initialiser la bdd à chaque ouverture du site
@@ -56,6 +61,10 @@ public class WelcomeController {
 	@Autowired
 	@Qualifier("administrateurDaoImpl")
 	private IAdministrateurDao adminitrateurDao;
+	
+	@Autowired
+	@Qualifier("personneDaoImpl")
+	private IPersonneDao personneDao;
 	
 	@Autowired
 	private IAdresseDao adresseDao;
@@ -81,8 +90,17 @@ public class WelcomeController {
 	@Autowired
 	private IEnseignantMatierePromotionDao enseignantMatierePromotionDao;
 	
-	
-	
+	@RequestMapping(value = "/bienvenue", method = RequestMethod.GET)
+	public String afficherPageAccueil(ModelMap modele) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		Personne personneConnecte = personneDao.getPersonneByMail(auth.getName());
+		System.out.println("Personne connecté "+personneConnecte);
+		modele.addAttribute("attribut_personneConnecte", personneConnecte);
+		
+		return "index";
+	}//end afficherPageAccueil
 	
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
@@ -430,8 +448,8 @@ public class WelcomeController {
 		aideDao.ajouter(new Aide("affichage_cours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_enseignant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_etudiant", "Pas d'aide disponible"));
-		
-		
+		aideDao.ajouter(new Aide("affichage_aide", "Pas d'aide disponible"));
+
 		//===================================================================================
 		
 		System.out.println("\n Liste des administrateurs : "+ adminitrateurDao.getAllAdministrateur()+"\n");
@@ -508,6 +526,11 @@ public class WelcomeController {
 
 	public void setPromotionDao(IPromotionDAO promotionDao) {
 		this.promotionDao = promotionDao;
+	}
+
+
+	public void setPersonneDao(IPersonneDao personneDao) {
+		this.personneDao = personneDao;
 	}
 
 
