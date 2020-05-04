@@ -3,8 +3,8 @@
 <header>
 	<div class="row">
 		<div>
-			<img id="logo_school" alt="logo"
-				src="/01_gestion_ecoles/assets/images/online_education.png">
+			<a class="nav-link" href="${pageContext.request.contextPath}/bienvenue"><img id="logo_school" alt="logo"
+				src="/01_gestion_ecoles/assets/images/online_education.png"></a>
 		</div>
 		<div>
 			<h1 id="nomEcole">WebCole - administrateur</h1>

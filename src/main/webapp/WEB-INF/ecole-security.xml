@@ -35,7 +35,7 @@
 
 
 		<sec:form-login login-page="/login.jsp"
-			default-target-url="/index.jsp"
+			default-target-url="/bienvenue"
 			authentication-failure-url="/login.jsp?error=true"
 			login-processing-url="/login" username-parameter="u_identifiant"
 			password-parameter="u_motdepasse" />
