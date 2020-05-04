@@ -57,4 +57,10 @@ public class EtudiantCoursDAOImpl extends GeneraleDAOImpl<EtudiantCours> impleme
 		return null;
 		}
 
+	@Override
+	public List<EtudiantCours> getAllAbsence() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

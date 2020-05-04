@@ -9,5 +9,6 @@ public interface IEtudiantCoursDAO extends IGenericDAO<EtudiantCours>{
 	public List<EtudiantCours> getAllEtudiantCours();
 
 	public List<EtudiantCours> getAllAbsence();
+	public List<EtudiantCours> getAllAbsenceByEnseignant(Long id);
 
 }

@@ -190,25 +190,25 @@ public class AbsenceController {
 		
 //	}//end afficherformulaireupdate()
 	
-	/**
-	 * permet de modifier un employé dans la BDD
-	 * invoquée à la soumission du formulaire de modifier-employe.jsp
-	 * @return
-	 */
-	@RequestMapping(value="/matieres/update", method=RequestMethod.POST)
-	public String modifierEmployeBdd(@ModelAttribute("matiereModifCommand") Matiere id, ModelMap modele) {
-		
-		//1. modif de l'employé dans la bdd
-	//	matiereDAO.modifier(id);
-		
-System.out.println(id);
-		//2. récup la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
-		//modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
-		
-		//4. redirection vers la page liste-employes.jsp
-		return "redirect:/matieres/listeAll";
-		
-	}//end modifierEmployeBdd
+//	/**
+//	 * permet de modifier un employé dans la BDD
+//	 * invoquée à la soumission du formulaire de modifier-employe.jsp
+//	 * @return
+//	 */
+//	@RequestMapping(value="/matieres/update", method=RequestMethod.POST)
+//	public String modifierEmployeBdd(@ModelAttribute("matiereModifCommand") Matiere id, ModelMap modele) {
+//		
+//		//1. modif de l'employé dans la bdd
+//	//	matiereDAO.modifier(id);
+//		
+//System.out.println(id);
+//		//2. récup la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
+//		//modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
+//		
+//		//4. redirection vers la page liste-employes.jsp
+//		return "redirect:/matieres/listeAll";
+//		
+//	}//end modifierEmployeBdd
 	
 	
 	
