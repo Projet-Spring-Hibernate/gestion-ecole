@@ -77,29 +77,27 @@
 				<td>Promotion</td>
 				<td>${attribut_cours.promotion.libelle}</td>
 			</tr>
-			
-<!-- 			<tr> -->
-<!-- 				<td><a class="btn btn-warning" -->
-<%-- 					href="${pageContext.request.contextPath}/cours/update-form/${attribut_enseignant.identifiant}">Modifier</a> --%>
-<!-- 					<a class="btn btn-danger" -->
-<%-- 					href="${pageContext.request.contextPath}/cours/delete/${attribut_enseignant.identifiant}">Supprimer</a></td> --%>
-<!-- 			</tr> -->
 
-<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
-<tr>
-					<td><a class="btn btn-warning"
-						href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
-		
-</td>
-</tr>
-</s:authorize>
+			<!-- 			<tr> -->
+			<!-- 				<td><a class="btn btn-warning" -->
+			<%-- 					href="${pageContext.request.contextPath}/cours/update-form/${attribut_enseignant.identifiant}">Modifier</a> --%>
+			<!-- 					<a class="btn btn-danger" -->
+			<%-- 					href="${pageContext.request.contextPath}/cours/delete/${attribut_enseignant.identifiant}">Supprimer</a></td> --%>
+			<!-- 			</tr> -->
+
+			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+				<td><a class="btn btn-warning"
+					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
+			</s:authorize>
+			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+				<td><a class="btn btn-warning"
+					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
+			</s:authorize>
+			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+				<td><a class="btn btn-success"
+					href="${pageContext.request.contextPath}/etudiantCours/ajout-pour-le-cours/${attribut_cours.idCours}">Modifier</a>
+			</s:authorize>
 		</table>
-
-
-
-
-
-
 	</div>
 
 

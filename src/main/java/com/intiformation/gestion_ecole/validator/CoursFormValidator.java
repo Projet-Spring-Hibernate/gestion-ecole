@@ -13,13 +13,10 @@ import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.entityForForms.CoursForm;
 
 @Component
-public class CoursFormValidator implements Validator{
-	
+public class CoursFormValidator implements Validator {
+
 	@Autowired
 	private ICoursDAO coursDao;
-	
-	
-	
 
 	public void setCoursDao(ICoursDAO coursDao) {
 		this.coursDao = coursDao;
@@ -29,28 +26,32 @@ public class CoursFormValidator implements Validator{
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
 		return CoursForm.class.isAssignableFrom(clazz);
-	}//end support
+	}// end support
 
 	@Override
 	public void validate(Object objetAValider, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.libelle", "required.libelle", "Le champ est obligatoire");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.libelle", "required.libelle",
+				"Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.date", "required.date", "Le champ est obligatoire");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.duree", "required.duree", "Le champ est obligatoire");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.description", "required.description", "Le champ est obligatoire");
-		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cours.description", "required.description",
+				"Le champ est obligatoire");
 
-		/*_______________ Validation objet _______________*/
-		
-		//1. recup de l'objet à valider
-		CoursForm coursForm =  (CoursForm) objetAValider;
-		
+		/* _______________ Validation objet _______________ */
+
+		// 1. recup de l'objet à valider
+		CoursForm coursForm = (CoursForm) objetAValider;
+
 		List<String> listeCoursExistant = coursDao.getAllLibelle();
 		if (listeCoursExistant.contains(coursForm.getCours().getLibelle())) {
-			errors.rejectValue("cours.libelle", "notallowed.libelle", "Ce cours existe déjà.");
-		}
-		
-		
-		
-	}
 
-}
+			Cours coursExistant = coursDao.getCoursByLibelle(coursForm.getCours().getLibelle());
+
+			if (coursExistant.getIdCours() != coursForm.getCours().getIdCours()) {
+				errors.rejectValue("cours.libelle", "notallowed.libelle", "Ce cours existe déjà.");
+			}
+		} // End if
+
+	}// end validate
+
+}// end class

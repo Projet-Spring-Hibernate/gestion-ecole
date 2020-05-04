@@ -10,13 +10,13 @@ import com.intiformation.gestion_ecole.domain.Promotion;
 public class CoursForm {
 	
 	private Cours cours;
-	private List<Cours> listeCours;
+	//private List<Cours> listeCours;
 	private List<Promotion> listePromotionsExistantes;
 	private List<Matiere> listeMatieresExistantes;
-	private List<Exercice> listeExercicesExistants;
+	//private List<Exercice> listeExercicesExistants;
 	
-	private Matiere matiere;
-	private Promotion promotion;
+//	private Matiere matiere;
+//	private Promotion promotion;
 	
 	
 	public CoursForm() {
@@ -58,59 +58,59 @@ public class CoursForm {
 
 
 
-	public Matiere getMatiere() {
-		return matiere;
-	}
+//	public Matiere getMatiere() {
+//		return matiere;
+//	}
+//
+//
+//
+//
+//	public void setMatiere(Matiere matiere) {
+//		this.matiere = matiere;
+//	}
+//
+//
+//
+//
+//	public Promotion getPromotion() {
+//		return promotion;
+//	}
+//
+//
+//
+//
+//	public void setPromotion(Promotion promotion) {
+//		this.promotion = promotion;
+//	}
 
 
 
 
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
-	}
+//	public List<Cours> getListeCours() {
+//		return listeCours;
+//	}
+//
+//
+//
+//
+//	public void setListeCours(List<Cours> listeCours) {
+//		this.listeCours = listeCours;
+//	}
 
 
 
 
-	public Promotion getPromotion() {
-		return promotion;
-	}
-
-
-
-
-	public void setPromotion(Promotion promotion) {
-		this.promotion = promotion;
-	}
-
-
-
-
-	public List<Cours> getListeCours() {
-		return listeCours;
-	}
-
-
-
-
-	public void setListeCours(List<Cours> listeCours) {
-		this.listeCours = listeCours;
-	}
-
-
-
-
-	public List<Exercice> getListeExercicesExistants() {
-		return listeExercicesExistants;
-	}
-
-
-
-
-	public void setListeExercicesExistants(List<Exercice> listeExercicesExistants) {
-		this.listeExercicesExistants = listeExercicesExistants;
-	}
-	
+//	public List<Exercice> getListeExercicesExistants() {
+//		return listeExercicesExistants;
+//	}
+//
+//
+//
+//
+//	public void setListeExercicesExistants(List<Exercice> listeExercicesExistants) {
+//		this.listeExercicesExistants = listeExercicesExistants;
+//	}
+//	
 	
 	
 	

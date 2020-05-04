@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Enseignant;
+import com.intiformation.gestion_ecole.domain.Matiere;
 import com.intiformation.gestion_ecole.domain.Personne;
 import com.intiformation.gestion_ecole.domain.Promotion;
 
@@ -125,13 +126,79 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 			
 			return this.getSessionFactory().getCurrentSession().createQuery("SELECT c.libelle FROM cours c").list();
 	}//end getAll
-	
-	
-	
-	
 
 	
 	
 	
+	
+	@Override
+	public Matiere getMatiereByIdCours(Long idCours) {
+		try {
+		//1. Recup de la session à partir de la SessionFactory
+		Session session = this.getSessionFactory().getCurrentSession();
+		
+		Query<Matiere> query = session.createQuery("SELECT c.matiere FROM cours c  WHERE c.idCours = :pidCours ");
+		//Query<Matiere> query = session.createQuery("SELECT m FROM matiere m JOIN m.listeCours l WHERE l.cours.idCours = :pidCours ");
+		
+		query.setParameter("pidCours", idCours);
 
-}
+		
+		Matiere matiere = query.getSingleResult();
+		
+		return matiere;
+		}catch (PersistenceException e){
+			System.out.println("... Erreur dans getMatiereByIdCours ....");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}//End getMatiereByIdCours
+
+	@Override
+	public Promotion getPromotionByIdCours(Long idCours) {
+		try {
+		//1. Recup de la session à partir de la SessionFactory
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query<Promotion> query = session.createQuery("SELECT c.promotion FROM cours c WHERE c.idCours = :pidCours ");
+		//Query<Promotion> query = session.createQuery("SELECT p FROM promotion p JOIN p.listeCours l WHERE l.cours.idCours = :pidCours ");
+		
+		query.setParameter("pidCours", idCours);
+
+		
+		Promotion promotion = query.getSingleResult();
+		
+		return promotion;
+		}catch (PersistenceException e){
+			System.out.println("... Erreur dans getPromotionByIdCours ....");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}//end getPromotionByIdCours
+
+	
+	
+	@Override
+	public Cours getCoursByLibelle(String plibelle) {
+		try {
+		//1. Recup de la session à partir de la SessionFactory
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query<Cours> query = session.createQuery("SELECT c FROM cours c WHERE c.libelle = :plibelle ");
+		//Query<Promotion> query = session.createQuery("SELECT p FROM promotion p JOIN p.listeCours l WHERE l.cours.idCours = :pidCours ");
+		
+		query.setParameter("plibelle", plibelle);
+
+		
+		Cours cours = query.getSingleResult();
+		
+		return cours;
+		}catch (PersistenceException e){
+			System.out.println("... Erreur dans getCoursByLibelle ....");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}//end getCoursByLibelle
+	
+
+}//end class

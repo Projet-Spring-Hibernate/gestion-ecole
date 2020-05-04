@@ -289,36 +289,30 @@ public class CoursController {
 
 			// 1.1 l'objet
 			CoursForm coursform = new CoursForm();
-
-			// 1.2 On recupere la liste des promos et des matières existantes pour affichage
+			
+			//1.2 Initialisation de l'objet cours form
+			Cours coursVide = new Cours();
+			Matiere matiereVide = new Matiere();
+			Promotion promotionVide = new Promotion();
+			
+			coursVide.setMatiere(matiereVide);
+			coursVide.setPromotion(promotionVide);
+			
+			coursform.setCours(coursVide);
+			
+			// 1.3 On recupere la liste des promos et des matières existantes pour affichage
 			// dans des menus deroulants
 			coursform.setListeMatieresExistantes(matiereDao.listMatiere());
 			coursform.setListePromotionsExistantes(promotionDao.listePromotion());
 
-			// 1.3 creation d'une liste avec 5 elements vides
-			List<Cours> listeCours = coursDao.getAllCours();
-			Cours coursVide = new Cours();
-			Matiere matiereVide = new Matiere();
-			
-			Promotion promotionVide = new Promotion();
-			
-			// A REVOIR
-			coursVide.setMatiere(matiereVide);
-			coursVide.setPromotion(promotionVide);
-			
-			listeCours.add(coursVide);
-			
-			coursform.setListeCours(listeCours);
-			
-
+		
 			System.out.println("Liste promo existantes : " + coursform.getListePromotionsExistantes());
 			System.out.println("Liste matieres existantes : " + coursform.getListeMatieresExistantes());
-			System.out.println("Liste vide : " + coursform.getListeCours().size());
+			System.out.println("cours vide : " + coursVide);
 		
 			
-
-			
 			modele.addAttribute("coursform", coursform);
+			
 		}else {
 			CoursForm coursForm = (CoursForm) modele.getAttribute("coursform");
 			coursForm.setListeMatieresExistantes(matiereDao.listMatiere());
@@ -330,6 +324,7 @@ public class CoursController {
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
 		
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_ajout_cours"));
 		return "administrateur_ajout_cours";
 		
 	}//end afficherFormulaireAjout
@@ -355,10 +350,6 @@ public class CoursController {
 		
 		coursFormValidator.validate(coursform, result);
 		
-		Cours cours = coursform.getCours();
-		Matiere matiere = matiereDao.getById(coursform.getMatiere().getIdMatiere());
-		Promotion promotion = promotionDao.getById(coursform.getPromotion().getIdPromotion());
-
 		// 1.2 Test des erreurs
 		if (result.hasErrors()) {
 			System.out.println("erreurs");
@@ -369,14 +360,32 @@ public class CoursController {
 			return "redirect:/cours/add-cours-form";
 			
 		}else {
+			Cours cours = coursform.getCours();
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			Matiere matiere = matiereDao.getById(coursform.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursform.getCours().getPromotion().getIdPromotion());
+			
+			System.out.println("Matiere du coursForm = "+coursform.getCours().getMatiere());
+			System.out.println("Promo du coursForm = "+coursform.getCours().getPromotion());
+			
+			cours.setMatiere(null);
+			cours.setPromotion(null);
+			
 			coursDao.ajouter(cours);
+			
 			cours = coursDao.getAllCours().get(coursDao.getAllCours().size()-1);
 			
 			cours.setMatiere(matiere);
-			
 			cours.setPromotion(promotion);
 			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
 			coursDao.modifier(cours);
+			
 			System.out.println("Matiere : "+matiere);
 			System.out.println("Promotion : "+promotion);
 
@@ -385,8 +394,6 @@ public class CoursController {
 		
 		System.out.println("\n\n Cours Ajouté !");
 		
-		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeCours"));
-
 		
 		return "redirect:/cours/listeAll";
 		}//end else
@@ -394,96 +401,6 @@ public class CoursController {
 	}// end ajouterCoursBdd()
 	
 	
-	/**
-	 * MODIF à partir du lien de liste cours
-	 * @param idcours
-	 * @param modele
-	 * @return
-	 */
-	@RequestMapping(value="/cours/update-cours-form", method=RequestMethod.GET)
-	public String afficherFormulaireUpdate(@RequestParam("idcours") Long idcours, ModelMap modele) {
-		
-
-		if (!modele.containsAttribute("coursform")) {
-
-			// 1. definition de l'objet à lier aux champs du formulaire d'ajout
-
-			// 1.1 l'objet
-			CoursForm coursform = new CoursForm();
-			Cours cours = coursform.getCours();
-			//Cours cours = coursDao.getById(idcours);
-			coursform.setCours(cours);
-			Matiere matiere = matiereDao.getById(cours.getMatiere().getIdMatiere());
-			Promotion promotion = promotionDao.getById(cours.getPromotion().getIdPromotion());
-			
-			coursform.setMatiere(matiere);
-			coursform.setPromotion(promotion);
-			
-			coursform.setListeMatieresExistantes(matiereDao.listMatiere());
-			coursform.setListePromotionsExistantes(promotionDao.listePromotion());
-
-			// 1.3 creation d'une liste
-			List<Cours> listeCours = coursDao.getAllCours();
-			//List<Matiere> listeMatiere = matiereDao.listMatiere();
-			//List<Promotion> listePromotion = promotionDao.listePromotion();
-			Cours coursVide = new Cours();
-			Matiere matiereVide = new Matiere();
-			matiereVide.setLibelle("--Choisir--");
-			matiereVide.setIdMatiere(0L);
-			
-			Promotion promotionVide = new Promotion();
-			promotionVide.setLibelle("--Choisir--");
-			promotionVide.setIdPromotion(0L);
-			
-			// A REVOIR
-			cours.setMatiere(matiereVide);
-			coursVide.setPromotion(promotionVide);
-			
-			coursform.setMatiere(matiereVide);
-			coursform.setCours(coursVide);
-			coursform.setPromotion(promotionVide);
-			
-			listeCours.add(coursVide);
-			
-			coursform.setListeCours(listeCours);
-			coursform.setListeMatieresExistantes(matiereDao.listMatiere());
-			coursform.setListePromotionsExistantes(promotionDao.listePromotion());
-
-			System.out.println("Liste promo existantes : " + coursform.getListePromotionsExistantes());
-			System.out.println("Liste matieres existantes : " + coursform.getListeMatieresExistantes());
-			System.out.println("Liste vide : " + coursform.getListeCours().size());
-		
-			
-
-			modele.addAttribute("coursform", coursform);
-		}else {
-			CoursForm coursForm = (CoursForm) modele.getAttribute("coursform");
-			coursForm.setListeMatieresExistantes(matiereDao.listMatiere());
-			coursForm.setListePromotionsExistantes(promotionDao.listePromotion());
-			modele.addAttribute("coursform", coursForm);
-			
-		}//end else
-
-		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
-		// la vue
-		return "administrateur_modif_cours";
-		
-//		// 1. récup de l'empl à modif dans la bdd
-//		Cours coursModif = coursDao.getById(pCoursID);
-//		
-//		// 2. déf du modèle de données (objet de commande = employeModif) + déf du nom logique de la vue
-//		//		=> ajout dans un objet ModelAndView
-//		
-//		return new ModelAndView("administrateur_modif_cours", "coursModifCommand", coursModif);
-//		//new ModelAndView(viewName, modelName, modelObject);
-//		
-//		/**
-//		 * résolution de la vue par le view resolver
-//		 * 	modifier-employe ======> /WEB-INF/views/modifier-employe.jsp
-//		 * 	
-//		 */
-		
-	}//end afficherFormulaireUpdate()
 	
 	/**
 	 * MODIF A PARTIR DE L'AFFICHAGE
@@ -494,6 +411,7 @@ public class CoursController {
 	@RequestMapping(value="/cours/update-cours-form/{idcours}", method=RequestMethod.GET)
 	public String afficherFormulaireUpdateBouton(@PathVariable("idcours") Long idcours, ModelMap modele) {
 		
+		
 
 		if (!modele.containsAttribute("coursform")) {
 
@@ -501,55 +419,35 @@ public class CoursController {
 
 			// 1.1 l'objet
 			CoursForm coursform = new CoursForm();
-			Cours cours = coursDao.getById(idcours);
-			//Cours cours = coursDao.getById(idcours);
-			coursform.setCours(cours);
-			Matiere matiere = matiereDao.getById(cours.getMatiere().getIdMatiere());
-			Promotion promotion = promotionDao.getById(cours.getPromotion().getIdPromotion());
 			
-			cours.setMatiere(matiere);
-			cours.setPromotion(promotion);
+			Cours cours = coursDao.getById(idcours);
+			cours.setMatiere(coursDao.getMatiereByIdCours(cours.getIdCours()));
+			cours.setPromotion(coursDao.getPromotionByIdCours(cours.getIdCours()));
+			
+			System.out.println("Matiere du cours = " + cours.getMatiere());
+			System.out.println("Promotion du cours ="+cours.getPromotion());
+			
+			
+			coursform.setCours(cours);
 		
 			
 			coursform.setListeMatieresExistantes(matiereDao.listMatiere());
 			coursform.setListePromotionsExistantes(promotionDao.listePromotion());
 
-			// 1.3 creation d'une liste avec 5 elements vides
-			List<Cours> listeCours = coursDao.getAllCours();
-			//List<Matiere> listeMatiere = matiereDao.listMatiere();
-			//List<Promotion> listePromotion = promotionDao.listePromotion();
-			Cours coursVide = new Cours();
-			Matiere matiereVide = new Matiere();
-			matiereVide.setLibelle("--Choisir--");
-			matiereVide.setIdMatiere(0L);
-			
-			Promotion promotionVide = new Promotion();
-			promotionVide.setLibelle("--Choisir--");
-			promotionVide.setIdPromotion(0L);
-			
-			// A REVOIR
-			coursVide.setMatiere(matiereVide);
-			coursVide.setPromotion(promotionVide);
-			
-			coursform.setMatiere(matiereVide);
-			coursform.setCours(coursVide);
-			coursform.setPromotion(promotionVide);
-			
-			listeCours.add(coursVide);
-			
-			coursform.setListeCours(listeCours);
-			coursform.setListeMatieresExistantes(matiereDao.listMatiere());
-			coursform.setListePromotionsExistantes(promotionDao.listePromotion());
 
 			System.out.println("Liste promo existantes : " + coursform.getListePromotionsExistantes());
 			System.out.println("Liste matieres existantes : " + coursform.getListeMatieresExistantes());
-			System.out.println("Liste vide : " + coursform.getListeCours().size());
+			System.out.println("Liste cours à modifier : " + cours);
 		
 			
-
 			modele.addAttribute("coursform", coursform);
 		}else {
 			CoursForm coursForm = (CoursForm) modele.getAttribute("coursform");
+			Matiere matiere = matiereDao.getById(coursForm.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursForm.getCours().getPromotion().getIdPromotion());
+			coursForm.getCours().setMatiere(matiere);
+			coursForm.getCours().setPromotion(promotion);
+			
 			coursForm.setListeMatieresExistantes(matiereDao.listMatiere());
 			coursForm.setListePromotionsExistantes(promotionDao.listePromotion());
 			modele.addAttribute("coursform", coursForm);
@@ -559,24 +457,62 @@ public class CoursController {
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
 		return "administrateur_modif_cours";
-
 		
 	}//end afficherFormulaireUpdate()
 	
 	
 	
 	@RequestMapping(value="/cours/update", method=RequestMethod.POST)
-	public String modifierEmployeBdd(@ModelAttribute("coursform") Cours pCours, ModelMap modele)  {
+	public String modifierEmployeBdd(@ModelAttribute("coursform") CoursForm coursform, 
+			ModelMap modele, BindingResult result, RedirectAttributes redirectAttributes)  {
 		
-		// 1. modif de l'employé dans la bdd
-		coursDao.modifier(pCours);
+		// =================== 1. Validateur ========================//
+
+		// 1.1 Application du validateur sur pCoursform
 		
-		// 2. récup de la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
-		modele.addAttribute("attribut_liste_cours", coursDao.getAllCours());
-				
+		coursFormValidator.validate(coursform, result);
+		
+		// 1.2 Test des erreurs
+		if (result.hasErrors()) {
+			System.out.println("erreurs");
+			// redirection vers le formulaire d'ajout
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.coursform", result);
+			redirectAttributes.addFlashAttribute("coursform", coursform);
+
+			return "redirect:/cours/update-cours-form/"+coursform.getCours().getIdCours();
+			
+		}else {
+			Cours cours = coursform.getCours();
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			Matiere matiere = matiereDao.getById(coursform.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursform.getCours().getPromotion().getIdPromotion());
+			
+			System.out.println("Matiere du coursForm = "+coursform.getCours().getMatiere());
+			System.out.println("Promo du coursForm = "+coursform.getCours().getPromotion());
+			
+			
+			cours.setMatiere(matiere);
+			cours.setPromotion(promotion);
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			coursDao.modifier(cours);
+			
+			System.out.println("Matiere : "+matiere);
+			System.out.println("Promotion : "+promotion);
+
+		
+		System.out.println("Cours : "+cours);
+		
+		System.out.println("\n\n Cours Ajouté !");
 		
 		
 		return "redirect:/cours/listeAll";
+		}
 	}//end modifierEmployeBdd
 	
 

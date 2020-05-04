@@ -87,7 +87,7 @@
 
 				<tr> 
  					<td>Promotion : <form:select class="custom-select"
- 							path="promotion.idPromotion"> 
+ 							path="cours.promotion.idPromotion"> 
 							<option value="0">-- Choisir --</option>
  							<c:forEach items="${coursform.listePromotionsExistantes }" 
  								var="promotion"> 
@@ -96,7 +96,7 @@
  						</form:select>
 					</td> 
  					<td>Matière : <form:select class="custom-select" 
- 							path="matiere.idMatiere"> 
+ 							path="cours.matiere.idMatiere"> 
 							<option value="0">-- Choisir --</option> 
  							<c:forEach items="${coursform.listeMatieresExistantes }" 
  								var="matiere">
