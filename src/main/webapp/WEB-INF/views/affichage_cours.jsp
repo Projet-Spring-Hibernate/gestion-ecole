@@ -81,14 +81,18 @@
 
 			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
+					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a></td>
 				<td><a class="btn btn-success"
 					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
-						de présence</a>
+						de présence</a></td>
 			</s:authorize>
 			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
 				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
+					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a></td>
+
+				<td><a class="btn btn-success"
+					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
+						de présence</a></td>
 			</s:authorize>
 		</table>
 	</div>

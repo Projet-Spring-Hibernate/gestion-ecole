@@ -67,7 +67,7 @@
 					<td>${absence.id}</td>
 					<td>${absence.etudiant.nom}</td>
 					<td>${absence.etudiant.prenom}</td>
-					<td>${absence.absence.absence}</td>
+					<td>${absence.absence  ? "Absent" : "Present"}</td>
 					<td>${absence.motif}</td>
 
 
