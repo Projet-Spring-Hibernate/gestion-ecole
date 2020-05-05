@@ -37,11 +37,10 @@
 
 	<div class="mainContent">
 
-		<h1>Liste des promotions de l'enseignant</h1>
+		<h1>Liste de mes promotions</h1>
 
 		
 		<table class="table table-striped">
-			<!-- Ajout d'une promotion -->
 
 			<tr>
 				<th>ID Promotion</th>
@@ -50,7 +49,7 @@
 			</tr>
 
 
-			<c:forEach items="${attribut_enseignant_promotion}" var="promotion">
+			<c:forEach items="${attribut_promotion_enseignant}" var="promotion">
 				<tr>
 					<td>${promotion.idPromotion}</td>
 					<td>${promotion.libelle}</td>
@@ -59,7 +58,7 @@
 
 					<!-- colonne pour afficher la promotion -->
 					<td><a
-						href="${pageContext.request.contextPath}/promotions/listeByIdEnseignant${promotion.idPromotion}">Afficher</a>
+						href="${pageContext.request.contextPath}/promotions/afficher/${promotion.idPromotion}">Afficher</a>
 					</td>
 
 				</tr>
@@ -70,7 +69,7 @@
 	</div>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 
 

@@ -11,6 +11,7 @@ import org.springframework.validation.Validator;
 import com.intiformation.gestion_ecole.dao.IPromotionDAO;
 import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Promotion;
+import com.intiformation.gestion_ecole.entityForForms.PromotionForm;
 
 /**
  * 
@@ -44,23 +45,24 @@ public class PromotionFormValidator implements Validator {
 		 * -3e argument :code d'erreur sui serat definit comme clé dans un bundle
 		 * (.properties) -4e argument=message d'erreur par defaut
 		 */
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "libelle", "required.libelle", "Le champ est obligatoire");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "promotion.libelle", "required.libelle", "Le champ est obligatoire");
 
 		/* _______________ Validation objet _______________ */
 
 		// 1. recup de l'objet à valider
-		Promotion promotion = (Promotion) objetAValider;
+		PromotionForm promotionForm = (PromotionForm) objetAValider;
 
-		List<Promotion> listePromotions = promotionDao.getAllPromo(); 
+		List<Promotion> listePromotions = promotionDao.listePromotion(); 
 		int i = 0;
 		for (Promotion promotion1 : listePromotions) {
-			if (promotion1.getLibelle().equals(promotion.getLibelle())) {
+			if (promotion1.getLibelle().equals(promotionForm.getPromotion().getLibelle()) && promotion1.getIdPromotion()!=promotionForm.getPromotion().getIdPromotion()) {
+				
 				i++;
 			} // end if
 		}
 
 		if (i != 0) {
-			errors.rejectValue("libelle", "notallowed.libelle", "Ce cours existe déjà");
+			errors.rejectValue("promotion.libelle", "notallowed.libelle", "Cette promotion existe déjà");
 
 		}
 

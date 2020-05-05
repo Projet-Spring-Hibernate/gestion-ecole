@@ -42,9 +42,7 @@
 		<a
 			href="${pageContext.request.contextPath}/promotions/add-promotion-form"
 			class="btn btn-primary btn-sm" role="button">Ajouter une
-			promotion</a>
-
-
+			promotion</a> <br /><br/>
 		<table class="table table-striped">
 			<!-- Ajout d'une promotion -->
 

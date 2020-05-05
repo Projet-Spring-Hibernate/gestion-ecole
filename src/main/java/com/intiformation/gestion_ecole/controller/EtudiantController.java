@@ -135,7 +135,7 @@ public class EtudiantController {
 	/**
 	 * Permet de recuperer la liste des etudiants de l'enseignant connecté. Invoqué
 	 * au click du bouton "Mes etudiants" de l'entête enseignant. Renvoie vers la
-	 * page enseignant_listeEnseignant.jsp
+	 * page enseignant_listeEtudiants.jsp
 	 * 
 	 * @param modele
 	 * @return

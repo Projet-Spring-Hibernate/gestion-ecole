@@ -46,9 +46,8 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
-		<table class="table table-striped">
-			<!-- Ajout d'une promotion -->
+		<h1>Fiche de la promotion ${attribut_promotion.libelle}</h1>
+		<table class="table">
 
 			<tr>
 				<td>ID Promotion</td>
@@ -58,22 +57,21 @@
 				<td>Libelle</td>
 				<td>${attribut_promotion.libelle}</td>
 			</tr>
+
 			<tr>
-				<td>Enseignant</td>
-				<td><c:forEach items="${attribut_enseignant}" var="enseignants">${enseignants.idPromotion} </c:forEach> </td>
-			</tr>
-			<tr>
-				<td>Etudiant</td>
-				<td><c:forEach items="${attribut_etudiant}" var="etudiants">${etudiants.idPromotion} </c:forEach> </td>
+				<td>Etudiants</td>
+				<td><c:forEach items="${attribut_promotion.listeEtudiant}"
+						var="etudiant"><a
+							href="${pageContext.request.contextPath}/etudiants/afficher/${etudiant.identifiant}">${etudiant.prenom} ${etudiant.nom}</a><br/></c:forEach></td>
 			</tr>
 
 
 
-<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
+			<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
 			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 				<tr>
 					<td><a class="btn btn-warning"
-						href="${pageContext.request.contextPath}/promotions/update-form/${attribut_promotion.idPromotion}">Modifier</a>
+						href="${pageContext.request.contextPath}/promotions/update-promotion-form/${attribut_promotion.idPromotion}">Modifier</a>
 						<a class="btn btn-danger"
 						href="${pageContext.request.contextPath}/promotions/delete/${attribut_promotion.idPromotion}">Supprimer</a></td>
 					<td></td>
@@ -85,7 +83,7 @@
 
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 </body>
 </html>

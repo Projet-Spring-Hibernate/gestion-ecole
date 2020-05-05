@@ -12,19 +12,14 @@
 </head>
 <body>
 
-	<h1>Statu HTTP 403 - </h1>
+	<h1>Statut HTTP 403 - </h1>
 	
-	<br/>
-	
-	<s:authorize access="hasRole('ROLE_USER')"> 
 		<h2>
 			Vous n'avez pas les autorisations requises pour cette action
 		</h2>
-		<h3>
-			Veuillez vous connecter en tant qu'admin : <a href="<c:url value='/login.jsp'/>">Se connecter</a>
-		</h3>
-	
-	</s:authorize>
+
+ <a href="<c:url value='/login.jsp'/>">Se connecter</a>
+
 
 </body>
 </html>

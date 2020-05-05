@@ -40,13 +40,12 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'une promotion</h1>
 
-		<form:form modelAttribute="promotionsCommand" method="POST"
+		<form:form modelAttribute="promotionForm" method="POST"
 			action="${pageContext.request.contextPath}/promotions/add">
 
-			<table class="table table-striped">
+			<table class="table">
 
 				<tr>
 					<td><form:label path="promotion.libelle">Libelle :</form:label></td>
@@ -55,14 +54,19 @@
 				</tr>
 
 				<tr>
-					<td><form:label path="promotion.libelle">ID Promotion :</form:label></td>
-					<td><form:input path="promotion.libelle" /></td>
-					<td><form:errors path="promotion.libelle" /></td>
+					<td><form:label path="listeIdEtudiants">Etudiants :</form:label></td>
+					<td><c:forEach items="${promotionForm.listeAllEtudiants}"
+							var="etudiant">
+							<form:checkbox path="listeIdEtudiants"
+								value="${etudiant.identifiant}"
+								label="${etudiant.prenom} ${etudiant.nom}" />
+							<br />
+						</c:forEach></td>
 				</tr>
-<br/>
-				<td colspan="3"><input class="btn btn-primary" type="submit"
-					value="Ajouter" /></td>
-<br/>
+				<tr>
+					<td colspan="3"><input class="btn btn-primary" type="submit"
+						value="Ajouter" /></td>
+				</tr>
 			</table>
 		</form:form>
 	</div>
