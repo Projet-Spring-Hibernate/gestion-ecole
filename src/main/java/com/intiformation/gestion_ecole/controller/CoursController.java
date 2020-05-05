@@ -216,68 +216,120 @@ public class CoursController {
 	 * @return
 	 */
 	@RequestMapping(value="/cours/add-cours-formEnseignant", method=RequestMethod.GET)
-	public ModelAndView afficherFormulaireAjoutEnseignant() {
+	public String afficherFormulaireAjoutEnseignant(ModelMap modele) {
 		
-		//1. definition de l'objet de commande à lier aux champs du formulaire d'ajout
+		if (!modele.containsAttribute("coursform")) {
+
+			// 1. definition de l'objet à lier aux champs du formulaire d'ajout
+
+			// 1.1 l'objet
+			CoursForm coursform = new CoursForm();
+			
+			//1.2 Initialisation de l'objet cours form
+			Cours coursVide = new Cours();
+			Matiere matiereVide = new Matiere();
+			Promotion promotionVide = new Promotion();
+			
+			coursVide.setMatiere(matiereVide);
+			coursVide.setPromotion(promotionVide);
+			
+			coursform.setCours(coursVide);
+			
+			// 1.3 On recupere la liste des promos et des matières existantes pour affichage
+			// dans des menus deroulants
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
+			
+			coursform.setListeMatieresExistantes(matiereDao.listematiereEnseignantbyid(enseignant.getIdentifiant()));
+			coursform.setListePromotionsExistantes(promotionDao.getListePromotionByIdEnseignant(enseignant.getIdentifiant()));
+
 		
-		//1.1 l'objet
-		Cours cours = new Cours();
+			System.out.println("Liste promo existantes : " + coursform.getListePromotionsExistantes());
+			System.out.println("Liste matieres existantes : " + coursform.getListeMatieresExistantes());
+			System.out.println("cours vide : " + coursVide);
 		
-		//1.2 nom de l'objet
-		String objetCommandeCours = "coursEnseignantCommand";
+			
+			modele.addAttribute("coursform", coursform);
+			
+		}else {
+			CoursForm coursForm = (CoursForm) modele.getAttribute("coursform");
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
+			coursForm.setListeMatieresExistantes(matiereDao.listematiereEnseignantbyid(enseignant.getIdentifiant()));
+			coursForm.setListePromotionsExistantes(promotionDao.getListePromotionByIdEnseignant(enseignant.getIdentifiant()));
+			modele.addAttribute("coursform", coursForm);
+			
+		}//end else
+
+		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
+		// la vue
 		
-		//2. envoi de l'objet de commande à la servlet de spring mvc 
-		//> données à envoyer vers la servlet 
-		Map<String, Object> data = new HashMap<>();
-		data.put(objetCommandeCours, cours);
-		
-		//2.1 def du nom logique de la vue
-		String viewName="enseignant_ajout_cours";
-		
-		//3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de la vue
-		return new ModelAndView(viewName, data);
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_ajout_cours"));
+		return "enseignant_ajout_cours";
 		
 	}//end afficherFormulaireAjout
 	
 	
 	@RequestMapping(value = "/cours/add-enseignant", method = RequestMethod.POST)
-	public String ajouterCoursEnseignant(@ModelAttribute("coursCommand") @Validated Cours pCours,
-			ModelMap modele, BindingResult result) {
+	public String ajouterCoursEnseignant(@ModelAttribute("coursform") CoursForm coursform,
+			ModelMap modele, BindingResult result, RedirectAttributes redirectAttributes) {
 
-			// =================== 1. Validateur ========================//
+		System.out.println("dans méthode add");
 
-			// 1.1 Application du validateur sur pEnseignantform
+		// =================== 1. Validateur ========================//
+
+		// 1.1 Application du validateur sur pCoursform
+		
+		coursFormValidator.validate(coursform, result);
+		
+		// 1.2 Test des erreurs
+		if (result.hasErrors()) {
+			System.out.println("erreurs");
+			// redirection vers le formulaire d'ajout
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.coursform", result);
+			redirectAttributes.addFlashAttribute("coursform", coursform);
+
+			return "redirect:/cours/add-cours-formEnseignant";
 			
-			coursFormValidator.validate(pCours, result);
+		}else {
+			Cours cours = coursform.getCours();
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			Matiere matiere = matiereDao.getById(coursform.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursform.getCours().getPromotion().getIdPromotion());
+			
+			System.out.println("Matiere du coursForm = "+coursform.getCours().getMatiere());
+			System.out.println("Promo du coursForm = "+coursform.getCours().getPromotion());
+			
+			cours.setMatiere(null);
+			cours.setPromotion(null);
+			
+			coursDao.ajouter(cours);
+			
+			cours = coursDao.getAllCours().get(coursDao.getAllCours().size()-1);
+			
+			cours.setMatiere(matiere);
+			cours.setPromotion(promotion);
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			coursDao.modifier(cours);
+			
+			System.out.println("Matiere : "+matiere);
+			System.out.println("Promotion : "+promotion);
 
-			// 1.2 Test des erreurs
-			if (result.hasErrors()) {
-
-				// redirection vers le formulaire d'ajout
-
-				return "redirect:/cours/add-cours-formEnseignant";
-				// return "administrateur_ajout_enseignant";
-			} else {
-				// ==> le validateur n'a pas detecté d'erreur
-
-				// =================== 2. Recup et traitement des cours par id de l'enseignant
-				// ========================//
-
-				// On recupere l'enseignants à partie de l'objet EnseignantFrom
-				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-				Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
-				
-				List<Cours> listeCours = coursDao.getListeCoursByIdEnseignant(enseignant.getIdentifiant());
-				System.out.println("dans le controleur");
-				coursDao.ajouter(pCours);
-				//2. def des données à afficher dans la vue
-				modele.addAttribute("attribut_cours_enseignant", listeCours);
-				
-				return "redirect:/cours/listeByEnseignant";
-				
-
-			}//end else
-	}
+		
+		System.out.println("Cours : "+cours);
+		
+		System.out.println("\n\n Cours Ajouté !");
+		
+		
+		return "redirect:/cours/listeByEnseignant";
+		}//end else
+	}//end ajouterCoursEnseignant
 	
 	
 	@RequestMapping(value="/cours/add-cours-form", method=RequestMethod.GET)
@@ -463,7 +515,7 @@ public class CoursController {
 	
 	
 	@RequestMapping(value="/cours/update", method=RequestMethod.POST)
-	public String modifierEmployeBdd(@ModelAttribute("coursform") CoursForm coursform, 
+	public String modifierCours(@ModelAttribute("coursform") CoursForm coursform, 
 			ModelMap modele, BindingResult result, RedirectAttributes redirectAttributes)  {
 		
 		// =================== 1. Validateur ========================//
@@ -514,6 +566,125 @@ public class CoursController {
 		return "redirect:/cours/listeAll";
 		}
 	}//end modifierEmployeBdd
+	
+	
+	/**
+	 * MODIF A PARTIR DE L'AFFICHAGE
+	 * @param idcours
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value="cours/update-cours-formEnseignant/{idcours}", method=RequestMethod.GET)
+	public String afficherFormulaireUpdateEnseignant(@PathVariable("idcours") Long idcours, ModelMap modele) {
+		
+		
+
+		if (!modele.containsAttribute("coursform")) {
+
+			// 1. definition de l'objet à lier aux champs du formulaire d'ajout
+
+			// 1.1 l'objet
+			CoursForm coursform = new CoursForm();
+			
+			Cours cours = coursDao.getById(idcours);
+			
+			cours.setMatiere(coursDao.getMatiereByIdCours(cours.getIdCours()));
+			cours.setPromotion(coursDao.getPromotionByIdCours(cours.getIdCours()));
+			
+			System.out.println("Matiere du cours = " + cours.getMatiere());
+			System.out.println("Promotion du cours ="+cours.getPromotion());
+			
+			
+			coursform.setCours(cours);
+		
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
+			coursform.setListeMatieresExistantes(matiereDao.listematiereEnseignantbyid(enseignant.getIdentifiant()));
+			coursform.setListePromotionsExistantes(promotionDao.getListePromotionByIdEnseignant(enseignant.getIdentifiant()));
+			
+		
+
+
+			System.out.println("Liste promo existantes : " + coursform.getListePromotionsExistantes());
+			System.out.println("Liste matieres existantes : " + coursform.getListeMatieresExistantes());
+			System.out.println("Liste cours à modifier : " + cours);
+		
+			
+			modele.addAttribute("coursform", coursform);
+		}else {
+			CoursForm coursForm = (CoursForm) modele.getAttribute("coursform");
+			Matiere matiere = matiereDao.getById(coursForm.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursForm.getCours().getPromotion().getIdPromotion());
+			coursForm.getCours().setMatiere(matiere);
+			coursForm.getCours().setPromotion(promotion);
+			
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			Enseignant enseignant = (Enseignant) enseignantDao.getPersonneByMail(auth.getName());
+			coursForm.setListeMatieresExistantes(matiereDao.listematiereEnseignantbyid(enseignant.getIdentifiant()));
+			coursForm.setListePromotionsExistantes(promotionDao.getListePromotionByIdEnseignant(enseignant.getIdentifiant()));
+			modele.addAttribute("coursform", coursForm);
+			
+		}//end else
+
+		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
+		// la vue
+		return "enseignant_modif_cours";
+		
+	}//end afficherFormulaireUpdate()
+	
+	
+	@RequestMapping(value="/cours/update-cours-enseignant", method=RequestMethod.POST)
+	public String modifierCoursEnseignant(@ModelAttribute("coursform") CoursForm coursform, 
+			ModelMap modele, BindingResult result, RedirectAttributes redirectAttributes)  {
+		
+		// =================== 1. Validateur ========================//
+
+		// 1.1 Application du validateur sur pCoursform
+		
+		coursFormValidator.validate(coursform, result);
+		
+		// 1.2 Test des erreurs
+		if (result.hasErrors()) {
+			System.out.println("erreurs");
+			// redirection vers le formulaire d'ajout
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.coursform", result);
+			redirectAttributes.addFlashAttribute("coursform", coursform);
+
+			return "redirect:/cours/update-cours-formEnseignant/"+coursform.getCours().getIdCours();
+			
+		}else {
+			Cours cours = coursform.getCours();
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			Matiere matiere = matiereDao.getById(coursform.getCours().getMatiere().getIdMatiere());
+			Promotion promotion = promotionDao.getById(coursform.getCours().getPromotion().getIdPromotion());
+			
+			System.out.println("Matiere du coursForm = "+coursform.getCours().getMatiere());
+			System.out.println("Promo du coursForm = "+coursform.getCours().getPromotion());
+			
+			
+			cours.setMatiere(matiere);
+			cours.setPromotion(promotion);
+			
+			System.out.println("Matiere du cours = "+cours.getMatiere());
+			System.out.println("Promo du cours = "+cours.getPromotion());
+			
+			coursDao.modifier(cours);
+			
+			System.out.println("Matiere : "+matiere);
+			System.out.println("Promotion : "+promotion);
+
+		
+		System.out.println("Cours : "+cours);
+		
+		System.out.println("\n\n Cours Ajouté !");
+		
+		
+		return "redirect:/cours/listeByEnseignant";
+		}
+	}//end modifierCoursEnseignant
 	
 
 

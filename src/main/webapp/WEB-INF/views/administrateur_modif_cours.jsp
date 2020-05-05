@@ -71,17 +71,7 @@
 					<td><form:errors path="cours.description" /></td>
 				</tr>
 
-<!-- 				<tr> -->
-<%-- 					<td><form:label path="matiere.libelle">Matière :</form:label></td> --%>
-<%-- 					<td><form:input path="matiere.libelle" /></td> --%>
-<%-- 					<td><form:errors path="matiere.libelle" /></td> --%>
-<!-- 				</tr> -->
 
-<!-- 				<tr> -->
-<%-- 					<td><form:label path="promotion.libelle">Promotion :</form:label></td> --%>
-<%-- 					<td><form:input path="promotion.libelle" /></td> --%>
-<%-- 					<td><form:errors path="promotion.libelle" /></td> --%>
-<!-- 				</tr> -->
 				
 				<tr>
 					<td> <form:hidden path="cours.idCours"/></td>

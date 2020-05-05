@@ -30,7 +30,7 @@
 
 <!-- ============================================================================ -->
 
-<title>Enseignant - ajouter cours</title>
+<title>Enseignant - modifier cours</title>
 </head>
 <body>
 
@@ -40,12 +40,11 @@
 	<div class="mainContent">
 
 		<br /> <br />
-		<h1>Formulaire d'ajout d'un cours</h1>
+		<h1>Formulaire de modification d'un cours</h1>
 		<%--coursform --%>
 
 		<form:form modelAttribute="coursform" method="POST"
-			action="${pageContext.request.contextPath}/cours/add-enseignant">
-			
+			action="${pageContext.request.contextPath}/cours/update-cours-enseignant">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
@@ -73,12 +72,15 @@
 				</tr>
 
 
-
-
+				<tr>
+					<td> <form:hidden path="cours.idCours"/></td>
+				</tr>
+				
+				
 				<tr> 
  					<td>Promotion : <form:select class="custom-select"
  							path="cours.promotion.idPromotion"> 
-							<option value="0">-- Choisir --</option>
+							<option value="${coursform.cours.promotion.idPromotion}">${coursform.cours.promotion.libelle}</option>
  							<c:forEach items="${coursform.listePromotionsExistantes }" 
  								var="promotion"> 
  								<option value="${promotion.idPromotion}">${promotion.libelle}</option>
@@ -87,8 +89,8 @@
 					</td> 
  					<td>Matière : <form:select class="custom-select" 
  							path="cours.matiere.idMatiere"> 
-							<option value="0">-- Choisir --</option> 
- 							<c:forEach items="${coursform.listeMatieresExistantes }" 
+							<option value="${coursform.cours.matiere.idMatiere}">${coursform.cours.matiere.libelle}</option> 
+ 							<c:forEach items="${coursform.listeMatieresExistantes}" 
  								var="matiere">
 								<option value="${matiere.idMatiere}">${matiere.libelle}</option>
  							</c:forEach> 
@@ -96,10 +98,10 @@
  					</td> 
 
 			</tr> 
+				
+				
 
-
-				<td colspan="3"><input class="btn btn-primary" type="submit"
-					value="Ajouter" /></td>
+				<td colspan="3"><input class="btn btn-primary" type="submit" value="Modifier" /></td>
 			</table>
 		</form:form>
 	</div>

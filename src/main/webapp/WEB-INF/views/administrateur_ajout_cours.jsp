@@ -73,18 +73,6 @@
 
 
 
-				<!-- 				<tr> -->
-				<%-- 					<td><form:label path="cours.matiere.libelle">Matière :</form:label></td> --%>
-				<%-- 					<td><form:input path="cours.matiere.libelle" /></td> --%>
-				<%-- 					<td><form:errors path="cours.matiere.libelle" /></td> --%>
-				<!-- 				</tr> -->
-
-				<!-- 				<tr> -->
-				<%-- 					<td><form:label path="cours.promotion.libelle">Promotion :</form:label></td> --%>
-				<%-- 					<td><form:input path="cours.promotion.libelle" /></td> --%>
-				<%-- 					<td><form:errors path="cours.promotion.libelle" /></td> --%>
-				<!-- 				</tr> -->
-
 				<tr> 
  					<td>Promotion : <form:select class="custom-select"
  							path="cours.promotion.idPromotion"> 
