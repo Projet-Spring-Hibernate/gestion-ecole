@@ -24,6 +24,9 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 /**
  * Classe entity pour les cours.
  * Relation ManyToMany avec Etudiant.
@@ -65,21 +68,25 @@ public class Cours implements Serializable{
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name= "promotion_id", referencedColumnName="ID_PROMOTION")
+	@JsonManagedReference
 	private Promotion promotion;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="matiere_id", referencedColumnName="ID_MATIERE")
+	@JsonManagedReference
 	private Matiere matiere;
 	
 	
 	@OneToMany(mappedBy="cours")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<EtudiantCours> listeEtudiantCours =new ArrayList<>();
 	
 	
 	@OneToMany(mappedBy="cours", orphanRemoval=true)
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<Exercice> listeExercices = new ArrayList<>();
 	
 	

@@ -19,6 +19,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 /**
  * Table de jointure entre Etudiant et cours.
  * Relation ManyToOne avec Cours. 
@@ -43,11 +45,13 @@ public class EtudiantCours implements Serializable{
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "Cours", referencedColumnName="ID_COURS")
+	@JsonManagedReference
 	private Cours cours;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "Etudiant", referencedColumnName="identifiant")
+	@JsonManagedReference
 	private Etudiant etudiant;
 
 	

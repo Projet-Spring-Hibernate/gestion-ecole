@@ -14,5 +14,6 @@ public interface IEtudiantDAO extends IPersonneDao{
 	public List<Etudiant> getAllEtudiant();
 	
 	public List<Etudiant> getlistEtudiantByIdEnseignant(Long pIdEnseignant);
-
+	
+	public List<Etudiant> getlistEtudiantsByIdPromotion(Long pIdPromotion);
 }//end interface

@@ -21,6 +21,9 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Classe entity pour les administrateurs. Classe fille de la classe Personne.
  * Relation ManyToMany avec Cours
@@ -51,10 +54,12 @@ public class Etudiant extends Personne{
 	@JoinTable(name="etudiant_promotion", 
 	joinColumns= @JoinColumn(name="etudiant_id", referencedColumnName="identifiant"), 
 	inverseJoinColumns= @JoinColumn(name="promotion_id", referencedColumnName="ID_PROMOTION"))
+	@JsonBackReference
 	private List<Promotion> listePromotion=new ArrayList<>();
 	
 	@OneToMany(mappedBy="etudiant")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonIgnore
 	private List<EtudiantCours> listeEtudiantCours =new ArrayList<>();
 	
 	/*____________________ctors____________________*/

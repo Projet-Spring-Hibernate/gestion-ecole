@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Affichage cours</title>
+<title>Affichage absence</title>
 
 <!-- ============================================================================ -->
 <!-- Lien vers .css -->
@@ -33,7 +33,6 @@
 <!-- ============================================================================ -->
 </head>
 <body>
-
 	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
 	</s:authorize>
@@ -46,50 +45,34 @@
 
 	<div class="mainContent">
 
+		<h1>Feuille de présence pour le cours ${attribut_cours.libelle}</h1>
+
+		<a class="btn btn-primary"
+			href="${pageContext.request.contextPath}/absences/update-form/${attribut_cours.idCours}">Modifier/ajouter</a>
+			
 		<br /> <br />
-		<table class="table">
+		<table class="table table-striped">
 
 			<tr>
-				<td>ID cours</td>
-				<td>${attribut_cours.idCours}</td>
-			</tr>
-			<tr>
-				<td>Libellé</td>
-				<td>${attribut_cours.libelle}</td>
-			</tr>
-			<tr>
-				<td>Date</td>
-				<td>${attribut_cours.date}</td>
-			</tr>
-			<tr>
-				<td>Durée</td>
-				<td>${attribut_cours.duree}</td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td>${attribut_cours.description}</td>
-			</tr>
-			<tr>
-				<td>Matière</td>
-				<td>${attribut_cours.matiere.libelle}</td>
-			</tr>
-			<tr>
-				<td>Promotion</td>
-				<td>${attribut_cours.promotion.libelle}</td>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Absence</th>
+				<th>Motif</th>
+
 			</tr>
 
+			<c:forEach items="${attribut_liste_absences}" var="absence">
+				<tr>
+					<td>${absence.id}</td>
+					<td>${absence.etudiant.nom}</td>
+					<td>${absence.etudiant.prenom}</td>
+					<td>${absence.absence.absence}</td>
+					<td>${absence.motif}</td>
 
-			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
-				<td><a class="btn btn-success"
-					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
-						de présence</a>
-			</s:authorize>
-			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
-			</s:authorize>
+
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 

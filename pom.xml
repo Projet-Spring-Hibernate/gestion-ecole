@@ -44,6 +44,14 @@
 		<!-- Version de Spring Security -->
 		<spring.security.version>5.0.2.RELEASE</spring.security.version>
 
+		<spring_ws_version>2.4.6.RELEASE</spring_ws_version>
+
+		<!-- verion jersey et jaxrs -->
+		<jersey2.version>2.30</jersey2.version>
+		<jaxrs.version>2.0.1</jaxrs.version>
+
+		<!-- Version de jackson -->
+		<jackson.version>2.9.10.1</jackson.version>
 	</properties>
 
 	<!-- ================================================================================================ -->
@@ -178,8 +186,93 @@
 			<scope>test</scope>
 		</dependency>
 
-	</dependencies>
+		<!-- Spring Web Service -->
+		<!-- Permet d'implémenter un WS et de l'implémenter dans Spring -->
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>${spring_ws_version}</version>
+		</dependency>
 
+		<!-- 5. dépendances de Jersey -->
+		<!-- ================================ -->
+		<dependency>
+
+			<groupId>javax.ws.rs</groupId>
+
+			<artifactId>javax.ws.rs-api</artifactId>
+
+			<version>${jaxrs.version}</version>
+
+		</dependency>
+
+		<dependency>
+
+			<groupId>org.glassfish.jersey.containers</groupId>
+
+			<artifactId>jersey-container-servlet</artifactId>
+
+			<version>${jersey2.version}</version>
+
+		</dependency>
+
+
+
+		<dependency>
+
+			<groupId>org.glassfish.jersey.core</groupId>
+
+			<artifactId>jersey-server</artifactId>
+
+			<version>${jersey2.version}</version>
+
+		</dependency>
+
+
+		<dependency>
+
+			<groupId>org.glassfish.jersey.core</groupId>
+
+			<artifactId>jersey-client</artifactId>
+
+			<version>${jersey2.version}</version>
+
+		</dependency>
+
+		<!-- Seralisation/déséralisation de JSON -->
+
+		<dependency>
+
+			<groupId>org.glassfish.jersey.media</groupId>
+
+			<artifactId>jersey-media-moxy</artifactId>
+
+			<version>${jersey2.version}</version>
+
+		</dependency>
+
+		<!-- Intégration de jax-rs avec spring -->
+
+		<dependency>
+
+			<groupId>org.glassfish.jersey.ext</groupId>
+
+			<artifactId>jersey-spring5</artifactId>
+
+			<version>${jersey2.version}</version>
+
+		</dependency>
+
+		<!-- 1.5 dependance de l'api Jackson -->
+		<!-- ================================= -->
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+	</dependencies>
 	<!-- ================================================================================================ -->
 	<!-- =================================Config des plugins de Maven==================================== -->
 	<!-- ================================================================================================ -->

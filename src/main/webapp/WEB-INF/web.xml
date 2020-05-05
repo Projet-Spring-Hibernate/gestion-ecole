@@ -5,6 +5,7 @@
 	version="3.1">
 	<display-name>01_gestion_ecoles</display-name>
 
+
 	<!-- ========== CHARGEMENT DES FICHIERS DE CONFIGURATION DES BEANS DE SPRING 
 		=== -->
 
@@ -38,29 +39,29 @@
 	<servlet-mapping>
 
 		<servlet-name>springapp</servlet-name>
-		<url-pattern>/</url-pattern> 
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 
-  <!-- ========== CONFIGURATION DE SPRING SECURITY ============ -->  
-  <!--  Declaration du filtre pour l'integrationdes requetes -->
-  
-  <filter>
-  	<filter-name>springSecurityFilterChain</filter-name>
-  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-  </filter>
-  
-  <!-- /* = toutes les requetes -->
-  <filter-mapping>
-  	<filter-name>springSecurityFilterChain</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
+	<!-- ========== CONFIGURATION DE SPRING SECURITY ============ -->
+	<!-- Declaration du filtre pour l'integrationdes requetes -->
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<!-- /* = toutes les requetes -->
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 
 	<!-- ================================================= -->
 	<!-- ========== PAGE DE DEMARAGE DE L'APP ============ -->
 	<!-- ================================================= -->
-	
+
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>

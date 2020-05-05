@@ -32,59 +32,42 @@
 <body>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+<%-- inclusion dynamique du fragment entete.jsp --%>
+	<jsp:include page="/WEB-INF/fragments/entete_enseignant.jsp" />
 
 	<div class="mainContent">
 
-		<h1>Liste des absences des étudints de l'enseignant</h1>
-	  
+		<h1>Liste des absences pour vos cours</h1>
 
-			
-			
 		<table class="table table-striped">
-			<!-- Ajout d'un employe -->
-
 			<tr>
-				<th>ID cours</th>
-				<th>absence</th>
-				<th>motif </th>
+				<th>ID</th>
 				<th>Nom</th>
 				<th>Prenom</th>
-				<th> </th>
-							</tr>
+				<th>Cours</th>
+				<th>Date</th>
+				<th>Absence</th>
+				<th>Motif</th>
+
+			</tr>
 
 			<c:forEach items="${attribut_liste_absence}" var="absence">
 				<tr>
-			
+
 					<td>${absence.id}</td>
-				
-					<td>${absence.absence}</td>
-					
-					<td>${absence.motif}</td>
-	
 					<td>${absence.etudiant.nom}</td>
-				
 					<td>${absence.etudiant.prenom}</td>
-						<td><a
-						href="${pageContext.request.contextPath}/etudiantCours/afficher/${etudiantCours.id}">Afficher</a></td>
-					
+					<td>${absence.cours.libelle}</td>
+					<td>${absence.cours.date}</td>
+					<td>${absence.absence  ? "Absent" : "Present"}</td>
+					<td>${absence.motif}</td>
+
 				</tr>
 			</c:forEach>
-
-
-
 		</table>
-
-
-
-
-
-
 	</div>
 
-
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 </body>
 </html>

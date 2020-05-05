@@ -24,6 +24,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Classe entity pour les matières.
  * Relation triple avec Enseignant et Promotion
@@ -46,25 +48,17 @@ public class Matiere implements Serializable {
 	
 	private String libelle;
 	
-
-//	@ManyToMany(mappedBy="listeMatiere")
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	private List<Enseignant> listeEnseignant =new ArrayList<>();
-//	
-//
-//	@ManyToMany(mappedBy="listeMatiere")
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	private List<Promotion> listePromotion=new ArrayList<>();
-	
 	
 	@OneToMany(mappedBy="matiere", orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	
 	//relation entre matière et Cours
 	@OneToMany(mappedBy="matiere", fetch=FetchType.EAGER,  orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<Cours> listeCours= new ArrayList<>();
 	
 	

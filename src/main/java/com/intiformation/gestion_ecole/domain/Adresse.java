@@ -17,6 +17,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Classe entity pour les adresses. Reliée à la classe Personne par une relation OneToONe
  * 
@@ -45,6 +47,7 @@ public class Adresse {
 	// Association avec Personne
 	@OneToOne(mappedBy="adresse")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private Personne personne;
 
 

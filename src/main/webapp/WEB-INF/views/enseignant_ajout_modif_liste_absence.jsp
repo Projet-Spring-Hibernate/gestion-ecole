@@ -6,13 +6,15 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%--Ajout de la taglib de spring mvc 'form' --%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- ============================================================================ -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Affichage cours</title>
+<title>Modification feuille de présence</title>
 
 <!-- ============================================================================ -->
 <!-- Lien vers .css -->
@@ -33,68 +35,58 @@
 <!-- ============================================================================ -->
 </head>
 <body>
-
 	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
 	</s:authorize>
 	<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
 		<jsp:include page="/WEB-INF/fragments/entete_enseignant.jsp" />
 	</s:authorize>
-	<s:authorize access="hasRole('ROLE_ETUDIANT')">
-		<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
-	</s:authorize>
-
 	<div class="mainContent">
-
-		<br /> <br />
-		<table class="table">
-
-			<tr>
-				<td>ID cours</td>
-				<td>${attribut_cours.idCours}</td>
-			</tr>
-			<tr>
-				<td>Libellé</td>
-				<td>${attribut_cours.libelle}</td>
-			</tr>
-			<tr>
-				<td>Date</td>
-				<td>${attribut_cours.date}</td>
-			</tr>
-			<tr>
-				<td>Durée</td>
-				<td>${attribut_cours.duree}</td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td>${attribut_cours.description}</td>
-			</tr>
-			<tr>
-				<td>Matière</td>
-				<td>${attribut_cours.matiere.libelle}</td>
-			</tr>
-			<tr>
-				<td>Promotion</td>
-				<td>${attribut_cours.promotion.libelle}</td>
-			</tr>
+		<h1>Mise à jour de la feuille de présence pour le cours
+			${attribut_cours.libelle}</h1>
 
 
-			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
-				<td><a class="btn btn-success"
-					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
-						de présence</a>
-			</s:authorize>
-			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
-			</s:authorize>
-		</table>
+		<form:form modelAttribute="absenceForm" method="POST"
+			action="${pageContext.request.contextPath}/absences/update/${attribut_cours.idCours}">
+
+			<table class="table table-striped">
+
+				<tr>
+					<th>ID</th>
+					<th>Etudiant</th>
+					<th>absence</th>
+					<th>motif</th>
+
+				</tr>
+				<c:forEach items="${absenceForm.listeEtudiantCours }" var="etudiantCours"
+					varStatus="i">
+					<tr>
+					<form:hidden path="listeEtudiantCours[${i.index}].id" />
+					<form:hidden path="listeEtudiantCours[${i.index}].etudiant.identifiant" />
+					<form:hidden path="listeEtudiantCours[${i.index}].cours.idCours" />
+						<td>${etudiantCours.id}</td> 			
+						<td>${etudiantCours.etudiant.prenom} ${etudiantCours.etudiant.nom}</td>
+						<td><form:select class="custom-select"
+								path="listeEtudiantCours[${i.index}].absence">
+								<option value="${etudiantCours.absence }">${etudiantCours.absence  ? "Absent" : "Present"}</option>
+								<option value="false">Present</option>
+								<option value="true">Absent</option>
+							</form:select></td>
+						<td><form:input path="listeEtudiantCours[${i.index}].motif" /></td>
+					</tr>
+
+				</c:forEach>
+				<tr>
+					<td colspan="4"><input class="btn btn-primary" type="submit"
+						value="Modifier" /></td>
+				</tr>
+			</table>
+		</form:form>
 	</div>
 
 
 	<%-- inclusion dynamique du fragment entete.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
+
 </body>
 </html>

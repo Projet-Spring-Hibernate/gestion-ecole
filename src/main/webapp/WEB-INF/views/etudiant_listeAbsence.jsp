@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-<!-- ============================================================================ -->
+    pageEncoding="ISO-8859-1"%>
+    
+ <!-- ============================================================================ -->
 <!-- Taglib -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -27,42 +27,41 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste absence</title>
+<title>Etudiant - liste absence</title>
 </head>
 <body>
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+
+<%-- inclusion dynamique du fragment entete.jsp --%>
+	<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
 
 	<div class="mainContent">
 
-		<h1>Liste des absences de l'école</h1>
+		<h1>Liste de vos absences</h1>
 
 		<table class="table table-striped">
 			<tr>
 				<th>ID</th>
-				<th>Nom</th>
-				<th>Prenom</th>
 				<th>Cours</th>
 				<th>Date</th>
 				<th>Absence</th>
 				<th>Motif</th>
+
 			</tr>
 
 			<c:forEach items="${attribut_liste_absence}" var="absence">
 				<tr>
+
 					<td>${absence.id}</td>
-					<td>${absence.etudiant.nom}</td>
-					<td>${absence.etudiant.prenom}</td>
 					<td>${absence.cours.libelle}</td>
 					<td>${absence.cours.date}</td>
 					<td>${absence.absence  ? "Absent" : "Present"}</td>
 					<td>${absence.motif}</td>
+
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
 
 	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />

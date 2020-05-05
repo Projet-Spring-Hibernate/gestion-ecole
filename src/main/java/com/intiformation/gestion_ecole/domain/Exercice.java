@@ -19,6 +19,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Classe entity pour les exercices. 
  * Relation OneToMany avec cours
@@ -39,6 +41,7 @@ public class Exercice implements Serializable {
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="COURS_ID", referencedColumnName="ID_COURS")
+	@JsonManagedReference
 	private Cours cours;
 
 	

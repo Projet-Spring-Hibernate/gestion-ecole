@@ -17,6 +17,8 @@
 
 	<context:component-scan
 		base-package="com.intiformation.gestion_ecole.controller" />
+	<context:component-scan
+		base-package="com.intiformation.gestion_ecole.webServices" />
 
 	<!-- 2. Détection auto des annotation @RequestMapping permet l'associationdes 
 		requêtes aux Controller et méthodes -->

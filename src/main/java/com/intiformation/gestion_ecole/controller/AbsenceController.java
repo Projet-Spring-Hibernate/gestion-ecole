@@ -1,5 +1,6 @@
 package com.intiformation.gestion_ecole.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,200 +19,303 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.gestion_ecole.dao.ICoursDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
 import com.intiformation.gestion_ecole.dao.IEtudiantCoursDAO;
+import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
+import com.intiformation.gestion_ecole.dao.IMatiereDAO;
+import com.intiformation.gestion_ecole.domain.Cours;
 import com.intiformation.gestion_ecole.domain.Enseignant;
+import com.intiformation.gestion_ecole.domain.Etudiant;
 import com.intiformation.gestion_ecole.domain.EtudiantCours;
 import com.intiformation.gestion_ecole.domain.Matiere;
-
+import com.intiformation.gestion_ecole.domain.Promotion;
+import com.intiformation.gestion_ecole.entityForForms.AbsenceForm;
+import com.intiformation.gestion_ecole.entityForForms.EnseignantForm;
 
 @Controller
 public class AbsenceController {
 
+	// ========== DAO =========================//
 	@Autowired
 	private IEtudiantCoursDAO etudiantcoursDAO;
 
 	@Autowired
 	private IEnseignantDAO enseignantDAO;
-	
-	
+
+	@Autowired
+	private ICoursDAO coursDao;
+
+	@Autowired
+	private IEtudiantDAO etudiantDao;
+
+	@Autowired
+	private IMatiereDAO matiereDao;
+	// ============ SETTER ====================//
 	public void setEtudiantcoursDAO(IEtudiantCoursDAO etudiantcoursDAO) {
 		this.etudiantcoursDAO = etudiantcoursDAO;
 	}
-	
-	
 
+	public void setCoursDao(ICoursDAO coursDao) {
+		this.coursDao = coursDao;
+	}
 
+	public void setEtudiantDao(IEtudiantDAO etudiantDao) {
+		this.etudiantDao = etudiantDao;
+	}
 
+	public void setMatiereDao(IMatiereDAO matiereDao) {
+		this.matiereDao = matiereDao;
+	}
 
 	public void setEnseignantDAO(IEnseignantDAO enseignantDAO) {
 		this.enseignantDAO = enseignantDAO;
 	}
 
+	// ========== METHODES ========================================//
 
+	// ===========================================================//
+	// =========== Liste ALL absences =========================//
+	// ===========================================================//
 
-
-
-
-	@RequestMapping(value="/etudiantCours/listeAll", method=RequestMethod.GET)
+	/**
+	 * Permet de recuperer la liste des etudiantsCours. Invoquée au click du bouton
+	 * "absences" de l'entete admin. Renvoie vers la page
+	 * administrateur_listeAbsence
+	 * 
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value = "/etudiantCours/listeAll", method = RequestMethod.GET)
 	public String recupListeAllAbsence(ModelMap modele) {
-		//1. recup de la liste de tous les etudiants de la bdd
-		System.out.println("dans le getall");
-		List<EtudiantCours> listeabsence = etudiantcoursDAO.getAllEtudiantCours();
 		
-		//2. def des données à afficher dans la vue
+		// 1. recup de la liste de toutes les absences/presence de la bdd
+		List<EtudiantCours> listepresenceEtabsence = etudiantcoursDAO.getAllEtudiantCours();
+
+		
+		//2. Tris pour n'avoir que les absences
+		List<EtudiantCours> listeabsence = new ArrayList<>();
+		for(EtudiantCours presenceAbsence : listepresenceEtabsence) {
+			if(presenceAbsence.isAbsence()) {
+				listeabsence.add(presenceAbsence);
+			}//end if
+		}//end for
+		
+		
+		// 3. def des données à afficher dans la vue
+		modele.addAttribute("attribut_liste_absence", listeabsence);
+
+		return "administrateur_listeAbsence";
+	}// end recupListeAll
+
+	// ===========================================================//
+	// =========== Liste absences d'un enseignant ===============//
+	// ===========================================================//
+
+	/**
+	 * Permet de recuperer la liste des etudiantsCours d'un prof. Invoquée au click
+	 * du bouton "absences" de l'entete enseignant. Renvoie vers la page
+	 * enseignant_listeAbsence
+	 * 
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value = "/etudiantCours/listeByEnseignant", method = RequestMethod.GET)
+	public String recupListeAllabsencebyenseignant(ModelMap modele) {
+		
+		// 1. Recup de l'enseignant connecté 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Enseignant enseignant = (Enseignant) enseignantDAO.getPersonneByMail(auth.getName());
+
+		//2. Recup de la liste des matieres de l'enseignant et la liste des ids
+		List<Matiere> listeMatiereDeEnseignant =matiereDao.listematiereEnseignantbyid(enseignant.getIdentifiant());
+		
+		List<Long> listeIdMatiere = new ArrayList<>();
+		for(Matiere matiere : listeMatiereDeEnseignant) {
+			listeIdMatiere.add(matiere.getIdMatiere());
+		}//end for
+		
+	
+		// 3. recup de la liste de toutes les absences/presence des promos de l'enseignant
+		List<EtudiantCours> listepresenceEtabsence = etudiantcoursDAO.getAllAbsenceByEnseignant(enseignant.getIdentifiant());
+
+
+		
+		// 4. Tris pour n'avoir que les absences + On ne garde que celles qui concernent ses matieres
+		List<EtudiantCours> listeabsence = new ArrayList<>();
+		for(EtudiantCours presenceAbsence : listepresenceEtabsence) {
+			Matiere matiere = coursDao.getMatiereByIdCours(presenceAbsence.getCours().getIdCours());
+		if(presenceAbsence.isAbsence() && listeIdMatiere.contains(matiere.getIdMatiere())) {
+				listeabsence.add(presenceAbsence);
+			}//end if
+		}//end for
+		
+
+		// 5. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_absence", listeabsence);
 
 		
-		return "administrateur_listeAbsence";
-	}//end recupListeAll
-	
-	
-	@RequestMapping(value="/etudiantCours/listeByEnseignant", method=RequestMethod.GET)
-	public String recupListeAllabsencebyenseignant(ModelMap modele) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		Enseignant enseignant = (Enseignant) enseignantDAO.getPersonneByMail(auth.getName());
-
-		System.out.println("dans le controleur");
-
-	//	List<EtudiantCours> listetudiant = etudiantcoursDAO.getAllAbsenceByEnseignant(enseignant.getIdentifiant());
-		System.out.println("dans le controleur");
-		//modele.addAttribute("attribut_liste_absence", listetudiant);
-	//	System.out.println(listetudiant);
 		return "enseignant_listeAbsence";
-		
-}//end recupListeAllabsencebyenseignant
-	
-	@RequestMapping(value="/etudiantCours/afficher/{etudiantCoursID}", method=RequestMethod.GET)
-	public String recupEtudiantById(@PathVariable("etudiantCoursID") Long pId,ModelMap modele) {
-		
-		//1. recup de l'étudiant
-		EtudiantCours etudiantcours = etudiantcoursDAO.getById(pId);
 
-		
-		
-		//List<Enseignant> enseignant =  enseignantDao.getlistEnseignantByIdMatiere(pIdMatiere);
-		//System.out.println(enseignant);
-		
-		//List<Matiere> listematiere=matiereDao.getListePromotionByIdEtudiant(etudiant.getIdentifiant());
-		//System.out.println(listepromo);
+	}// end recupListeAllabsencebyenseignant
 
-		//2. def des données à afficher dans la vue
-		modele.addAttribute("attribut_matiere", etudiantcours);
-		//modele.addAttribute("attribut_enseignant", enseignant);
-		//modele.addAttribute("attribut_listePromo", listepromo);
-		//modele.addAttribute("aide_contenu", "Aide pour la page affichage_etudiant");
-		
-		return "affichage_absence";
-	}//end recupListeAllEtudiant
-	
-	@RequestMapping(value="/etudiantCours/add-form", method=RequestMethod.GET)
-	public ModelAndView afficherFormulaireAjout() {
-		
-		
-		//1.1 l'objet
-		EtudiantCours etudint = new EtudiantCours();
-		
-		//1.2 nom de l'objet
-		String objetCommandeMatiere = "etudiantCoursCommand";
-		
-		//2. envoi de l'objet de commande à la servlet de spring mvc 
-		//> données à envoyer vers la servlet 
-		Map<String, Object> data = new HashMap<>();
-		data.put(objetCommandeMatiere, etudint);
-		
-		//2.1 def du nom logique de la vue
-		String viewName="administrateur_ajout_etudiantCours";
-		
-		//3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de la vue
-		return new ModelAndView(viewName, data);
-		
-	}//end afficherFormulaireAjout
-	
-	@RequestMapping(value="/etudiantCours/add", method=RequestMethod.POST)
-	public String ajouterEmployeBdd(@ModelAttribute("etudiantCoursCommand") @Validated EtudiantCours pId, ModelMap modele, BindingResult result) {
-		//application du validateur sur l'objet pEmploye
-	//	matiereValidator.validate(pMatiere, result);
-		
-		//validation 
-		if (result.hasErrors()) {
-			/*_____le validator à detecter des erreurs_____*/
-			
-			//redirection vers la page du formulaore (ajouter-employe.jsp)
-			return "administrateur_ajout_matiere";
-		} else {
+	// ===========================================================//
+	// =========== Liste absences d'un enseignant ===============//
+	// ===========================================================//
 
-			/*_____le validator  n'à pas detecter des erreurs_____*/
-
-			//ajout de l'employé 
-			
-		//	matiereDAO.ajouter(pMatiere);
-
-		//	modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
-			
-			return "redirect:/matieres/listeAll";
-			
-		}//end else
-		
-	}//end ajoter
-	
-	@RequestMapping(value= {"/etudiantCours/delete/{etudiantCoursId}"}, method=RequestMethod.GET)
-	public String supprimerMatierebdd(@PathVariable("etudiantCoursId") Long id, ModelMap modele) {
-		
-		//1.suppression de l'employe dans la bdd
-		EtudiantCours absence = etudiantcoursDAO.getById(id);
-		//List<EnseignantMatierePromotion> listeenseignant =  enseignantmatierepromoda.getListeEnseignantMatierePromotionByMatiere(idMatiere);
-	
-			etudiantcoursDAO.supprimer(absence);
-		
-				
-		//	List<EtudiantCours> listetudiant = etudiantcoursDAO.getAllAbsenceByEnseignant(enseignant.getIdentifiant());
-			//modele.addAttribute("attribut_liste_absence", listetudiant);
-			//System.out.println(listetudiant);
-			return "enseignant_listeAbsence";
-	}//end supprimer
-	
 	/**
-	 * permet d'afficher le formulaire modif de l'employe
-	 * invoqué avec une requete http GET ()
-	 * avec passa du param 'idemploye'
+	 * Permet de recuperer la liste des etudiantsCours d'un etudiant. Invoquée au click
+	 * du bouton "absences" de l'entete etudiants. Renvoie vers la page
+	 * etudiant_listeAbsence
+	 * 
+	 * @param modele
 	 * @return
 	 */
-	//@RequestMapping(value="/etudiantCours/update-form",method=RequestMethod.GET)
-	//public ModelAndView afficherFormulaireUpdate(@RequestParam("idMatiere") Long id) {
+	@RequestMapping(value = "/etudiantCours/listeByEtudiant", method = RequestMethod.GET)
+	public String recupListeAllabsencebyetudiant(ModelMap modele) {
 		
-	//	Matiere matiereModif = matiereDAO.getById(id);
-		//System.out.println(matiereModif);
-		//2. déf du modele de données (objet de commande = employeModif) + déf du nom logique de la vue
-		// => ajout dans un objet ModelAndView
+		// 1. Recup de l'etudiant connecté 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Etudiant etudiant = (Etudiant) etudiantDao.getPersonneByMail(auth.getName());
 		
-		//return new ModelAndView("administrateur_modif_matiere","matiereModifCommand",matiereModif);
 		
-//	}//end afficherformulaireupdate()
-	
-//	/**
-//	 * permet de modifier un employé dans la BDD
-//	 * invoquée à la soumission du formulaire de modifier-employe.jsp
-//	 * @return
-//	 */
-//	@RequestMapping(value="/matieres/update", method=RequestMethod.POST)
-//	public String modifierEmployeBdd(@ModelAttribute("matiereModifCommand") Matiere id, ModelMap modele) {
-//		
-//		//1. modif de l'employé dans la bdd
-//	//	matiereDAO.modifier(id);
-//		
-//System.out.println(id);
-//		//2. récup la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
-//		//modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
-//		
-//		//4. redirection vers la page liste-employes.jsp
-//		return "redirect:/matieres/listeAll";
-//		
-//	}//end modifierEmployeBdd
+		// 2. recup de la liste de toutes les absences/presence de l'etudiant
+		List<EtudiantCours> listepresenceEtabsence = etudiantcoursDAO.getAbsenceByEtudiant(etudiant.getIdentifiant());
+
+		
+		// 3. Tris pour n'avoir que les absences + On ne garde que celles qui concernent ses matieres
+		List<EtudiantCours> listeabsence = new ArrayList<>();
+		for(EtudiantCours presenceAbsence : listepresenceEtabsence) {
+		if(presenceAbsence.isAbsence()) {
+				listeabsence.add(presenceAbsence);
+			}//end if
+		}//end for
+
+		// 4. def des données à afficher dans la vue
+		modele.addAttribute("attribut_liste_absence", listeabsence);
+
+		return "etudiant_listeAbsence";
+
+	}// end recupListeAllabsencebyetudiant
 	
 	
 	
 	
+	// ===========================================================//
+	// =========== Liste absences d'un cours =====================//
+	// ===========================================================//
+
+	/**
+	 * Permet de recuperer la liste des etudiantsCours d'un cours. Invoquée au click
+	 * du bouton "Feuille de presence" de la page affichage_cours.jsp. Renvoie vers
+	 * la page affichage_listeAbsence_cours.jsp
+	 * 
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value = "/absences/afficher/{idCours}", method = RequestMethod.GET)
+	public String affichagelisteEtudiantCoursPourUnCours(@PathVariable("idCours") Long idCours, ModelMap modele) {
+
+		List<EtudiantCours> listeEtudiantCours = etudiantcoursDAO.getAbsenceByCours(idCours);
+
+		Cours cours = coursDao.getById(idCours);
+
+		modele.addAttribute("attribut_liste_absences", listeEtudiantCours);
+		modele.addAttribute("attribut_cours", cours);
+		return "affichage_listeAbsence_Cours";
+	}// End creationlisteEtudiantCoursPourUnCours
+
 	
-}
+	
+	
+	// ===========================================================//
+	// =========== affichage formulaire modif =====================//
+	// ===========================================================//
+
+	/**
+	 * Permet de recuperer d'afficher le formulaire de modif d'une feuille de presence Invoquée au click
+	 * du bouton "Ajouter/modifier" de la page affichage_absence.jsp.
+	 * 
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value = "/absences/update-form/{idCours}", method = RequestMethod.GET)
+	public String formModifFeuillePresencePourUnCours(@PathVariable("idCours") Long idCours, ModelMap modele) {
+
+		
+		//Recup du cours, de sa promo et de la liste des etudiants dans la promo
+		Cours cours = coursDao.getById(idCours);
+		Promotion promotion = coursDao.getPromotionByIdCours(idCours);
+		List<Etudiant> listeEtudiant = etudiantDao.getlistEtudiantsByIdPromotion(promotion.getIdPromotion());
+		
+		//Recup des absences existantes déjà dans la dbb
+		List<EtudiantCours> listeEtudiantCours = etudiantcoursDAO.getAbsenceByCours(idCours);
+		
+		//On ajoute les absences qui n'existent pas dans la bdd
+		EtudiantCours absence;
+		boolean existeDeja = false;
+		
+		for (Etudiant etudiant : listeEtudiant) {
+			existeDeja = false;
+			for (EtudiantCours absenceExistante : listeEtudiantCours) {
+				if (absenceExistante.getEtudiant().getIdentifiant() == etudiant.getIdentifiant() ) {
+					existeDeja = true;
+				} // end if
+			} // end for
+			
+			if(existeDeja==false) {
+				absence = new EtudiantCours(false, "");
+				absence.setCours(cours);
+				absence.setEtudiant(etudiant);
+				etudiantcoursDAO.ajouter(absence);
+			}//end if
+		} // end for
+		
+		//On recupere la liste  des absences
+		List<EtudiantCours> listeAbsence = etudiantcoursDAO.getAbsenceByCours(idCours);
+		
+		//creation d'un objet AbsenceForm
+		AbsenceForm absenceForm = new AbsenceForm();
+		absenceForm.setListeEtudiantCours(listeAbsence);
+
+		modele.addAttribute("absenceForm", absenceForm);
+		modele.addAttribute("attribut_cours", cours);
+		
+		return "enseignant_ajout_modif_liste_absence";
+	}// End modifFeuillePresencePourUnCours
+	
+	
+	
+	// ===========================================================//
+	// =========== Modification des absences=====================//
+	// ===========================================================//
+
+	/**
+	 * Permet de recuperer de modif les absences à partir du formulaire de modif d'une feuille de presence
+	 * 
+	 * @param modele
+	 * @return
+	 */
+	@RequestMapping(value = "/absences/update/{idCours}", method = RequestMethod.POST)
+	public String modifFeuillePresencePourUnCours(@ModelAttribute("absenceForm") AbsenceForm absenceForm,@PathVariable("idCours") Long idCours, ModelMap modele) {
+		
+		List<EtudiantCours> listeAbsence = absenceForm.getListeEtudiantCours();
+		
+		Cours cours;
+		Etudiant etudiant;
+		for(EtudiantCours absence : listeAbsence) {
+			
+			cours=coursDao.getById(absence.getCours().getIdCours());
+			etudiant=(Etudiant) etudiantDao.getById(absence.getEtudiant().getIdentifiant());
+			
+			absence.setEtudiant(etudiant);
+			absence.setCours(cours);
+			
+			System.out.println(absence);
+			etudiantcoursDAO.modifier(absence);
+		}//end for
+		
+		
+		return "redirect:/absences/afficher/"+idCours;
+	}//end modifFeuillePresencePourUnCours
+}// end class

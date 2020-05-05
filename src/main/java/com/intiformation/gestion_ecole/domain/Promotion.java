@@ -23,6 +23,10 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Classe entity pour les promotions.
  * Relation triple avec Enseignant et Matière
@@ -47,6 +51,7 @@ public class Promotion implements Serializable {
 
 	@OneToMany(mappedBy="promotion")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	
@@ -54,11 +59,13 @@ public class Promotion implements Serializable {
 	// relation entre promotion et cours
 	@OneToMany(mappedBy="promotion")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<Cours> listeCours =new ArrayList<>();
 	
 	// relation entre promotion et étudiant
 	@ManyToMany(mappedBy = "listePromotion")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonIgnore
 	private List<Etudiant> listeEtudiant =new ArrayList<>();
 	
 	

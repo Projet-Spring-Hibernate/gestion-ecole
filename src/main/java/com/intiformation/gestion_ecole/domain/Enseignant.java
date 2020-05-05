@@ -21,6 +21,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * Classe entity pour les administrateurs. Classe fille de la classe Personne.
@@ -37,28 +39,11 @@ public class Enseignant extends Personne {
 
 	/*_______________prop_______________*/
 
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	@JoinTable(name = "enseignant_matiere_promotion",
-//	joinColumns = @JoinColumn(name="id_personne", referencedColumnName="identifiant"),
-//	inverseJoinColumns = @JoinColumn(name="MATIERE_ID", referencedColumnName="ID_MATIERE")
-//	)
-//	private List<Matiere> listeMatiere=new ArrayList<>();
-//	
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
-//	@Cascade(CascadeType.SAVE_UPDATE)
-//	@JoinTable(name = "enseignant_matiere_promotion",
-//	joinColumns = @JoinColumn(name="id_personne", referencedColumnName="identifiant"),
-//	inverseJoinColumns = @JoinColumn(name="PROMOTION_ID",referencedColumnName="ID_PROMOTION")
-//	)
-//	private List<Promotion> listePromotion=new ArrayList<>();
-	
 	
 	
 	@OneToMany(mappedBy="enseignant")
 	@Cascade(CascadeType.SAVE_UPDATE)
+	@JsonBackReference
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	

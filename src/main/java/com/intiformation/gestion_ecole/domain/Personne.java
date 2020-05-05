@@ -24,6 +24,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Classe Entité de Personne. Classe mère de Administrateur, Enseignant et Etudiant
  * Relation OneToOne avec Adresse
@@ -59,6 +61,7 @@ public class Personne implements Serializable {
 	@OneToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name = "adresse_id", referencedColumnName = "adresse_id")
+	@JsonManagedReference
 	private Adresse adresse;
 	
 	

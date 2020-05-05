@@ -63,4 +63,38 @@ public class EtudiantDAOImpl extends PersonneDaoImpl implements IEtudiantDAO{
 		return null;
 	}//end getlistEtudiantByIdEnseignant
 
+	
+	// --------------------------------------------------//
+	// -------------- GET BY PROMOTION --------------------//
+	// --------------------------------------------------//
+	@Override
+	public List<Etudiant> getlistEtudiantsByIdPromotion(Long pIdPromotion) {
+		try {
+			// 1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+
+			// 2. Contenu de la requête :
+			
+			Query<Etudiant> query = session.createQuery(
+					"SELECT DISTINCT e FROM etudiant e JOIN e.listePromotion l WHERE l.idPromotion = :pIdPromotion" );
+
+			query.setParameter("pIdPromotion", pIdPromotion);
+
+			// 3. recup du resultat
+			List<Etudiant> listeEtudiants = query.getResultList();
+
+			System.out.println(listeEtudiants);
+
+			return listeEtudiants;
+
+		} catch (PersistenceException e) {
+			System.out.println("... Erreur dans getlistEtudiantsByIdPromotion ....");
+			e.printStackTrace();
+		}
+		return null;
+	}//End getlistEtudiantsByIdPromotion
+	
+	
+	
+
 }//end class

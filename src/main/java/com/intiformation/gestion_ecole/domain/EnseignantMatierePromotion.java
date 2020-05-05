@@ -16,6 +16,8 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Table de jointure triple entre Enseignant, promotion et matière
  * @author IN-MP-018
@@ -35,16 +37,19 @@ public class EnseignantMatierePromotion {
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="MATIERE_ID", referencedColumnName="ID_MATIERE")
+	@JsonManagedReference
 	private Matiere matiere;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="ENSEIGNANT_ID", referencedColumnName="identifiant")
+	@JsonManagedReference
 	private Enseignant enseignant;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="PROMOTION_ID", referencedColumnName="ID_PROMOTION")
+	@JsonManagedReference
 	private Promotion promotion;
 	
 	/*_______________Constructeurs_______________*/
