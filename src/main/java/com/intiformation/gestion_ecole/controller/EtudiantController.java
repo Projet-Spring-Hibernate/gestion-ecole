@@ -135,7 +135,7 @@ public class EtudiantController {
 	/**
 	 * Permet de recuperer la liste des etudiants de l'enseignant connecté. Invoqué
 	 * au click du bouton "Mes etudiants" de l'entête enseignant. Renvoie vers la
-	 * page enseignant_listeEtudiants.jsp
+	 * page enseignant_listeEnseignant.jsp
 	 * 
 	 * @param modele
 	 * @return
@@ -532,6 +532,7 @@ public class EtudiantController {
 
 				// On ajoute l'adresse à l'etudiant et vice versa par la méthode 'add'
 				etudiant.addAdresse(adresse);
+				adresseDao.modifier(adresse);
 
 				System.out.println("Adresse : " + adresse);
 			} else {

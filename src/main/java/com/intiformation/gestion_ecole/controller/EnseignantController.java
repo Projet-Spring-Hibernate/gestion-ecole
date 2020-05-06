@@ -663,6 +663,7 @@ public class EnseignantController {
 
 				// On ajoute l'adresse à l'enseignant et vice versa par la méthode 'add'
 				enseignant.addAdresse(adresse);
+				adresseDao.modifier(adresse);
 
 				System.out.println("Adresse : " + adresse);
 			} else {

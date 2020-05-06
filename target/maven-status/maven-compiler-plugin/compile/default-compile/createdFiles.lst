@@ -7,6 +7,7 @@ com\intiformation\gestion_ecole\cryptage\PasswordEncoderGenerator.class
 com\intiformation\gestion_ecole\controller\CoursController.class
 com\intiformation\gestion_ecole\entityForForms\CoursForm.class
 com\intiformation\gestion_ecole\validator\AbsenceFromValidator.class
+com\intiformation\gestion_ecole\validator\AdministrateurFromValidator.class
 com\intiformation\gestion_ecole\domain\Matiere.class
 com\intiformation\gestion_ecole\dao\MatiereDAOImpl.class
 com\intiformation\gestion_ecole\webServices\EtudiantWsREST.class
@@ -31,6 +32,7 @@ com\intiformation\gestion_ecole\dao\IEnseignantMatierePromotionDao.class
 com\intiformation\gestion_ecole\dao\EnseignantMatierePromotionDaoImpl.class
 com\intiformation\gestion_ecole\controller\EtudiantListController.class
 com\intiformation\gestion_ecole\domain\Adresse.class
+com\intiformation\gestion_ecole\controller\AdministrateurController.class
 com\intiformation\gestion_ecole\tests\AppTest.class
 com\intiformation\gestion_ecole\dao\IAideDAO.class
 com\intiformation\gestion_ecole\domain\Cours.class
@@ -50,6 +52,7 @@ com\intiformation\gestion_ecole\validator\CoursValidator.class
 com\intiformation\gestion_ecole\webServices\AdresseWsREST.class
 com\intiformation\gestion_ecole\controller\WelcomeController.class
 com\intiformation\gestion_ecole\entityForForms\EnseignantForm.class
+com\intiformation\gestion_ecole\entityForForms\AdministrateurForm.class
 com\intiformation\gestion_ecole\controller\MatiereController.class
 com\intiformation\gestion_ecole\dao\AdresseDaoImpl.class
 com\intiformation\gestion_ecole\controller\PersonneController.class

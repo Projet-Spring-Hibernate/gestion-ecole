@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.intiformation.gestion_ecole.dao.IAideDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantMatierePromotionDao;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
@@ -48,6 +49,9 @@ public class MatiereController {
 	
 	@Autowired //injection du bean du validator dans employevalidateur 
 	private MatiereFormValidator matiereValidator;
+	
+	@Autowired
+	private IAideDAO aideDao;
 
 	public void setMatiereDAO(IMatiereDAO matiereDAO) {
 		this.matiereDAO = matiereDAO;
@@ -68,6 +72,12 @@ public class MatiereController {
 	public void setEnseignantmatierepromoda(IEnseignantMatierePromotionDao enseignantmatierepromoda) {
 		this.enseignantmatierepromoda = enseignantmatierepromoda;
 	}
+	
+	
+
+	public void setAideDao(IAideDAO aideDao) {
+		this.aideDao = aideDao;
+	}
 
 	//==================================================================//
 	/**
@@ -82,7 +92,7 @@ public class MatiereController {
 		
 		//2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_matiere", listeMatiere);
-		
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeMatieres"));
 		return "administrateur_listeMatieres";
 	}//end recupListeAllEtudiant
 	
@@ -103,6 +113,7 @@ public class MatiereController {
 		System.out.println("dans le controleur");
 		modele.addAttribute("attribut_liste_matiere", listeMatiere);
 		System.out.println(listeMatiere);
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_listeMatieres"));
 		return "enseignant_listeMatieres";
 	}//end recupListeAllMatiereByID
 	
@@ -119,6 +130,7 @@ public class MatiereController {
 		System.out.println("dans le controleur");
 		modele.addAttribute("attribut_liste_matiere", listeMatiere);
 		System.out.println(listeMatiere);
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("etudiant_listeMatieres"));
 		return "etudiant_listeMatieres";
 	}//end recupListeAllMatiereByID
 	
@@ -141,8 +153,8 @@ public class MatiereController {
 		modele.addAttribute("attribut_matiere", matiere);
 		modele.addAttribute("attribut_enseignant", enseignant);
 		//modele.addAttribute("attribut_listePromo", listepromo);
-		modele.addAttribute("aide_contenu", "Aide pour la page affichage_etudiant");
-		
+		modele.addAttribute("aide_contenu", "Aide pour la page affichage_matiere");
+
 		return "affichage_matiere";
 	}//end recupListeAllEtudiant
 	
@@ -189,6 +201,7 @@ public class MatiereController {
 			matiereDAO.ajouter(pMatiere);
 
 			modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
+			
 			
 			return "redirect:/matieres/listeAll";
 			
