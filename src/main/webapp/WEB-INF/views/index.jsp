@@ -47,6 +47,7 @@
 
 	<div class="mainContent">
 
+
 		<h1>Bienvenue ${attribut_personneConnecte.prenom }
 			${attribut_personneConnecte.nom }</h1>
 

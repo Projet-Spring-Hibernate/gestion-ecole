@@ -83,7 +83,7 @@
 			<tr>
 				<td>Promotions et matières</td>
 				<td><c:forEach items="${attribut_combinaison}" var="combinaison">
-						<a href="${pageContext.request.contextPath}/matieres/afficher/${combinaison.matiere.idMatiere}">${combinaison.matiere.libelle}</a> 
+						<a href="${pageContext.request.contextPath}/matieres/afficher/${combinaison.matiere.idMatiere}">${combinaison.matiere.libelle}</a> pour la promotion 
 						<a href="${pageContext.request.contextPath}/promotions/afficher/${combinaison.promotion.idPromotion}">${combinaison.promotion.libelle}</a><br />
 					</c:forEach></td>
 			</tr>

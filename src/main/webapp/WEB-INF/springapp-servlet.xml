@@ -49,6 +49,34 @@
 	</bean>
 
 
+	<!--============================================================================= -->
+	<!--============== configuration des bundles de ressources (i18n) =============== -->
+	<!--============================================================================= -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/i18n/messages</value>
+			</list>
+		</property>
+	</bean>
+	<!--============================================================================= -->
+	<!--============== configuration de l'intercepteur (i18n) ====================== -->
+	<!--============================================================================= -->
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+	</mvc:interceptors>
 
 
+	<!--============================================================================= -->
+	<!--============== configuration du résolveur de locales (i18n) ================= -->
+	<!--============================================================================= -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="fr_FR" />
+	</bean>
 </beans>

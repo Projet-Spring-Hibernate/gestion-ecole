@@ -103,7 +103,7 @@
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
 			
 			<sec:intercept-url
-			pattern="/cours/add*"
+			pattern="/cours/add"
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
 			
 			<sec:intercept-url
@@ -111,9 +111,13 @@
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
 			
 			<sec:intercept-url
-			pattern="/cours/update*"
+			pattern="/cours/update"
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
 			
+			
+			<sec:intercept-url
+			pattern="/cours/update-cours-enseignant"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
 			<sec:intercept-url
 			pattern="/enseignants/listeAll*"
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />

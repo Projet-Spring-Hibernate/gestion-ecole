@@ -698,11 +698,13 @@ public class EnseignantController {
 			List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = enseignantform
 					.getListeEnseignantMatierePromotion();
 
+		
 			// ----------- Suppression des doublons ---------------//
 
 			// Création d'une liste vide dans laquelle on va transferrer les objets distinct
 			List<EnseignantMatierePromotion> listeEnseignantMatierePromotionDISTINCT = new ArrayList<>();
 
+			
 			// On parcourt la liste des combinaisons
 			for (EnseignantMatierePromotion combinaison : listeEnseignantMatierePromotion) {
 
@@ -742,6 +744,10 @@ public class EnseignantController {
 
 			// ------ Recup des infos des matieres et promotion+modif-------------------//
 
+			
+			List<EnseignantMatierePromotion> listeCombianaisonAvantModification = enseignantMatierePromotionDao.getListeEnseignantMatierePromotionByEnseignant(enseignant.getIdentifiant());
+			
+			
 			// On parcourt la liste des combinaisons
 			Promotion promotion;
 			Matiere matiere;
@@ -787,6 +793,21 @@ public class EnseignantController {
 
 			} // end for
 
+			
+			int cpt=0;
+			for(EnseignantMatierePromotion ancienneCombinaison : listeCombianaisonAvantModification) {
+				cpt=0;
+				for(EnseignantMatierePromotion nouvelleCombinaison : newlisteEnseignantMatierePromotion) {
+					if(nouvelleCombinaison.getMatiere().getIdMatiere()==ancienneCombinaison.getMatiere().getIdMatiere() && nouvelleCombinaison.getPromotion().getIdPromotion()==ancienneCombinaison.getPromotion().getIdPromotion()) {
+						cpt++;
+					}//end if
+				}//end for
+				if(cpt==0) {
+					//=> si l'ancienne combianaison n'est plus dans la nouvelle liste on la supprime
+					enseignantMatierePromotionDao.supprimer(ancienneCombinaison);
+				}//end if
+			}//End for
+			
 
 			// 2. recup de la nouvelle liste des enseignants + redirection vers la page
 			// administrateur_listeEnseignats.jsp
