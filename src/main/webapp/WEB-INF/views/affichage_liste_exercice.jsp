@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
- <!-- ============================================================================ -->
-<!-- Taglib -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- ============================================================================ -->
+<!-- Taglib de spring security -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<!-- ============================================================================ -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Affichage exercices</title>
+
 <!-- ============================================================================ -->
 <!-- Lien vers .css -->
 <!-- construction du chemin vers ma feuille de style -->
@@ -27,70 +31,51 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Admin - liste cours</title>
 </head>
 <body>
-
-
-	<%-- inclusion dynamique du fragment entete.jsp --%>
-	<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+		<jsp:include page="/WEB-INF/fragments/entete_admin.jsp" />
+	</s:authorize>
+	<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+		<jsp:include page="/WEB-INF/fragments/entete_enseignant.jsp" />
+	</s:authorize>
+	<s:authorize access="hasRole('ROLE_ETUDIANT')">
+		<jsp:include page="/WEB-INF/fragments/entete_etudiant.jsp" />
+	</s:authorize>
 
 	<div class="mainContent">
 
-		<h1>Liste des cours de l'école</h1>
-	  
-		<a href="${pageContext.request.contextPath}/cours/add-cours-form"
-			class="btn btn-primary btn-sm" role="button">Ajouter un cours</a>
+		<h1>Liste des exercices pour le cours ${attribut_cours.libelle}</h1>
+
+ 		<a class="btn btn-primary" 
+			href="${pageContext.request.contextPath}/exercice/add-form/${attribut_cours.idCours}">Ajouter</a>
 			
-			
+		<br /> <br />
 		<table class="table table-striped">
-			<!-- Ajout d'un employe -->
 
 			<tr>
-				<th>ID cours</th>
-				<th>libelle</th>
-				<th>Date</th>
-				<th>Durée</th>
-				<th>Description</th>
-				<th>Matière</th>
-				<th>Promotion</th>
-				<th></th>
+				<th>ID</th>
+				<th>Libelle</th>
+				<th>Cours</th>
+
 			</tr>
 
-			<c:forEach items="${attribut_liste_cours}" var="cours">
+			<c:forEach items="${attribut_liste_exercice}" var="exo">
 				<tr>
-					<td>${cours.idCours}</td>
-					<td>${cours.libelle}</td>
-					<td>${cours.date}</td>
-					<td>${cours.duree}</td>
-					<td>${cours.description}</td>
-					<td>${cours.matiere.libelle}</td>
-					<td>${cours.promotion.libelle}</td>
-
-
-					<!-- colonne pour afficher l'étudiant -->
+					<td>${exo.idExercice}</td>
+					<td>${exo.libelle}</td>
+					<td>${exo.cours.libelle}</td>
+					
 					<td><a
-						href="${pageContext.request.contextPath}/cours/afficher/${cours.idCours}">Afficher</a></td>
-
-					
-					
-<!-- 					<td><a -->
-<%-- 						href="${pageContext.request.contextPath}/cours/delete/${cours.idCours}">Supprimer</a></td> --%>
+						href="${pageContext.request.contextPath}/exercice/update-form/${exo.idExercice}">Modifier</a></td>
 						
-					
-					
+					<td><a
+						href="${pageContext.request.contextPath}/exercice/delete/${exo.idExercice}">Supprimer</a></td>
+
+
 				</tr>
 			</c:forEach>
-
-
-
 		</table>
-
-
-
-
-
-
 	</div>
 
 

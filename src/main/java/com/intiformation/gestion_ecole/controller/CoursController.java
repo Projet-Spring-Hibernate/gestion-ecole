@@ -98,7 +98,7 @@ public class CoursController {
 	}
 
 	/**
-	 * 
+	 * RECUP DE TOUS LES COURS
 	 * @param modele
 	 * @return
 	 */
@@ -119,7 +119,7 @@ public class CoursController {
 
 	
 	/**
-	 * 
+	 * AFFICHAGE D'UN COURS
 	 * @param modele
 	 * @return
 	 */
@@ -139,6 +139,12 @@ public class CoursController {
 		return "affichage_cours";
 	}//end recupCoursById
 	
+	/**
+	 * SUPPRESSION D'UN COURS
+	 * @param pIdCours
+	 * @param modele
+	 * @return
+	 */
 	@RequestMapping(value="/cours/delete/{coursID}", method=RequestMethod.GET)
 	public String suppressionCoursById(@PathVariable("coursID") Long pIdCours, ModelMap modele) {
 		
@@ -156,8 +162,9 @@ public class CoursController {
 		return "redirect:/cours/listeAll";
 	}//end recupCoursById
 	
+	
 	/**
-	 * 
+	 * LISTE DES COURS D'UN ETUDIANT
 	 * @param pIdEtudiant
 	 * @param modele
 	 * @return
@@ -385,7 +392,7 @@ public class CoursController {
 	
 
 	/**
-	 * permet d'ajouter un enseignant à la bdd
+	 * permet d'ajouter un cours à la bdd
 	 * 
 	 * @Validated permet de declencher la validation de l'objet BindingResult
 	 *            resultat va contenir le resultat du processus de la validation

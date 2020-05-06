@@ -77,19 +77,26 @@
 				<td>Promotion</td>
 				<td>${attribut_cours.promotion.libelle}</td>
 			</tr>
+			
+			
+			
 
 
 			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
 				<td><a class="btn btn-warning"
 					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a></td>
+					<td><a class="btn btn-danger"
+						href="${pageContext.request.contextPath}/cours/delete/${attribut_cours.idCours}">Supprimer</a></td>
 				<td><a class="btn btn-success"
 					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
 						de présence</a></td>
 			</s:authorize>
 			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+				<td><a class="btn btn-primary"
+					href="${pageContext.request.contextPath}/exercice/listeExo/${attribut_cours.idCours}">Afficher les exercices associés</a></td>
 				<td><a class="btn btn-warning"
 					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a></td>
-
+				
 				<td><a class="btn btn-success"
 					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
 						de présence</a></td>

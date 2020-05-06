@@ -29,6 +29,8 @@ public interface ICoursDAO extends IGenericDAO<Cours>{
 	
 	public Cours getCoursByLibelle(String plibelle);
 	
+	public Cours getCoursByIdExercice(Long pIdExercice);
+	
 	
 
 }//end interface

@@ -199,6 +199,31 @@ public class CoursDAOImpl extends GeneraleDAOImpl<Cours> implements ICoursDAO{
 		
 		return null;
 	}//end getCoursByLibelle
+
+	@Override
+	public Cours getCoursByIdExercice(Long pIdExercice) {
+		try {
+			//1. Recup de la session à partir de la SessionFactory
+			Session session = this.getSessionFactory().getCurrentSession();
+			
+			//3. Contenu de la requête : 
+
+	
+			Query<Cours> query = session.createQuery("SELECT c FROM cours c JOIN c.listeExercices l WHERE l.idExercice = :pIdExercice");
+			
+			query.setParameter("pIdExercice", pIdExercice);
+
+			Cours cours= query.getSingleResult();
+			
+			
+			return cours;
+			
+		}catch (PersistenceException e){
+			System.out.println("... Erreur ....");
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 
 }//end class
