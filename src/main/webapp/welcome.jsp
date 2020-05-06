@@ -30,18 +30,26 @@
 <script type="text/javascript" src="${bootstrapJS}"></script>
 
 <!-- ============================================================================ -->
-<title>Welcome to WebCole</title>
+<title>Bienvenue à Poudlard !</title>
 </head>
 <body>
+<br/>
+<br />
+<div style="text-align: center;">
+<img class="mb-4"
+			src="/01_gestion_ecoles/assets/images/online_education.png" alt=""
+			width="250" height="250">
+			</div>
+			
 	<div style="width: 100%; text-align: center;">
 		<br />
+		
+		
+		
+		<h1>Bienvenue à Poudlard !</h1>
 		<br />
 		<br />
-		<br />
-		<h1>Welcome to WebCole !</h1>
-		<br />
-		<br />
-		<a class="btn btn-primary" role="button"
+		<a class="btn btn-light" role="button"
 			href="${pageContext.request.contextPath}/welcome">Entrer sur le
 			site</a>
 	</div>

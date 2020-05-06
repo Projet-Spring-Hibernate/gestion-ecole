@@ -121,62 +121,68 @@ public class WelcomeController {
 		
 		//Creation des personnes
 		
-		Enseignant enseignant1 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Prof1", "1", "prof1@gmail.com");
-		Enseignant enseignant2 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Prof2", "2", "prof2@gmail.com");
-		Enseignant enseignant3 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Prof3", "3", "prof3@gmail.com");
+		Enseignant enseignant1 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Severus Rogue", "1", "rogue@gmail.com");
+		Enseignant enseignant2 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Minerva McGonagall", "2", "mcGonagall@gmail.com");
+		Enseignant enseignant3 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Pomora Chourave", "3", "chourave@gmail.com");
+		Enseignant enseignant4 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Filius Flitwick", "4", "flitwick@gmail.com");
 
+		Etudiant etudiant1 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Harry Potter", "1", "potter@gmail.com", "etudiant1.jpg", "15/02/1993");
+		Etudiant etudiant2 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Hermione Granger", "2", "granger@gmail.com", "etudiant2.jpg", "20/04/1993");
+		Etudiant etudiant3 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Drago Malefoy", "3", "malefoy@gmail.com", "etudiant3.jpg", "25/12/1993");
+		Etudiant etudiant4 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Bellatrix Lestrange", "4", "lestrange@gmail.com", "etudiant4.jpg", "14/07/1993");
+		Etudiant etudiant5 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Mimi Geignarde", "5", "geignarde@gmail.com", "etudiant5.jpg", "01/01/1993");
+		Etudiant etudiant6 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Chang cho", "6", "cho@gmail.com", "etudiant6.jpg", "16/08/1993");
+		Etudiant etudiant7 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Cedric Diggory", "7", "diggory@gmail.com", "etudiant7.jpg", "22/10/1993");
+		Etudiant etudiant8 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Nymphadora Tonks", "8", "tonks@gmail.com", "etudiant8.jpg", "26/09/1993");
+		
 
-		Etudiant etudiant1 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "etudiant1", "1", "etudiant1@gmail.com", "etudiant1.jpg", "01/01/2000");
-		Etudiant etudiant2 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "etudiant2", "2", "etudiant2@gmail.com", "etudiant2.jpg", "01/01/2000");
-		Etudiant etudiant3 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "etudiant3", "3", "etudiant3@gmail.com", "etudiant3.jpg", "01/01/2000");
-		Etudiant etudiant4 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "etudiant4", "4", "etudiant4@gmail.com", "etudiant4.jpg", "01/01/2000");
-		Etudiant etudiant5 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "etudiant5", "5", "etudiant5@gmail.com", "etudiant5.jpg", "01/01/2000");
-
-		Administrateur admin1 = new Administrateur("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "admin1", "1", "admin@gmail.com");
+		Administrateur admin1 = new Administrateur("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Albus Dumbledore", "1", "dumbledore@gmail.com");
 		
 		//Creation des adresses (1 par personne)
 
-		Adresse adresse1= new Adresse("rue1", "75000", "Paris");
-		Adresse adresse2= new Adresse("rue2", "75002", "Paris");
-		Adresse adresse3= new Adresse("rue3", "75003", "Paris");
-		Adresse adresse4= new Adresse("rue4", "75004", "Paris");
-		Adresse adresse5= new Adresse("rue5", "75005", "Paris");
-		Adresse adresse6= new Adresse("rue6", "75006", "Paris");
-		Adresse adresse7= new Adresse("rue7", "75007", "Paris");
-		Adresse adresse8= new Adresse("rue8", "75008", "Paris");
-		Adresse adresse9= new Adresse("rue9", "75009", "Paris");
+		Adresse adresse1= new Adresse("10 Rue du Chaudron", "75015", "Pré-Au-lard");
+		Adresse adresse2= new Adresse("26 Rue du Hibou", "75002", "Azkaban");
+		Adresse adresse3= new Adresse("11 Rue du Phoenix", "75013", "Private Drive");
+		Adresse adresse4= new Adresse("20 Rue de la Magie", "75004", "Chemin de Traverse");
+		Adresse adresse5= new Adresse("1 Rue de la Baguette", "75018", "Little Whinging");
+		Adresse adresse6= new Adresse("5 Rue du Nifleur", "75006", "Bristol");
+		Adresse adresse7= new Adresse("45 Rue de la Coupe", "75017", "Poudlard");
+		Adresse adresse8= new Adresse("6 Rue du Dragon", "75008", "Londres");
+		Adresse adresse9= new Adresse("3 Rue du Horcrux", "75009", "Godric");
 
 		
 		//Creation des promotions
 		
-		Promotion promotion1 = new Promotion("Promo1");
-		Promotion promotion2 = new Promotion("Promo2");
+		Promotion promotion1 = new Promotion("Serpentard");
+		Promotion promotion2 = new Promotion("Serdaigle");
+		Promotion promotion3 = new Promotion("Poufsouffle");
+		Promotion promotion4 = new Promotion("Gryffondor");
 		
 		
 		//Creation des matières
-		Matiere matiere1 = new Matiere("Math");
-		Matiere matiere2 = new Matiere("Chimie");
-		Matiere matiere3 = new Matiere("Meca");
+		Matiere matiere1 = new Matiere("Défense contre les forces du Mal");
+		Matiere matiere2 = new Matiere("Potion");
+		Matiere matiere3 = new Matiere("Histoire de la Magie");
 
 	
 		//Creation des cours 
 
-		Cours cours1 = new Cours("cours1", "lundi", "3h", "cours de Math promo1");
-		Cours cours2 = new Cours("cours2", "mardi", "3h", "cours de Chimie promo1");
-		Cours cours3 = new Cours("cours3", "mercredi", "3h", "cours de Meca promo1");
-		Cours cours4 = new Cours("cours4", "jeudi", "3h", "cours de Math promo2");
-		Cours cours5 = new Cours("cours5", "vendredi", "3h", "cours de Chimie promo2");
-		Cours cours6 = new Cours("cours6", "samedi", "3h", "cours de Meca promo2");
+		Cours cours1 = new Cours("cours1", "lundi", "3h", "cours de Défense contre les forces du Mal Serpentard");
+		Cours cours2 = new Cours("cours2", "mardi", "3h", "cours de Potion Serdaigle");
+		Cours cours3 = new Cours("cours3", "mercredi", "3h", "cours d'Histoire de la Magie Poufsouffle");
+		Cours cours4 = new Cours("cours4", "jeudi", "3h", "cours de Potion Poufsouffle");
+		Cours cours5 = new Cours("cours5", "vendredi", "3h", "cours d'Histoire de la Magie Serpentard");
+		Cours cours6 = new Cours("cours6", "samedi", "3h", "cours de Défense contre les forces du Mal Gryffondor");
 		
 		//Creation d'exercices
 		
-		Exercice exercice1 = new Exercice("cours de Math promo1 exo1 "); //pour le cours 1
-		Exercice exercice2 = new Exercice("cours de Math promo1 exo2"); //pour le cours 1
-		Exercice exercice3 = new Exercice("cours de Meca promo1 exo1 "); //pour le cours 3
-		Exercice exercice4 = new Exercice("cours de Meca promo2 exo1"); //pour le cours 6
-		Exercice exercice5 = new Exercice("cours de Meca promo2 exo2"); //pour le cours 6
-		Exercice exercice6 = new Exercice("cours de Chimie promo2 exo1"); //pour le cours 5
-		Exercice exercice7 = new Exercice("cours de Chimie promo2 exo2");//pour le cours 5
+		Exercice exercice1 = new Exercice("cours de Potion Gryffondor Filtre d'amour "); //pour le cours 1
+		Exercice exercice2 = new Exercice("cours d'Histoire de la Magie Serpentard Les Sorts"); //pour le cours 1
+		Exercice exercice3 = new Exercice("cours de Défense contre les forces du Mal Gryffondor Endoloris "); //pour le cours 3
+		Exercice exercice4 = new Exercice("cours d'Histoire de la Magie Serpentard Botanique"); //pour le cours 6
+		Exercice exercice5 = new Exercice("cours de Potion Serdaigle Métamorphose"); //pour le cours 6
+		Exercice exercice6 = new Exercice("cours de Potion Poufsouffle Potion de Chance"); //pour le cours 5
+		Exercice exercice7 = new Exercice("cours de Défense contre les forces du Mal Serpentard Avada Kedavra");//pour le cours 5
 		
 		
 		//Creation d'etudiantCours (presence/absence au cours)
@@ -410,26 +416,28 @@ public class WelcomeController {
 		
 		//===================================================================================
 		
+		aideDao.ajouter(new Aide("admin_welcome", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_listeEnseignants", "Liste de tous les enseignants de la base de données."));
 		aideDao.ajouter(new Aide("administrateur_listeEtudiants", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("administrateur_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listePromotion", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_listeMatieres", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_listeCours", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("administrateur_listeAbsences", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeAbsence", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_listeAides", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_ajout_enseignant", "Formulaire d'ajout d'un enseignant dans la base de donnés."));
 		aideDao.ajouter(new Aide("administrateur_ajout_etudiant", "Formulaire d'ajout d'un etudiant dans la base de donnés."));
-		aideDao.ajouter(new Aide("administrateur_ajout_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_ajout_promotion", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur _ajout_matiere", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_ajout_cours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_modif_enseignant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_modif_etudiant", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("administrateur_modif_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_promotion", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur _modif_matiere", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_modif_cours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("administrateur_modif_aide", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_listeEtudiants", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("enseignant_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listeAbsence", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_listePromotion", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_listeMatieres", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_listeCours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_ajout_exercice", "Pas d'aide disponible"));
@@ -437,18 +445,21 @@ public class WelcomeController {
 		aideDao.ajouter(new Aide("enseignant_ajout_absence", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_modif_exercice", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("enseignant_modif_cours", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("enseignant_modif_absence", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("etudiant_listePromos", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("enseignant_ajout_modif_liste_absence", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listePromotion", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("etudiant_listeAbsence", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("etudiant_listeMatieres", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("etudiant_listeCours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("etudiant_listeEnseignants", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_exercice", "Pas d'aide disponible"));
-		aideDao.ajouter(new Aide("affichage_promo", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_promotion", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_matiere", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_cours", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_enseignant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_etudiant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_aide", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_listeAbsence_Cours", "Pas d'aide disponible"));
+		
 
 		//===================================================================================
 		

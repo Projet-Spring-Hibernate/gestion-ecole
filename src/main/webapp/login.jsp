@@ -128,7 +128,7 @@ body {
 	<form class="form-signin" action="${loginUrl }" method="post">
 		<img class="mb-4"
 			src="/01_gestion_ecoles/assets/images/online_education.png" alt=""
-			width="72" height="72">
+			width="200" height="200">
 		<h1 class="h3 mb-3 font-weight-normal">Formulaire
 			d'authentification</h1>
 		<label for="inputEmail" class="sr-only">Adresse mail</label> <input

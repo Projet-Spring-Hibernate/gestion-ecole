@@ -28,9 +28,184 @@
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/index.jsp*"
 			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ANONYMOUS','ROLE_ETUDIANT', 'ROLE_ENSEIGNANT')" />
+			
 		<sec:intercept-url
 			pattern="/etudiantCours/listeAll*"
 			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/etudiantCours/listeByEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/etudiantCours/listeByEtudiant*"
+			access="hasAnyRole('ROLE_ETUDIANT')" />
+
+			<sec:intercept-url
+			pattern="/absences/afficher*"
+			access="hasAnyRole('ROLE_ENSEIGNANT','ROLE_ADMINISTRATEUR')" />
+
+			<sec:intercept-url
+			pattern="/absences/update-form*"
+			access="hasAnyRole('ROLE_ENSEIGNANT','ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/absences/update*"
+			access="hasAnyRole('ROLE_ENSEIGNANT','ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/aides/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/aides/afficher*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/aides/update-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/aide/update*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/afficher*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ENSEIGNANT','ROLE_ETUDIANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/delete*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/listeByEtudiant*"
+			access="hasAnyRole('ROLE_ETUDIANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/listeByEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/add-cours-formEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/add-enseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/cours/listeByEtudiant*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/add-cours-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/add*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/update-cours-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/cours/update*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/add-enseignant-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/add*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/update*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/add-etudiant-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/update*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/matieres/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/add*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/matieres/add-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/matieres/update-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/promotions/listeAll*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/promotions/add-promotion-form*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/promotions/add*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/promotions/update*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/listeByEtudiant*"
+			access="hasAnyRole('ROLE_ETUDIANT')" />
+			
+			<sec:intercept-url
+			pattern="/promotions/listeByEtudiant*"
+			access="hasAnyRole('ROLE_ETUDIANT')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/listeByEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/matieres/listeByEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="promotions/listeByEnseignant*"
+			access="hasAnyRole('ROLE_ENSEIGNANT')" />
+			
+			<sec:intercept-url
+			pattern="/etudiants/affiche*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ENSEIGNANT','ROLE_ETUDIANT')" />
+			
+			<sec:intercept-url
+			pattern="/enseignants/affiche*"
+			access="hasAnyRole('ROLE_ADMINISTRATEUR','ROLE_ENSEIGNANT','ROLE_ETUDIANT')" />
+			
+			
 
 
 		<!-- ==== Formulaire personnalisé === -->
