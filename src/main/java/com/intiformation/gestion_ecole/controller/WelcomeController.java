@@ -121,22 +121,22 @@ public class WelcomeController {
 		
 		//Creation des personnes
 		
-		Enseignant enseignant1 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Severus Rogue", "1", "rogue@gmail.com");
-		Enseignant enseignant2 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Minerva McGonagall", "2", "mcGonagall@gmail.com");
-		Enseignant enseignant3 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Pomora Chourave", "3", "chourave@gmail.com");
-		Enseignant enseignant4 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Filius Flitwick", "4", "flitwick@gmail.com");
+		Enseignant enseignant1 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Rogue", "Severus", "rogue@gmail.com");
+		Enseignant enseignant2 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "McGonagall", "Minerva", "mcGonagall@gmail.com");
+		Enseignant enseignant3 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Chourave", "Pomora", "chourave@gmail.com");
+		Enseignant enseignant4 = new Enseignant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Flitwick", "Filius", "flitwick@gmail.com");
 
-		Etudiant etudiant1 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Harry Potter", "1", "potter@gmail.com", "etudiant1.jpg", "15/02/1993");
-		Etudiant etudiant2 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Hermione Granger", "2", "granger@gmail.com", "etudiant2.jpg", "20/04/1993");
-		Etudiant etudiant3 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Drago Malefoy", "3", "malefoy@gmail.com", "etudiant3.jpg", "25/12/1993");
-		Etudiant etudiant4 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Bellatrix Lestrange", "4", "lestrange@gmail.com", "etudiant4.jpg", "14/07/1993");
-		Etudiant etudiant5 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Mimi Geignarde", "5", "geignarde@gmail.com", "etudiant5.jpg", "01/01/1993");
-		Etudiant etudiant6 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Chang cho", "6", "cho@gmail.com", "etudiant6.jpg", "16/08/1993");
-		Etudiant etudiant7 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Cedric Diggory", "7", "diggory@gmail.com", "etudiant7.jpg", "22/10/1993");
-		Etudiant etudiant8 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Nymphadora Tonks", "8", "tonks@gmail.com", "etudiant8.jpg", "26/09/1993");
+		Etudiant etudiant1 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Potter", "Harry", "potter@gmail.com", "etudiant1.jpg", "15/02/1993");
+		Etudiant etudiant2 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Granger", "Hermione", "granger@gmail.com", "etudiant2.jpg", "20/04/1993");
+		Etudiant etudiant3 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Malefoy", "Drago", "malefoy@gmail.com", "etudiant3.jpg", "25/12/1993");
+		Etudiant etudiant4 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Lestrange", "Bellatrix", "lestrange@gmail.com", "etudiant4.jpg", "14/07/1993");
+		Etudiant etudiant5 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Geignarde", "Mimi", "geignarde@gmail.com", "etudiant5.jpg", "01/01/1993");
+		Etudiant etudiant6 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " cho", "Chang", "cho@gmail.com", "etudiant6.jpg", "16/08/1993");
+		Etudiant etudiant7 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Diggory", "Cedric", "diggory@gmail.com", "etudiant7.jpg", "22/10/1993");
+		Etudiant etudiant8 = new Etudiant("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Tonks", "Nymphadora", "tonks@gmail.com", "etudiant8.jpg", "26/09/1993");
 		
 
-		Administrateur admin1 = new Administrateur("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", "Albus Dumbledore", "1", "dumbledore@gmail.com");
+		Administrateur admin1 = new Administrateur("$2a$10$6Pb4872xfcnKiHuTr5GHZebyH5ZtQm0wZMgrO83BbHgITWXpyjoSi", " Dumbledore", "Albus", "dumbledore@gmail.com");
 		
 		//Creation des adresses (1 par personne)
 
@@ -149,6 +149,10 @@ public class WelcomeController {
 		Adresse adresse7= new Adresse("45 Rue de la Coupe", "75017", "Poudlard");
 		Adresse adresse8= new Adresse("6 Rue du Dragon", "75008", "Londres");
 		Adresse adresse9= new Adresse("3 Rue du Horcrux", "75009", "Godric");
+		Adresse adresse10= new Adresse("6 Rue de Gloucester", "75010", "Londres");
+		Adresse adresse11= new Adresse("4 Rue du Balais", "75003", "Bristol");
+		Adresse adresse12= new Adresse("25 Rue du vif d'or", "75014", "Pré-au-lard");
+		Adresse adresse13= new Adresse("3 Rue Picadilly", "75009", "Londres");
 
 		
 		//Creation des promotions
@@ -194,9 +198,7 @@ public class WelcomeController {
 		EtudiantCours presence5 = new EtudiantCours(false, "/");
 		EtudiantCours presence6 = new EtudiantCours(true, "motif3");
 		EtudiantCours presence7 = new EtudiantCours(false, "/");
-		EtudiantCours presence8 = new EtudiantCours(true, "motif4");
-		EtudiantCours presence9 = new EtudiantCours(false, "/");
-		EtudiantCours presence10 = new EtudiantCours(true, "motif5");
+
 		
 		
 		//creation jointures EnseignantMatierePromotion
@@ -208,7 +210,8 @@ public class WelcomeController {
 		EnseignantMatierePromotion enseignantMatierePromotion5 = new EnseignantMatierePromotion();
 		EnseignantMatierePromotion enseignantMatierePromotion6 = new EnseignantMatierePromotion();
 		EnseignantMatierePromotion enseignantMatierePromotion7 = new EnseignantMatierePromotion();
-		
+		EnseignantMatierePromotion enseignantMatierePromotion8 = new EnseignantMatierePromotion();
+		EnseignantMatierePromotion enseignantMatierePromotion9 = new EnseignantMatierePromotion();
 		
 		//======================================================================================================================//
 		
@@ -218,14 +221,18 @@ public class WelcomeController {
 		enseignant1.addAdresse(adresse1);
 		enseignant2.addAdresse(adresse2);
 		enseignant3.addAdresse(adresse3);
+		enseignant4.addAdresse(adresse12);
 		
 		etudiant1.addAdresse(adresse4);
 		etudiant2.addAdresse(adresse5);
 		etudiant3.addAdresse(adresse6);
 		etudiant4.addAdresse(adresse7);
 		etudiant5.addAdresse(adresse8);
+		etudiant6.addAdresse(adresse9);
+		etudiant7.addAdresse(adresse10);
+		etudiant8.addAdresse(adresse11);
 		
-		admin1.addAdresse(adresse9);
+		admin1.addAdresse(adresse13);
 		
 		
 		// L'admin n'est relié à rien d'autre qu'à l'adresse. On peut l'ajouter maintenant à la bd
@@ -265,12 +272,21 @@ public class WelcomeController {
 		promotion2.addCours(cours5);
 		promotion2.addCours(cours6);
 		
+		
 		promotion1.addEtudiant(etudiant1);
-		promotion1.addEtudiant(etudiant2);
-		promotion1.addEtudiant(etudiant3); //l'étudiant 3 est dans 2 promos
-		promotion2.addEtudiant(etudiant3);
-		promotion2.addEtudiant(etudiant4);
+		promotion1.addEtudiant(etudiant3);
+		promotion1.addEtudiant(etudiant4); 
+		
+		promotion2.addEtudiant(etudiant2);
 		promotion2.addEtudiant(etudiant5);
+		promotion2.addEtudiant(etudiant6);
+		
+		promotion3.addEtudiant(etudiant7);
+		promotion3.addEtudiant(etudiant8);
+		
+		promotion4.addEtudiant(etudiant1);
+		promotion4.addEtudiant(etudiant2);
+		promotion4.addEtudiant(etudiant8);
 		
 		enseignantMatierePromotion1.addEnseignant(enseignant1);
 		enseignantMatierePromotion1.addPromotion(promotion2);
@@ -289,16 +305,24 @@ public class WelcomeController {
 		enseignantMatierePromotion4.addMatiere(matiere2);
 		
 		enseignantMatierePromotion5.addEnseignant(enseignant2);
-		enseignantMatierePromotion5.addPromotion(promotion2);
-		enseignantMatierePromotion5.addMatiere(matiere2);
+		enseignantMatierePromotion5.addPromotion(promotion3);
+		enseignantMatierePromotion5.addMatiere(matiere1);
 		
 		enseignantMatierePromotion6.addEnseignant(enseignant2);
-		enseignantMatierePromotion6.addPromotion(promotion2);
-		enseignantMatierePromotion6.addMatiere(matiere3);
+		enseignantMatierePromotion6.addPromotion(promotion4);
+		enseignantMatierePromotion6.addMatiere(matiere2);
 		
 		enseignantMatierePromotion7.addEnseignant(enseignant3);
 		enseignantMatierePromotion7.addPromotion(promotion1);
 		enseignantMatierePromotion7.addMatiere(matiere3);
+		
+		enseignantMatierePromotion8.addEnseignant(enseignant4);
+		enseignantMatierePromotion8.addPromotion(promotion3);
+		enseignantMatierePromotion8.addMatiere(matiere3);
+		
+		enseignantMatierePromotion9.addEnseignant(enseignant4);
+		enseignantMatierePromotion9.addPromotion(promotion1);
+		enseignantMatierePromotion9.addMatiere(matiere3);
 		
 
 		
@@ -342,7 +366,7 @@ public class WelcomeController {
 		Etudiant etudiant2Recup= (Etudiant) etudiantDao.getById(6L);
 		Etudiant etudiant3Recup= (Etudiant) etudiantDao.getById(7L);
 		Etudiant etudiant4Recup= (Etudiant) etudiantDao.getById(8L);
-		Etudiant etudiant5Recup= (Etudiant) etudiantDao.getById(9L);
+
 		
 		presence1.setCours(cours1Recup);
 		presence2.setCours(cours1Recup);
@@ -350,10 +374,8 @@ public class WelcomeController {
 		presence4.setCours(cours2Recup);
 		presence5.setCours(cours2Recup);
 		presence6.setCours(cours2Recup);
-		presence7.setCours(cours5Recup);
-		presence8.setCours(cours5Recup);
-		presence9.setCours(cours6Recup);
-		presence10.setCours(cours6Recup);
+
+
 		
 		presence1.setEtudiant(etudiant1Recup);
 		presence2.setEtudiant(etudiant2Recup);
@@ -362,9 +384,8 @@ public class WelcomeController {
 		presence5.setEtudiant(etudiant2Recup);
 		presence6.setEtudiant(etudiant3Recup);
 		presence7.setEtudiant(etudiant4Recup);
-		presence8.setEtudiant(etudiant5Recup);
-		presence9.setEtudiant(etudiant4Recup);
-		presence10.setEtudiant(etudiant5Recup);
+
+
 	
 		etudiantCoursDao.ajouter(presence1);
 		etudiantCoursDao.ajouter(presence2);
@@ -373,9 +394,7 @@ public class WelcomeController {
 		etudiantCoursDao.ajouter(presence5);
 		etudiantCoursDao.ajouter(presence6);
 		etudiantCoursDao.ajouter(presence7);
-		etudiantCoursDao.ajouter(presence8);
-		etudiantCoursDao.ajouter(presence9);
-		etudiantCoursDao.ajouter(presence10);
+
 		
 
 		//==================================================================================
@@ -459,7 +478,12 @@ public class WelcomeController {
 		aideDao.ajouter(new Aide("affichage_etudiant", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_aide", "Pas d'aide disponible"));
 		aideDao.ajouter(new Aide("affichage_listeAbsence_Cours", "Pas d'aide disponible"));
-		
+		aideDao.ajouter(new Aide("index", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_ajout_administrateur", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_listeAdministrateur", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("administrateur_modif_administrateur", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_administrateur", "Pas d'aide disponible"));
+		aideDao.ajouter(new Aide("affichage_liste_exercice", "Pas d'aide disponible"));
 
 		//===================================================================================
 		

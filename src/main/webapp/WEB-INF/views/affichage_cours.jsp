@@ -46,7 +46,7 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
+		<h1>Fiche du cours ${attribut_cours.libelle}</h1>
 		<table class="table">
 
 			<tr>
@@ -71,36 +71,40 @@
 			</tr>
 			<tr>
 				<td>Matière</td>
-				<td>${attribut_cours.matiere.libelle}</td>
+				<td><a
+					href="${pageContext.request.contextPath}/matieres/afficher/${attribut_cours.matiere.idMatiere}">${attribut_cours.matiere.libelle}</a></td>
 			</tr>
 			<tr>
 				<td>Promotion</td>
-				<td>${attribut_cours.promotion.libelle}</td>
+				<td><a
+					href="${pageContext.request.contextPath}/promotions/afficher/${attribut_cours.promotion.idPromotion}">${attribut_cours.promotion.libelle}</a>
+				</td>
 			</tr>
-			
-			
-			
 
 
 			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a></td>
-					<td><a class="btn btn-danger"
-						href="${pageContext.request.contextPath}/cours/delete/${attribut_cours.idCours}">Supprimer</a></td>
-				<td><a class="btn btn-success"
-					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
-						de présence</a></td>
-			</s:authorize>
-			<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
-				<td><a class="btn btn-primary"
-					href="${pageContext.request.contextPath}/exercice/listeExo/${attribut_cours.idCours}">Afficher les exercices associés</a></td>
-				<td><a class="btn btn-warning"
-					href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a></td>
+					<td><a class="btn btn-primary"
+						href="${pageContext.request.contextPath}/exercice/listeExo/${attribut_cours.idCours}">Afficher
+							les exercices associés</a> <a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
+						<a class="btn btn-danger"
+						href="${pageContext.request.contextPath}/cours/delete/${attribut_cours.idCours}">Supprimer</a>
+						<a class="btn btn-success"
+						href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
+							de présence</a></td>
+				</s:authorize> <s:authorize access="hasRole('ROLE_ENSEIGNANT')">
+					<td><a class="btn btn-primary"
+						href="${pageContext.request.contextPath}/exercice/listeExo/${attribut_cours.idCours}">Afficher
+							les exercices associés</a> <a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
+						<a class="btn btn-danger"
+						href="${pageContext.request.contextPath}/cours/delete/${attribut_cours.idCours}">Supprimer</a>
+						<a class="btn btn-success"
+						href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
+							de présence</a></td>
+				</s:authorize>
 				
-				<td><a class="btn btn-success"
-					href="${pageContext.request.contextPath}/absences/afficher/${attribut_cours.idCours}">Feuille
-						de présence</a></td>
-			</s:authorize>
+				<td></td>
 		</table>
 	</div>
 

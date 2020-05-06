@@ -41,7 +41,6 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire de modification d'une aide</h1>
 
 		<form:form modelAttribute="aide" method="POST"

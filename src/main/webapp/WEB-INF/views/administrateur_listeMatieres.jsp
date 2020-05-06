@@ -42,6 +42,7 @@
 		<a href="${pageContext.request.contextPath}/matieres/add-form"
 			class="btn btn-primary btn-sm" role="button">Ajouter une matière</a>	
 			
+			<br/><br/>
 			
 		<table class="table table-striped">
 			<!-- Ajout d'un employe -->
@@ -50,8 +51,8 @@
 				<th>ID Matiere</th>
 				<th>Libelle</th>
 				<th></th>
-				<th></th>
-				<th></th>
+<!-- 				<th></th> -->
+<!-- 				<th></th> -->
 			</tr>
 
 			<c:forEach items="${attribut_liste_matiere}" var="matiere">
@@ -61,16 +62,13 @@
 					
 				<td><a href="${pageContext.request.contextPath}/matieres/afficher/${matiere.idMatiere}">Afficher</a></td>
 
-<td>
-				<a href="${pageContext.request.contextPath}/matieres/delete/${matiere.idMatiere}">Supprimer</a>
-			</td>
-			<td>
-					<a href="${pageContext.request.contextPath}/matieres/update-form?idMatiere=${matiere.idMatiere}">
-				
-				Modifier
-				
-				</a>
-			</td>
+<!-- 					<td><a -->
+<%-- 						href="${pageContext.request.contextPath}/matieres/delete/${matiere.idMatiere}">Supprimer</a> --%>
+<!-- 					</td> -->
+<!-- 					<td><a -->
+<%-- 						href="${pageContext.request.contextPath}/matieres/update-form?idMatiere=${matiere.idMatiere}"> --%>
+
+<!-- 							Modifier </a></td> -->
 
 				</tr>
 			</c:forEach>

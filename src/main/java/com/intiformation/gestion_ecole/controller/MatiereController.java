@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.intiformation.gestion_ecole.dao.IAideDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
@@ -182,7 +183,7 @@ public class MatiereController {
 	}//end afficherFormulaireAjout
 	
 	@RequestMapping(value="/matieres/add", method=RequestMethod.POST)
-	public String ajouterEmployeBdd(@ModelAttribute("matiereCommand") @Validated Matiere pMatiere, ModelMap modele, BindingResult result) {
+	public String ajouterEmployeBdd(@ModelAttribute("matiereCommand") @Validated Matiere pMatiere, ModelMap modele, BindingResult result,  RedirectAttributes redirectAttributes) {
 		//application du validateur sur l'objet pEmploye
 		matiereValidator.validate(pMatiere, result);
 		
@@ -202,7 +203,8 @@ public class MatiereController {
 
 			modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
 			
-			
+			redirectAttributes.addFlashAttribute("message", "La matière "+pMatiere.getLibelle()+" a bien été ajoutée.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/matieres/listeAll";
 			
 		}//end else
@@ -210,7 +212,7 @@ public class MatiereController {
 	}//end ajoter
 	
 	@RequestMapping(value= {"/matieres/delete/{matiereId}"}, method=RequestMethod.GET)
-	public String supprimerMatierebdd(@PathVariable("matiereId") Long idMatiere, ModelMap modele) {
+	public String supprimerMatierebdd(@PathVariable("matiereId") Long idMatiere, ModelMap modele, RedirectAttributes redirectAttributes) {
 		
 		//1.suppression de l'employe dans la bdd
 		Matiere matiere = matiereDAO.getById(idMatiere);
@@ -227,6 +229,9 @@ public class MatiereController {
 		modele.addAttribute("attribut_liste_matiere", listeMatiereBdd);
 		
 		//4. redirection vers la page liste-employes.jsp
+		
+		redirectAttributes.addFlashAttribute("message", "La matière "+matiere.getLibelle()+" a bien été supprimée.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/matieres/listeAll";
 	}//end supprimer
 	
@@ -256,23 +261,26 @@ public class MatiereController {
 	 * @return
 	 */
 	@RequestMapping(value="/matieres/update", method=RequestMethod.POST)
-	public String modifierEmployeBdd(@ModelAttribute("matiereModifCommand") Matiere id, ModelMap modele) {
+	public String modifierEmployeBdd(@ModelAttribute("matiereModifCommand") Matiere matiere, ModelMap modele, RedirectAttributes redirectAttributes) {
 		
 		//1. modif de l'employé dans la bdd
-		matiereDAO.modifier(id);
+		matiereDAO.modifier(matiere);
 		
-System.out.println(id);
+		System.out.println(matiere);
 		//2. récup la nouvelle liste des employés + envoi de la liste vers la servlet de spring mvc
 		modele.addAttribute("attribut_liste_matiere", matiereDAO.listMatiere());
 		
 		//4. redirection vers la page liste-employes.jsp
+		
+		redirectAttributes.addFlashAttribute("message", "La matière "+matiere.getLibelle()+" a bien été modifiée.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/matieres/listeAll";
 		
 	}//end modifierEmployeBdd
 	
 	
 	
-}
+}//end class
 	
 	
 	

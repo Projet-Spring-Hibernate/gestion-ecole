@@ -39,7 +39,6 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire de modification d'un cours</h1>
 		<%--coursform --%>
 

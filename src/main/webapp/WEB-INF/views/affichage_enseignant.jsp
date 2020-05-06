@@ -46,12 +46,11 @@
 
 	<div class="mainContent">
 
-		<br />
 
 		<h1>Fiche de ${attribut_enseignant.prenom}
 			${attribut_enseignant.nom}</h1>
 
-		<br />
+
 		<table class="table">
 
 			<tr>
@@ -82,7 +81,7 @@
 			</s:authorize>
 			
 			<tr>
-				<td>Promotion et matière</td>
+				<td>Promotions et matières</td>
 				<td><c:forEach items="${attribut_combinaison}" var="combinaison">
 						<a href="${pageContext.request.contextPath}/matieres/afficher/${combinaison.matiere.idMatiere}">${combinaison.matiere.libelle}</a> 
 						<a href="${pageContext.request.contextPath}/promotions/afficher/${combinaison.promotion.idPromotion}">${combinaison.promotion.libelle}</a><br />

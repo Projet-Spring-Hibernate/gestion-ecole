@@ -30,7 +30,6 @@ com\intiformation\gestion_ecole\webServices\EnseignantMatierePromotionWsREST.cla
 com\intiformation\gestion_ecole\webServices\CoursWsREST.class
 com\intiformation\gestion_ecole\dao\IEnseignantMatierePromotionDao.class
 com\intiformation\gestion_ecole\dao\EnseignantMatierePromotionDaoImpl.class
-com\intiformation\gestion_ecole\controller\EtudiantListController.class
 com\intiformation\gestion_ecole\domain\Adresse.class
 com\intiformation\gestion_ecole\controller\AdministrateurController.class
 com\intiformation\gestion_ecole\tests\AppTest.class

@@ -41,13 +41,11 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'un enseignant</h1>
 
 		<form:form modelAttribute="enseignantform" method="POST"
 			action="${pageContext.request.contextPath}/enseignants/add">
 
-			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
 			<table class="table">
 

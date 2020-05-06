@@ -39,13 +39,10 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'un etudiant</h1>
 
 		<form:form modelAttribute="etudiantForm" method="POST"
 			action="${pageContext.request.contextPath}/etudiants/add">
-
-			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
 			<table class="table">
 

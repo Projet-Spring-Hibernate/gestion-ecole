@@ -97,9 +97,6 @@
 			pattern="/cours/add-enseignant*"
 			access="hasAnyRole('ROLE_ENSEIGNANT')" />
 			
-			<sec:intercept-url
-			pattern="/cours/listeByEtudiant*"
-			access="hasAnyRole('ROLE_ADMINISTRATEUR')" />
 			
 			<sec:intercept-url
 			pattern="/cours/add-cours-form*"

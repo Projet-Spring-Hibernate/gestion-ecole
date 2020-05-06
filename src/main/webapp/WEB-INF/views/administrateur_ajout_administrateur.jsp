@@ -39,7 +39,6 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'un administrateur</h1>
 
 		<form:form modelAttribute="administrateurForm" method="POST"

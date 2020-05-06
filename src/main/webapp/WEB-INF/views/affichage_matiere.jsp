@@ -45,9 +45,8 @@
 
 	<div class="mainContent">
 
-	<br/>
-	<br/>
-		<table class="table table-striped">
+		<h1>Fiche de la matiere ${attribut_matiere.libelle}</h1>
+		<table class="table">
 
 			<tr>
 				<td>ID matiere</td>
@@ -58,11 +57,20 @@
 				<td>${attribut_matiere.libelle}</td>
 			</tr>
 			<tr>
-				<td>Enseignant</td>
-				<td><c:forEach items="${attribut_enseignant}" var="enseignant">${enseignant.nom} ${enseignant.prenom} </c:forEach>
+				<td>Enseignants</td>
+				<td><c:forEach items="${attribut_enseignant}" var="enseignant"><a
+						href="${pageContext.request.contextPath}/enseignants/afficher/${enseignant.identifiant}">${enseignant.nom} ${enseignant.prenom}</a> <br/></c:forEach>
 			</tr>
-			
-			
+
+			<!-- Affichage des boutons supprimer et modifier uniquement pour l'admin  -->
+			<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+				<tr>
+					<td><a class="btn btn-warning"
+						href="${pageContext.request.contextPath}/matieres/update-form?idMatiere=${attribut_matiere.idMatiere}">Modifier</a>
+						<a class="btn btn-danger" href="${pageContext.request.contextPath}/matieres/delete/${attribut_matiere.idMatiere}">Supprimer</a> </td>
+					<td></td>
+				</tr>
+			</s:authorize>
 		</table>
 
 

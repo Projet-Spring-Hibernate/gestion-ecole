@@ -85,7 +85,7 @@ public class AdministrateurController {
 		//2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_administrateur", listeAdministrateur);
 		
-		//modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeAdministrateur"));
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeAdministrateur"));
 		return "administrateur_listeAdministrateur";
 	}//end recupListeAllEtudiant
 	
@@ -117,7 +117,7 @@ public class AdministrateurController {
 
 
 
-		//modele.addAttribute("aide_contenu", aideDao.getAideByPage("affichage_administrateur"));
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("affichage_administrateur"));
 		return "affichage_administrateur";
 	}//end recupListeAll
 	
@@ -155,8 +155,6 @@ public class AdministrateurController {
 			
 		} else {
 			AdministrateurForm adminForm =  (AdministrateurForm) modele.getAttribute("administrateurForm");
-		
-			
 
 			modele.addAttribute("administrateurForm", adminForm);
 
@@ -166,7 +164,7 @@ public class AdministrateurController {
 		// la vue
 		
 		
-		//modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_ajout_administrateur"));
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_ajout_administrateur"));
 		return "administrateur_ajout_administrateur";
 
 	}// end afficherFormulaireAjout
@@ -234,7 +232,8 @@ public class AdministrateurController {
 
 			System.out.println("\n\n Administrateur Ajouté !");
 
-
+			redirectAttributes.addFlashAttribute("message", "L'administrateur "+adminf.getPrenom()+" "+adminf.getNom()+" a bien été ajouté.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/administrateurs/listeAll";
 		} // end else
 
@@ -274,12 +273,16 @@ public class AdministrateurController {
 
 				modele.addAttribute("administrateurForm", adminForm);
 
-			}
+			}else{
+				AdministrateurForm adminForm =  (AdministrateurForm) modele.getAttribute("administrateurForm");
+
+				modele.addAttribute("administrateurForm", adminForm);
+
+			} // end else
 
 			// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 			// la vue
-		//	modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_modif_administrateur"));
-
+			modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_modif_administrateur"));
 			return "administrateur_modif_administrateur";
 
 		}// end afficherFormulaireModif
@@ -352,7 +355,8 @@ public class AdministrateurController {
 			
 
 				// 2. edirection vers la page administrateur_listeEtudiants.jsp
-
+				redirectAttributes.addFlashAttribute("message", "L'administrateur "+adminf.getPrenom()+" "+adminf.getNom()+" a bien été modifié.");
+				redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 				return "redirect:/administrateurs/afficher/" + adminf.getIdentifiant();
 			} // end else
 
@@ -370,7 +374,7 @@ public class AdministrateurController {
 	 */
 	
 	@RequestMapping(value = "/administrateurs/delete/{administrateurId}", method = RequestMethod.GET)
-	public String supprimerEnseignant(@PathVariable("administrateurId") Long pId, ModelMap modele) {
+	public String supprimerEnseignant(@PathVariable("administrateurId") Long pId, ModelMap modele, RedirectAttributes redirectAttributes) {
 
 		// ========== Recup des objets à supprimer ============
 
@@ -386,7 +390,8 @@ public class AdministrateurController {
 		administrateurtDAO.supprimer(admin);
 
 	
-
+		redirectAttributes.addFlashAttribute("message", "L'administrateur "+admin.getPrenom()+" "+admin.getNom()+" a bien été supprimé.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/administrateurs/listeAll";
 
 	}// end supprimerEnseignant

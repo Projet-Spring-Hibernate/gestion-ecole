@@ -63,15 +63,16 @@
 		<hr />
 		<br />
 
-		<h4>Rechercher une personne : (étudiant, enseignant ou
+		<h4 style="font-size: 20px;">Rechercher une personne : (étudiant, enseignant ou
 			administrateur)</h4>
 
 		<form action="${pageContext.request.contextPath}/personnes/chercher-par-nom">
 			<input type="text" name="pNom"/>
-			<input class="btn btn-primary btn-sm" type="submit" value="Submit" />
+			<input class="btn btn-primary btn-sm" type="submit" value="Chercher" />
 		</form>
 		<hr/>
 		
+		<c:if test="${ not empty attribut_liste_etudiants || not empty attribut_liste_admins || not empty attribut_liste_enseignants}">
 		<table class="table table-striped">
 			<tr>
 				<th>ID personne</th>
@@ -117,131 +118,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-
-
-
-
-		<s:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
-			<hr />
-			<h4>Gestion des etudiants</h4>
-			<br />
-			<a
-				href="${pageContext.request.contextPath}/etudiants/add-etudiant-form"
-				class="btn btn-primary btn-sm" role="button">Ajouter un etudiant</a>
-
-			<a href="${pageContext.request.contextPath}/etudiants/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				étudiants</a>
-
-			<hr />
-			<h4>Gestion des enseignants</h4>
-			<br />
-			<a
-				href="${pageContext.request.contextPath}/enseignants/add-enseignant-form"
-				class="btn btn-primary btn-sm" role="button">Ajouter un
-				enseignant</a>
-
-			<a href="${pageContext.request.contextPath}/enseignants/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				enseignants</a>
-
-			<hr />
-			<h4>Gestion des promotions</h4>
-			<br />
-			<a href="#" class="btn btn-primary btn-sm" role="button">Ajouter
-				une promotion</a>
-
-			<a href="${pageContext.request.contextPath}/promotions/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				promotions</a>
-
-			<hr />
-			<h4>Gestion des matieres</h4>
-			<br />
-			<a href="${pageContext.request.contextPath}/matieres/add-form"
-				class="btn btn-primary btn-sm" role="button">Ajouter une matière</a>
-
-			<a href="${pageContext.request.contextPath}/matieres/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				matières</a>
-
-			<hr />
-			<h4>Gestion des cours</h4>
-			<br />
-			<a
-				href="${pageContext.request.contextPath}/cours/cours/add-cours-form"
-				class="btn btn-primary btn-sm" role="button">Ajouter un cours</a>
-
-			<a href="${pageContext.request.contextPath}/cours/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				cours</a>
-
-			<hr />
-			<h4>Gestion des absences</h4>
-			<br />
-			<a href="#" class="btn btn-primary btn-sm" role="button">Ajouter
-				une absence</a>
-
-			<a href="${pageContext.request.contextPath}/etudiantCours/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				absences</a>
-
-			<hr />
-			<h4>Gestion des aides</h4>
-			<br />
-			<a href="${pageContext.request.contextPath}/aides/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				aides</a>
-
-
-		</s:authorize>
-		<s:authorize access="hasRole('ROLE_ENSEIGNANT')">
-			<hr />
-			<h4>Gestion etudiants</h4>
-			<br />
-			<a
-				href="${pageContext.request.contextPath}/etudiants/listeByEnseignant"
-				class="btn btn-primary btn-sm" role="button">Voir la liste de
-				mes étudiants</a>
-
-
-			<hr />
-			<h4>Gestion des promotions</h4>
-			<br />
-
-			<a href="${pageContext.request.contextPath}/promotions/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				promotions</a>
-
-			<hr />
-			<h4>Gestion des matieres</h4>
-			<br />
-
-			<a href="${pageContext.request.contextPath}/matieres/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				matières</a>
-
-			<hr />
-			<h4>Gestion des cours</h4>
-			<br />
-			<a
-				href="${pageContext.request.contextPath}/cours/add-cours-formEnseignant"
-				class="btn btn-primary btn-sm" role="button">Ajouter un cours</a>
-
-			<a href="${pageContext.request.contextPath}/cours/listeAll"
-				class="btn btn-primary btn-sm" role="button">Voir la liste des
-				cours</a>
-
-			<hr />
-			<h4>Gestion des absences</h4>
-			<br />
-			<a href="#" class="btn btn-primary btn-sm" role="button">Ajouter
-				une absence</a>
-
-			<a href="#" class="btn btn-primary btn-sm" role="button">Voir la
-				liste des absences</a>
-
-		</s:authorize>
+</c:if>
 
 	</div>
 

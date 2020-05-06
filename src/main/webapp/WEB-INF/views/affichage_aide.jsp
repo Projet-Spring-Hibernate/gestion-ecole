@@ -47,11 +47,9 @@
 
 	<div class="mainContent">
 
-		<br />
 
 		<h1>Fiche de l'aide ${attribut_aide.id_aide}</h1>
 
-		<br />
 		<table class="table">
 
 			<tr>

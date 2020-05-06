@@ -39,16 +39,11 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'un cours</h1>
-		<%--coursform --%>
 
 		<form:form modelAttribute="coursform" method="POST"
 			action="${pageContext.request.contextPath}/cours/add-enseignant">
 			
-
-			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
-
 			<table class="table">
 
 				<tr>
@@ -71,8 +66,6 @@
 					<td><form:input path="cours.description" /></td>
 					<td><form:errors path="cours.description" /></td>
 				</tr>
-
-
 
 
 				<tr> 

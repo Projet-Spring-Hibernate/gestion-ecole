@@ -65,8 +65,8 @@
 			<c:forEach items="${attribut_liste_absences}" var="absence">
 				<tr>
 					<td>${absence.id}</td>
-					<td>${absence.etudiant.nom}</td>
-					<td>${absence.etudiant.prenom}</td>
+					<td><a href="${pageContext.request.contextPath}/etudiants/afficher/${absence.etudiant.identifiant}">${absence.etudiant.nom}</a></td>
+					<td><a href="${pageContext.request.contextPath}/etudiants/afficher/${absence.etudiant.identifiant}">${absence.etudiant.prenom}</a></td>
 					<td>${absence.absence  ? "Absent" : "Present"}</td>
 					<td>${absence.motif}</td>
 

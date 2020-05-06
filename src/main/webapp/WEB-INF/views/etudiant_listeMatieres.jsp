@@ -48,6 +48,7 @@
 			<tr>
 				<th>ID Matiere</th>
 				<th>Libelle</th>
+				<th></th>
 			</tr>
 
 			<c:forEach items="${attribut_liste_matiere}" var="matiere">
@@ -55,7 +56,7 @@
 					<td>${matiere.idMatiere}</td>
 					<td>${matiere.libelle}</td>
 					
-
+<td><a href="${pageContext.request.contextPath}/matieres/afficher/${matiere.idMatiere}">Afficher</a></td>
 
 
 					<!-- colonne pour la modif de l'employe => envoi d'une requete http en get (url :http://localhost:8080/10_advanced_framework_spring-mvc/employes/update-employe-form?idemp=1

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.intiformation.gestion_ecole.dao.IAdministrateurDao;
+import com.intiformation.gestion_ecole.dao.IAideDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantDAO;
 import com.intiformation.gestion_ecole.dao.IEnseignantMatierePromotionDao;
 import com.intiformation.gestion_ecole.dao.IEtudiantDAO;
@@ -35,6 +36,9 @@ public class PersonneController {
 	
 	@Autowired
 	private IAdministrateurDao adminDAO;
+	
+	@Autowired
+	private IAideDAO aideDao;
 	// ============ SETTER ====================//
 
 	
@@ -49,7 +53,9 @@ public class PersonneController {
 	public void setAdminDAO(IAdministrateurDao adminDAO) {
 		this.adminDAO = adminDAO;
 	}
-
+	public void setAideDao(IAideDAO aideDao) {
+		this.aideDao = aideDao;
+	}
 	// ===========================================================//
 	// =========== Liste personnes by nom ========================//
 	// ===========================================================//
@@ -117,7 +123,7 @@ public class PersonneController {
 		//3. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_admins", listeAdministrateursRecherche);
 		
-		
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("index"));
 		return "index";
 	}//end recupListeAllEtudiant
 	

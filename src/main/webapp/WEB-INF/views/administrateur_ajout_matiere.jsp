@@ -39,16 +39,13 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire d'ajout d'une matière</h1>
 
 		<form:form modelAttribute="matiereCommand" method="POST"
 			action="${pageContext.request.contextPath}/matieres/add">
 
-			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
 
-			<table class="table table-striped">
-
+			<table class="table">
 				<tr>
 					<td><form:label path="libelle">Libelle :</form:label></td>
 					<td><form:input path="libelle" /></td>
@@ -69,7 +66,7 @@
 	</div>
 
 
-	<%-- inclusion dynamique du fragment entete.jsp --%>
+	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
 
 </body>

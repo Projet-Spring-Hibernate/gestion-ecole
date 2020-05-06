@@ -1,5 +1,5 @@
 #logo_school {
-	width: 80px;
+	width: 100px;
 	margin: 30px 30px 30px 70px;
 }
 
@@ -38,11 +38,17 @@ margin-left: 50px;
 	padding-top:15px;
 }
 
+
+
 #aideBox h2 {
 	font-size: 15px;
 	color: #3b3b3b;
 }
 
+#messagebox{
+	margin-left: 40px;
+	margin-right:40px;
+}
 
 .mainContent{
 	margin-left: 40px;

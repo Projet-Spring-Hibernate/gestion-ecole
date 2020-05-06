@@ -42,7 +42,7 @@
 		<a href="${pageContext.request.contextPath}/cours/add-cours-form"
 			class="btn btn-primary btn-sm" role="button">Ajouter un cours</a>
 			
-			
+		<br/><br/>
 		<table class="table table-striped">
 			<!-- Ajout d'un employe -->
 
@@ -64,8 +64,9 @@
 					<td>${cours.date}</td>
 					<td>${cours.duree}</td>
 					<td>${cours.description}</td>
-					<td>${cours.matiere.libelle}</td>
-					<td>${cours.promotion.libelle}</td>
+					<td><a href="${pageContext.request.contextPath}/matieres/afficher/${cours.matiere.idMatiere}">${cours.matiere.libelle}</a></td>
+					<td><a
+						href="${pageContext.request.contextPath}/promotions/afficher/${cours.promotion.idPromotion}">${cours.promotion.libelle}</a></td>
 
 
 					<!-- colonne pour afficher l'étudiant -->

@@ -126,8 +126,7 @@ public class PromotionController {
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_promotions", listePromotion);
 
-		// modele.addAttribute("aide_contenu",
-		// aideDao.getAideByPage("administrateur_listePromotion"));
+		modele.addAttribute("aide_contenu",aideDao.getAideByPage("administrateur_listePromotion"));
 
 		return "administrateur_listePromotion";
 	}// end recupListeAllPromotion
@@ -157,6 +156,8 @@ public class PromotionController {
 		// 3. def des données à afficher dans la vue
 		modele.addAttribute("attribut_promotion", promotion);
 
+		modele.addAttribute("aide_contenu",aideDao.getAideByPage("affichage_promotion"));
+
 		return "affichage_promotion";
 	}// end recupPromoById
 
@@ -172,7 +173,7 @@ public class PromotionController {
 	 * @return
 	 */
 	@RequestMapping(value = "/promotions/delete/{promotionID}", method = RequestMethod.GET)
-	public String suppressionPromotionsById(@PathVariable("promotionID") Long pIdPromotion, ModelMap modele) {
+	public String suppressionPromotionsById(@PathVariable("promotionID") Long pIdPromotion, ModelMap modele,  RedirectAttributes redirectAttributes) {
 
 		// 1. recup de la promo
 		Promotion promotion = promotionDao.getById(pIdPromotion);
@@ -180,6 +181,10 @@ public class PromotionController {
 
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_promotion", promotion);
+
+
+		redirectAttributes.addFlashAttribute("message", "La promotion "+promotion.getLibelle()+" a bien été supprimée.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 
 		return "redirect:/promotions/listeAll";
 	}// end delete
@@ -226,8 +231,7 @@ public class PromotionController {
 
 			modele.addAttribute("promotionForm", promotionForm);
 		} // end
-			// modele.addAttribute("aide_contenu",
-			// aideDao.getAideByPage("administrateur_ajout_promotion"));
+		modele.addAttribute("aide_contenu",aideDao.getAideByPage("administrateur_ajout_promotion"));
 
 		return "administrateur_ajout_promotion";
 	}// End ajouterPromoForm
@@ -299,6 +303,8 @@ public class PromotionController {
 
 				listeEtudiants.add(etudiant);
 			} // end for
+			redirectAttributes.addFlashAttribute("message", "La promotion "+promotion.getLibelle()+" a bien été ajoutée.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 
 			return "redirect:/promotions/listeAll";
 
@@ -368,8 +374,7 @@ public class PromotionController {
 
 			modele.addAttribute("promotionForm", promotionForm);
 		} // end
-			// modele.addAttribute("aide_contenu",
-			// aideDao.getAideByPage("administrateur_ajout_promotion"));
+		modele.addAttribute("aide_contenu",aideDao.getAideByPage("administrateur_ajout_promotion"));
 
 		return "administrateur_modif_promotion";
 
@@ -470,6 +475,9 @@ public class PromotionController {
 				} // End if
 			} // end for
 
+			redirectAttributes.addFlashAttribute("message", "La promotion "+promotion.getLibelle()+" a bien été modifiée.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
+
 			return "redirect:/promotions/listeAll";
 
 		} // end else
@@ -498,7 +506,7 @@ public class PromotionController {
 
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_promotion_etudiant", listePromotions);
-
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("etudiant_listePromotion"));
 		return "etudiant_listePromotion";
 	}// end recupPromotionsByIdEtudiant
 
@@ -527,8 +535,9 @@ public class PromotionController {
 
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_promotion_enseignant", ListePromotions);
+		//modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_listePromotion"));
 
-		return "enseignants_listePromotion";
+		return "enseignant_listePromotion";
 	}// end recupPromotionByIdEnseignant
 
 

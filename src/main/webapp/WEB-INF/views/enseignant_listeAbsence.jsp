@@ -55,9 +55,10 @@
 				<tr>
 
 					<td>${absence.id}</td>
-					<td>${absence.etudiant.nom}</td>
-					<td>${absence.etudiant.prenom}</td>
-					<td>${absence.cours.libelle}</td>
+					<td><a href="${pageContext.request.contextPath}/etudiants/afficher/${absence.etudiant.identifiant}">${absence.etudiant.nom}</a></td>
+					<td><a href="${pageContext.request.contextPath}/etudiants/afficher/${absence.etudiant.identifiant}">${absence.etudiant.prenom}</a></td>
+					<td><a
+						href="${pageContext.request.contextPath}/cours/afficher/${absence.cours.idCours}">${absence.cours.libelle}</a></td>
 					<td>${absence.cours.date}</td>
 					<td>${absence.absence  ? "Absent" : "Present"}</td>
 					<td>${absence.motif}</td>

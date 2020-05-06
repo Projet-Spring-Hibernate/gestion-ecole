@@ -7,7 +7,7 @@
 				src="/01_gestion_ecoles/assets/images/online_education.png"></a>
 		</div>
 		<div>
-			<h1 id="nomEcole">WebCole - administrateur</h1>
+			<h1 id="nomEcole">E-Poudlard - administrateur</h1>
 		</div>
 	</div>
 
@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/administrateurs/listeAll">Administrateur</a>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/administrateurs/listeAll">Administrateurs</a>
 				</li>
 				
 
@@ -55,6 +55,20 @@
 	
 	${aide_contenu}
 
+</div>
 
-
+<div id="messagebox">
+		<c:if test="${ not empty message}">
+		<br/>
+			<c:if test='${reussiteOperation.equals("true")}'>
+				<div class="alert alert-success" role="alert">
+  					${message}
+				</div>
+			</c:if>
+			<c:if test='${reussiteOperation.equals("false")}'>
+				<div class="alert alert-danger" role="alert">
+	  				${message}
+				</div>
+			</c:if>
+		</c:if>
 </div>

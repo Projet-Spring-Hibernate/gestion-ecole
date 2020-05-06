@@ -2,11 +2,11 @@
 <header>
 	<div class="row">
 		<div>
-			<img id="logo_school" alt="logo"
-				src="/01_gestion_ecoles/assets/images/online_education.png">
+			<a class="nav-link" href="${pageContext.request.contextPath}/bienvenue"><img id="logo_school" alt="logo"
+				src="/01_gestion_ecoles/assets/images/online_education.png"></a>
 		</div>
 		<div>
-			<h1 id="nomEcole">WebCole - enseignant </h1>
+			<h1 id="nomEcole">E-Poudlard - enseignant </h1>
 		</div>
 	</div>
 
@@ -29,10 +29,10 @@
 
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/promotions/listeByEnseignant">Mes promotions</a>
 				</li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/matieres/listeByEnseignant">Mes Matières</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/matieres/listeByEnseignant">Mes matières</a>
 				</li>
 
-				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeByEnseignant">Cours</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cours/listeByEnseignant">Mes cours</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/etudiantCours/listeByEnseignant">Absences</a></li>
 
@@ -48,4 +48,19 @@
 
 ${aide_contenu}
 
+</div>
+<div id="messagebox">
+		<c:if test="${ not empty message}">
+		<br/>
+			<c:if test='${reussiteOperation.equals("true")}'>
+				<div class="alert alert-success" role="alert">
+  					${message}
+				</div>
+			</c:if>
+			<c:if test='${reussiteOperation.equals("false")}'>
+				<div class="alert alert-danger" role="alert">
+	  				${message}
+				</div>
+			</c:if>
+		</c:if>
 </div>

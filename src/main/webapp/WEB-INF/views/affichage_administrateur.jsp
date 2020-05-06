@@ -40,15 +40,10 @@
 
 
 	<div class="mainContent">
-		<br />
-		<div class="row">
-			<div class="col-12 col-sm-9 col-md-9 col-lg-9 col-xl-9" style="">
-				<h1 style="margin-top: 70px">Fiche de
-					${attribut_administrateur.prenom} ${attribut_administrateur.nom}</h1>
-			</div>
-		
 
-		<br />
+		<h1>Fiche de
+			${attribut_administrateur.prenom} ${attribut_administrateur.nom}</h1>
+
 
 		<table class="table">
 
@@ -64,16 +59,15 @@
 				<td>Prenom</td>
 				<td>${attribut_administrateur.prenom}</td>
 			</tr>
-			
+
 			<tr>
 				<td>Email</td>
 				<td>${attribut_administrateur.email}</td>
 			</tr>
-			
-				<tr>
+
+			<tr>
 				<td>Adresse</td>
-				<td>${attribut_adresse.rue}
-					${attribut_adresse.codePostal}
+				<td>${attribut_adresse.rue}${attribut_adresse.codePostal}
 					${attribut_adresse.ville}</td>
 			</tr>
 
@@ -97,8 +91,5 @@
 
 	<%-- inclusion dynamique du fragment piedDePage.jsp --%>
 	<jsp:include page="/WEB-INF/fragments/piedDePage.jsp" />
-
-
-
 </body>
 </html>

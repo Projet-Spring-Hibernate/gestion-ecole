@@ -104,24 +104,8 @@ body {
 </head>
 <body class="text-center">
 
-	<!-- ============== AFFICHAGE DES MESSAGES D'ERREUR ======================== -->
-	<!-- En cas d'echec de l'authentification -->
-
-	<c:if test="${not empty param.error }">
-		<font color="red;"> Erreur d'authentification. <br /> Raison :
-			${sessionScoped["SPRING_SECURITY_LAST_EXCEPTION"].message}
-		</font>
-	</c:if>
-
-	<!-- ============== AFFICHAGE DES MESSAGES DE DECONNEXION ======================== -->
-
-	<c:if test="${not empty param.logout_message }">
-		<font color="green;"> Deconnexion avec succès <br />
-		</font>
-	</c:if>
 
 
-	<!-- ============== FORMULAIRE D'AUTHENTIFICATION PERSO ======================== -->
 
 
 	<c:url value="login" var="loginUrl" />
@@ -131,6 +115,22 @@ body {
 			width="200" height="200">
 		<h1 class="h3 mb-3 font-weight-normal">Formulaire
 			d'authentification</h1>
+
+		<!-- ============== AFFICHAGE DES MESSAGES DE DECONNEXION ======================== -->
+		<c:if test="${not empty param.logout_message }">
+			<div class="alert alert-primary" role="alert">
+				Deconnexion avec succès <br /> </div>
+		</c:if>
+
+		<!-- ============== AFFICHAGE DES MESSAGES D'ERREUR ======================== -->
+		<!-- En cas d'echec de l'authentification -->
+
+		<c:if test="${not empty param.error }">
+			<div class="alert alert-danger" role="alert">
+				Erreur d'authentification.
+			
+		</c:if>
+		<!-- ============== FORMULAIRE D'AUTHENTIFICATION PERSO ======================== -->
 		<label for="inputEmail" class="sr-only">Adresse mail</label> <input
 			type="email" id="inputEmail" name="u_identifiant"
 			class="form-control" placeholder="Adresse mail" required autofocus>

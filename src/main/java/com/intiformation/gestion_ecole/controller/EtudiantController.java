@@ -394,8 +394,8 @@ public class EtudiantController {
 		
 
 			// 6. edirection vers la page administrateur_listeEtudiants.jsp
-
-
+			redirectAttributes.addFlashAttribute("message", "L'étudiant "+etudiant.getPrenom()+" "+etudiant.getNom()+" a bien été ajouté.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/etudiants/listeAll";
 		} // end else
 
@@ -572,7 +572,8 @@ public class EtudiantController {
 		
 
 			// 2. edirection vers la page administrateur_listeEtudiants.jsp
-
+			redirectAttributes.addFlashAttribute("message", "L'étudiant "+etudiant.getPrenom()+" "+etudiant.getNom()+" a bien été modifié.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/etudiants/afficher/" + etudiant.getIdentifiant();
 		} // end else
 
@@ -591,7 +592,7 @@ public class EtudiantController {
 	 */
 	
 	@RequestMapping(value = "/etudiants/delete/{etudiantId}", method = RequestMethod.GET)
-	public String supprimerEnseignant(@PathVariable("etudiantId") Long pIdEtudiant, ModelMap modele) {
+	public String supprimerEnseignant(@PathVariable("etudiantId") Long pIdEtudiant, ModelMap modele,  RedirectAttributes redirectAttributes) {
 
 		// ========== Recup des objets à supprimer ============
 
@@ -610,7 +611,8 @@ public class EtudiantController {
 
 		// 2. suppression de l'enseignant
 		etudiantDao.supprimer(etudiant);
-
+		redirectAttributes.addFlashAttribute("message", "L'étudiant "+etudiant.getPrenom()+" "+etudiant.getNom()+" a bien été supprimé.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/etudiants/listeAll";
 
 	}// end supprimerEnseignant

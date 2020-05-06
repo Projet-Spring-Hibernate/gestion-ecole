@@ -134,6 +134,7 @@ public class EnseignantController {
 		modele.addAttribute("attribut_liste_enseignants", listeEnseignants);
 
 		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeEnseignants"));
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeEnseignants"));
 
 		return "administrateur_listeEnseignants";
 	}// end recupListeAllEtudiant
@@ -519,6 +520,8 @@ public class EnseignantController {
 			// 2. recup de la nouvelle liste des enseignants + redirection vers la page
 			// administrateur_listeEnseignats.jsp
 
+			redirectAttributes.addFlashAttribute("message", "L'enseignant "+enseignant.getPrenom()+" "+enseignant.getNom()+" a bien été ajouté");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/enseignants/listeAll";
 		} // end else
 
@@ -788,7 +791,8 @@ public class EnseignantController {
 			// 2. recup de la nouvelle liste des enseignants + redirection vers la page
 			// administrateur_listeEnseignats.jsp
 
-
+			redirectAttributes.addFlashAttribute("message", "L'enseignant "+enseignant.getPrenom()+" "+enseignant.getNom()+" a bien été modifié.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/enseignants/afficher/" + enseignant.getIdentifiant();
 		} // end else
 
@@ -812,7 +816,7 @@ public class EnseignantController {
 	 */
 	
 	@RequestMapping(value = "/enseignants/delete/{enseignantId}", method = RequestMethod.GET)
-	public String supprimerEnseignant(@PathVariable("enseignantId") Long pIdEnseignant, ModelMap modele) {
+	public String supprimerEnseignant(@PathVariable("enseignantId") Long pIdEnseignant, ModelMap modele, RedirectAttributes redirectAttributes) {
 
 		// ========== Recup des objets à supprimer ============
 
@@ -839,6 +843,8 @@ public class EnseignantController {
 		// 3. suppression de l'enseignant
 		enseignantDao.supprimer(enseignant);
 
+		redirectAttributes.addFlashAttribute("message", "L'enseignant "+enseignant.getPrenom()+" "+enseignant.getNom()+" a bien été supprimé.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/enseignants/listeAll";
 
 	}// end supprimerEnseignant

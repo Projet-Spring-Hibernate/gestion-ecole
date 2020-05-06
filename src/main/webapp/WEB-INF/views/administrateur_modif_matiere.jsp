@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <!-- Taglib -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- Taglib -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -12,7 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<<!-- ============================================================================ -->
+<
+<!-- ============================================================================ -->
 <!-- Lien vers .css -->
 <!-- construction du chemin vers ma feuille de style -->
 <spring:url value="/assets/styles/bootstrap.css" var="bootstrapCss" />
@@ -39,37 +40,27 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire de modification d'une matière</h1>
 
 		<form:form modelAttribute="matiereModifCommand" method="POST"
 			action="${pageContext.request.contextPath}/matieres/update">
 
 			<%-- 			<form:errors path="*" cssClass="error_validation" element="div"/> --%>
-
-			<table class="table table-striped">
+			<form:hidden path="idMatiere" />
+			<table class="table">
 
 				<tr>
 					<td><form:label path="libelle">Libelle :</form:label></td>
 					<td><form:input path="libelle" /></td>
 					<td><form:errors path="libelle" /></td>
 				</tr>
-		
-		<tr>
-					<td> <form:hidden path="idMatiere"/></td>
+
+
+				<tr>
+					<td colspan="2"><input class="btn btn-primary btn-sm"
+						type="submit" value="Modifier la matière"></td>
 				</tr>
-	<tr>
-	
-		<td colspan="2">
-			<input class="btn btn-primary btn-sm"  type="submit" value="Modifier la matière"> 
-		
-		</td>
-	
-		
-	</tr>
-	
-					
-	
+
 			</table>
 		</form:form>
 	</div>

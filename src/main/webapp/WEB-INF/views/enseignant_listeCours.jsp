@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
- <!-- ============================================================================ -->
+	pageEncoding="ISO-8859-1"%>
+
+<!-- ============================================================================ -->
 <!-- Taglib -->
 <%@taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -38,12 +38,12 @@
 	<div class="mainContent">
 
 		<h1>Liste des cours de l'enseignant</h1>
-		
-		<a href="${pageContext.request.contextPath}/cours/add-cours-formEnseignant"
-			class="btn btn-primary btn-sm" role="button">Ajouter un cours</a>
-	  
-			
-			
+
+		<a
+			href="${pageContext.request.contextPath}/cours/add-cours-formEnseignant"
+			class="btn btn-primary btn-sm" role="button">Ajouter un cours</a> <br />
+		<br />
+
 		<table class="table table-striped">
 			<!-- Ajout d'un employe -->
 
@@ -65,8 +65,9 @@
 					<td>${cours.date}</td>
 					<td>${cours.duree}</td>
 					<td>${cours.description}</td>
-					<td>${cours.matiere.libelle}</td>
-					<td>${cours.promotion.libelle}</td>
+					<td><a href="${pageContext.request.contextPath}/matieres/afficher/${cours.matiere.idMatiere}">${cours.matiere.libelle}</a></td>
+					<td><a
+						href="${pageContext.request.contextPath}/promotions/afficher/${cours.promotion.idPromotion}">${cours.promotion.libelle}</a></td>
 
 
 					<!-- colonne pour afficher l'étudiant -->

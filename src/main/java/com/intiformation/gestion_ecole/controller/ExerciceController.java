@@ -77,8 +77,8 @@ public class ExerciceController {
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_liste_exercice", listeExo);
 		modele.addAttribute("attribut_cours", cours);
-		// modele.addAttribute("aide_contenu",
-		// aideDao.getAideByPage("attribut_liste_exercice"));
+
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("affichage_liste_exercice"));
 
 		return "affichage_liste_exercice";
 	}// end recupCoursById
@@ -122,8 +122,8 @@ public class ExerciceController {
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
 
-		// modele.addAttribute("aide_contenu",
-		// aideDao.getAideByPage("administrateur_ajout_cours"));
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_ajout_exercice"));
+
 		return "enseignant_ajout_exercice";
 
 	}// end afficherFormulaireAjout
@@ -157,7 +157,7 @@ public class ExerciceController {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.exoform", result);
 			redirectAttributes.addFlashAttribute("exoform", exoform);
 
-			return "redirect:/exercice/add-form/" +idCours;
+			return "redirect:/exercice/add-form/" + idCours;
 
 		} else {
 			Exercice exercice = exoform.getExercice();
@@ -184,6 +184,9 @@ public class ExerciceController {
 
 			System.out.println("\n\n Exercice Ajouté !");
 
+			redirectAttributes.addFlashAttribute("message",
+					"L'exercice " + exercice.getLibelle() + " a bien été ajouté.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/exercice/listeExo/" + exercice.getCours().getIdCours();
 		} // end else
 
@@ -229,7 +232,7 @@ public class ExerciceController {
 
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
-
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_modif_exercice"));
 		return "enseignant_modif_exercice";
 	}// End formModifExoPourUnCours
 
@@ -277,17 +280,20 @@ public class ExerciceController {
 
 			System.out.println("\n\n Exercice Ajouté !");
 
+			redirectAttributes.addFlashAttribute("message",
+					"L'exercice " + exercice.getLibelle() + " a bien été modifié.");
+			redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 			return "redirect:/exercice/listeExo/" + exoform.getExercice().getCours().getIdCours();
 		}
 	}// end modifierExercice
-	
 
 	// ===========================================================//
 	// =========== Suppression des exercices=====================//
 	// ===========================================================//
 
 	@RequestMapping(value = "/exercice/delete/{exoID}", method = RequestMethod.GET)
-	public String suppressionExerciceById(@PathVariable("exoID") Long pIdExo, ModelMap modele) {
+	public String suppressionExerciceById(@PathVariable("exoID") Long pIdExo, ModelMap modele,
+			RedirectAttributes redirectAttributes) {
 
 		// 1. recup du cours
 		Exercice exercice = exerciceDao.getById(pIdExo);
@@ -296,6 +302,9 @@ public class ExerciceController {
 		// 2. def des données à afficher dans la vue
 		modele.addAttribute("attribut_exercice", exercice);
 
+		redirectAttributes.addFlashAttribute("message",
+				"L'exercice " + exercice.getLibelle() + " a bien été supprimé.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/exercice/listeExo/" + exercice.getCours().getIdCours();
 	}// end suppressionExerciceById
 

@@ -146,19 +146,14 @@ public class CoursController {
 	 * @return
 	 */
 	@RequestMapping(value="/cours/delete/{coursID}", method=RequestMethod.GET)
-	public String suppressionCoursById(@PathVariable("coursID") Long pIdCours, ModelMap modele) {
+	public String suppressionCoursById(@PathVariable("coursID") Long pIdCours, ModelMap modele,  RedirectAttributes redirectAttributes) {
 		
 		//1. recup du cours
 		Cours cours = coursDao.getById(pIdCours);
 		coursDao.supprimer(cours);
-		
-		//Cours cours1 = coursDao.affichageCours(cours);
-		
-
-		//2. def des données à afficher dans la vue
-		modele.addAttribute("attribut_cours", cours);
-		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_listeCours"));
-		
+			
+		redirectAttributes.addFlashAttribute("message", "Le cours "+cours.getLibelle()+" a bien été supprimé.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/cours/listeAll";
 	}//end recupCoursById
 	
@@ -333,7 +328,8 @@ public class CoursController {
 		
 		System.out.println("\n\n Cours Ajouté !");
 		
-		
+		redirectAttributes.addFlashAttribute("message", "Le cours "+cours.getLibelle()+" a bien été ajouté.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/cours/listeByEnseignant";
 		}//end else
 	}//end ajouterCoursEnseignant
@@ -453,7 +449,8 @@ public class CoursController {
 		
 		System.out.println("\n\n Cours Ajouté !");
 		
-		
+		redirectAttributes.addFlashAttribute("message", "Le cours "+cours.getLibelle()+" a bien été ajouté.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/cours/listeAll";
 		}//end else
 
@@ -515,6 +512,7 @@ public class CoursController {
 
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("administrateur_modif_cours"));
 		return "administrateur_modif_cours";
 		
 	}//end afficherFormulaireUpdate()
@@ -569,7 +567,8 @@ public class CoursController {
 		
 		System.out.println("\n\n Cours Ajouté !");
 		
-		
+		redirectAttributes.addFlashAttribute("message", "Le cours "+cours.getLibelle()+" a bien été modifié.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/cours/listeAll";
 		}
 	}//end modifierEmployeBdd
@@ -635,6 +634,7 @@ public class CoursController {
 
 		// 3. envoi de l'objet ModelAndView à la servlet contenant l'objet et le nom de
 		// la vue
+		modele.addAttribute("aide_contenu", aideDao.getAideByPage("enseignant_modif_cours"));
 		return "enseignant_modif_cours";
 		
 	}//end afficherFormulaireUpdate()
@@ -688,7 +688,8 @@ public class CoursController {
 		
 		System.out.println("\n\n Cours Ajouté !");
 		
-		
+		redirectAttributes.addFlashAttribute("message", "Le cours "+cours.getLibelle()+" a bien été modifié.");
+		redirectAttributes.addFlashAttribute("reussiteOperation", "true");
 		return "redirect:/cours/listeByEnseignant";
 		}
 	}//end modifierCoursEnseignant

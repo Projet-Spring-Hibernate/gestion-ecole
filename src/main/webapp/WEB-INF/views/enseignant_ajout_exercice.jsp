@@ -49,7 +49,7 @@
 		<form:form modelAttribute="exoform" method="POST"
 			action="${pageContext.request.contextPath}/exercice/add/${attribut_cours.idCours}">
 
-			<table class="table table-striped">
+			<table class="table">
 
 				<tr>
 					<td><form:label path="exercice.libelle">Libelle :</form:label></td>

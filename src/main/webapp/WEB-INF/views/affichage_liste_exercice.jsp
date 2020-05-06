@@ -50,7 +50,6 @@
  		<a class="btn btn-primary" 
 			href="${pageContext.request.contextPath}/exercice/add-form/${attribut_cours.idCours}">Ajouter</a>
 			
-		<br /> <br />
 		<table class="table table-striped">
 
 			<tr>
@@ -64,7 +63,8 @@
 				<tr>
 					<td>${exo.idExercice}</td>
 					<td>${exo.libelle}</td>
-					<td>${exo.cours.libelle}</td>
+					<td><a
+						href="${pageContext.request.contextPath}/cours/afficher/${exo.cours.idCours}">${exo.cours.libelle}</a></td>
 					
 					<td><a
 						href="${pageContext.request.contextPath}/exercice/update-form/${exo.idExercice}">Modifier</a></td>

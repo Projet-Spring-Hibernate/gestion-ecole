@@ -127,63 +127,6 @@ public class TestEtudiantDAO {
 		etudiantDao.getAllEtudiant();
 	}
 
-	@Test
-	public void testAjouterEtudiantAvecPromotion() {
-		Promotion promo = new Promotion("sciences du vivant");
 
-		promoDao.ajouter(promo);
-		List<Promotion> listePromotion = promoDao.listePromotion();
-
-		Etudiant etudiant = new Etudiant("mdp", "nom", "prenom", "email", "photo", "dateDeNaissance");
-		etudiant.setListePromotion(listePromotion);
-
-		etudiantDao.ajouter(etudiant);
-
-		List<Etudiant> listeEtudiant = etudiantDao.getAllEtudiant();
-
-		Etudiant etudiantRecup = (Etudiant) etudiantDao.getById(listeEtudiant.get(0).getIdentifiant());
-
-		List<Promotion> promoRecup = etudiantRecup.getListePromotion();
-		// suppression
-		etudiantDao.supprimer(listeEtudiant.get(0));
-		etudiantDao.getAllEtudiant();
-
-		promoDao.supprimer(listePromotion.get(0));
-		promoDao.listePromotion();
-
-		// Test si on recupere bien l'adresse de la personne
-		Assert.assertTrue(promoRecup.equals(listePromotion.get(0)));
-
-	}// end testAjouterEtudiantAvecPromotion()
-	
-	
-	@Test
-	public void testAjouterEtudiantAvecCours() {
-//		Cours cours = new Cours("maths", "date", "duree","description");
-//
-//		coursDao.ajouter(cours);
-//		List<Cours> listeCours = coursDao.getAllCours();
-//
-//		Etudiant etudiant = new Etudiant("mdp", "nom", "prenom", "email", "photo", "dateDeNaissance");
-//		etudiant.setListeCours(listeCours);
-//
-//		etudiantDao.ajouter(etudiant);
-//
-//		List<Etudiant> listeEtudiant = etudiantDao.getAllEtudiant();
-//
-//		Etudiant etudiantRecup = (Etudiant) etudiantDao.getById(listeEtudiant.get(0).getIdentifiant());
-//
-//		List<Cours> coursRecup = etudiantRecup.getListeCours();
-//		// suppression
-//		etudiantDao.supprimer(listeEtudiant.get(0));
-//		etudiantDao.getAllEtudiant();
-//
-//		coursDao.supprimer(listeCours.get(0));
-//		coursDao.getAllCours();
-//
-//		// Test si on recupere bien l'adresse de la personne
-//		Assert.assertTrue(coursRecup.equals(listeCours.get(0)));
-
-	}// end testAjouterEtudiantAvecPromotion()
 
 }

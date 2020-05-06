@@ -39,7 +39,6 @@
 
 	<div class="mainContent">
 
-		<br /> <br />
 		<h1>Formulaire de modification d'un etudiant</h1>
 
 		<form:form modelAttribute="etudiantForm" method="POST"
