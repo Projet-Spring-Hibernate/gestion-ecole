@@ -86,7 +86,7 @@
 					<td><a class="btn btn-primary"
 						href="${pageContext.request.contextPath}/exercice/listeExo/${attribut_cours.idCours}">Afficher
 							les exercices associés</a> <a class="btn btn-warning"
-						href="${pageContext.request.contextPath}/cours/update-cours-formEnseignant/${attribut_cours.idCours}">Modifier</a>
+						href="${pageContext.request.contextPath}/cours/update-cours-form/${attribut_cours.idCours}">Modifier</a>
 						<a class="btn btn-danger"
 						href="${pageContext.request.contextPath}/cours/delete/${attribut_cours.idCours}">Supprimer</a>
 						<a class="btn btn-success"
