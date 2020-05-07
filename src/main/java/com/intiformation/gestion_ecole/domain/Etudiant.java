@@ -54,7 +54,8 @@ public class Etudiant extends Personne{
 	@JoinTable(name="etudiant_promotion", 
 	joinColumns= @JoinColumn(name="etudiant_id", referencedColumnName="identifiant"), 
 	inverseJoinColumns= @JoinColumn(name="promotion_id", referencedColumnName="ID_PROMOTION"))
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<Promotion> listePromotion=new ArrayList<>();
 	
 	@OneToMany(mappedBy="etudiant")

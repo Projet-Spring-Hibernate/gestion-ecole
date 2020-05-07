@@ -81,6 +81,7 @@ public class MatiereWsREST {
 	 */
 	@RequestMapping(value = "/matiere/save", method = RequestMethod.POST)
 	public void saveMatiere(@RequestBody Matiere pMatiere) {
+		System.out.println("==== Je suis dans saveMatier coté webservice");
 		matiereDao.ajouter(pMatiere);
 	}// end saveMatiere
 

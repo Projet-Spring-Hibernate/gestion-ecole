@@ -59,7 +59,8 @@ public class Promotion implements Serializable {
 	// relation entre promotion et cours
 	@OneToMany(mappedBy="promotion")
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<Cours> listeCours =new ArrayList<>();
 	
 	// relation entre promotion et étudiant

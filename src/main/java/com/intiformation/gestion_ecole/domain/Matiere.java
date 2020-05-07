@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -25,6 +26,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Classe entity pour les matières.
@@ -51,14 +53,16 @@ public class Matiere implements Serializable {
 	
 	@OneToMany(mappedBy="matiere", orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	
 	//relation entre matière et Cours
 	@OneToMany(mappedBy="matiere", fetch=FetchType.EAGER,  orphanRemoval= true)
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<Cours> listeCours= new ArrayList<>();
 	
 	

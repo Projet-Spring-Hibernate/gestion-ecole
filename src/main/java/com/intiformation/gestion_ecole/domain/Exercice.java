@@ -19,6 +19,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -41,7 +42,8 @@ public class Exercice implements Serializable {
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="COURS_ID", referencedColumnName="ID_COURS")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private Cours cours;
 
 	

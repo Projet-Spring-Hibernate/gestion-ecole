@@ -22,6 +22,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -43,7 +44,8 @@ public class Enseignant extends Personne {
 	
 	@OneToMany(mappedBy="enseignant")
 	@Cascade(CascadeType.SAVE_UPDATE)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<EnseignantMatierePromotion> listeEnseignantMatierePromotion = new ArrayList<>();
 	
 	

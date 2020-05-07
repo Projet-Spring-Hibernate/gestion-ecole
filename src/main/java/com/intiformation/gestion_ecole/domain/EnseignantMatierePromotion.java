@@ -16,6 +16,7 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -37,19 +38,22 @@ public class EnseignantMatierePromotion {
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="MATIERE_ID", referencedColumnName="ID_MATIERE")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private Matiere matiere;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="ENSEIGNANT_ID", referencedColumnName="identifiant")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private Enseignant enseignant;
 	
 	@ManyToOne
 	@Cascade(CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="PROMOTION_ID", referencedColumnName="ID_PROMOTION")
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	private Promotion promotion;
 	
 	/*_______________Constructeurs_______________*/
