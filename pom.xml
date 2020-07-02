@@ -29,7 +29,7 @@
 		<hibernate.version>5.2.11.Final</hibernate.version>
 
 		<!-- Version MySQL -->
-		<mysql.driver.version>5.1.47</mysql.driver.version>
+		<mysql.driver.version>8.0.16</mysql.driver.version>
 
 		<!-- Version API Servlet -->
 		<servlet.version>3.1.0</servlet.version>
